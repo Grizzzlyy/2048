@@ -196,6 +196,7 @@ void initializePlayerData(player_t* player, int fieldSize)
     player->score = 0;
     player->field = (unsigned short**)createDynamicMatrix(fieldSize);
     spawnNumberOnField(player->field, fieldSize);
+    spawnNumberOnField(player->field, fieldSize);
 }
 
 void spawnNumberOnField(unsigned short** field, int fieldSize)
