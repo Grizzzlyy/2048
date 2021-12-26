@@ -26,5 +26,8 @@
     <ClInclude Include="2048.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="hardbot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
