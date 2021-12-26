@@ -1,12 +1,12 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "2048.h"
-#define MAX_DEPTH 3
-#define FIXED_SCORE 0
-#define EMPTY_SCORE 0
-#define MERGES_SCORE 0
-#define MAX_DEPTH 0
-#define MONOTONICITY_SCORE 0
-#define SUM_SCORE 0
+#define MAX_WEIGHT 3
+#define FIXED_WEIGHT 0
+#define EMPTY_WEIGHT 0
+#define MERGES_WEIGHT 0
+#define MAX_WEIGHT 0
+#define MONOTONICITY_WEIGHT 0
+#define SUM_WEIGHT 0
 
 action determineNextMove(player_t* bot, int fieldSize);
 int calculateScore(player_t* bot, action move, int fieldSize);
@@ -54,7 +54,7 @@ int calculateScore(player_t* bot, action move, int fieldSize)
 
 int generateScore(player_t* bot, int curDepth, int fieldSize)
 {
-    if (curDepth == MAX_DEPTH)
+    if (curDepth == MAX_WEIGHT)
         return calculateFinalScore(bot, curDepth,fieldSize);
 
     int totalScore = 0;
@@ -118,19 +118,19 @@ int calculateFinalScore(player_t* bot, int fieldSize)
     int score = 0;
     for (int row_n = 0; row_n < fieldSize; row_n++)
     {
-        score += FIXED_SCORE;
-        score += EMPTY_SCORE * emptyCellsInRow(bot,row_n, fieldSize);
-        score += MERGES_SCORE * mergesInRow(bot, row_n, fieldSize);
-        score -= MONOTONICITY_SCORE * min(leftMonotonicityInRow(bot, row_n, fieldSize), rightMonotonicityInRow(bot, row_n, fieldSize));
-        score -= SUM_SCORE * sumInRow(bot, row_n, fieldSize);
+        score += FIXED_WEIGHT;
+        score += EMPTY_WEIGHT * emptyCellsInRow(bot,row_n, fieldSize);
+        score += MERGES_WEIGHT * mergesInRow(bot, row_n, fieldSize);
+        score -= MONOTONICITY_WEIGHT * min(leftMonotonicityInRow(bot, row_n, fieldSize), rightMonotonicityInRow(bot, row_n, fieldSize));
+        score -= SUM_WEIGHT * sumInRow(bot, row_n, fieldSize);
     }
     for (int col_n = 0; col_n < fieldSize; col_n++)
     {
-        score += FIXED_SCORE;
-        score += EMPTY_SCORE * emptyCellsInCol(bot, col_n, fieldSize);
-        score += MERGES_SCORE * mergesInCol(bot, col_n, fieldSize);
-        score -= MONOTONICITY_SCORE * min(leftMonotonicityInCol(bot, col_n, fieldSize),rightMonotonicityInCol(bot, col_n, fieldSize));
-        score -= SUM_SCORE * sumInCol(bot, col_n, fieldSize);
+        score += FIXED_WEIGHT;
+        score += EMPTY_WEIGHT * emptyCellsInCol(bot, col_n, fieldSize);
+        score += MERGES_WEIGHT * mergesInCol(bot, col_n, fieldSize);
+        score -= MONOTONICITY_WEIGHT * min(leftMonotonicityInCol(bot, col_n, fieldSize),rightMonotonicityInCol(bot, col_n, fieldSize));
+        score -= SUM_WEIGHT * sumInCol(bot, col_n, fieldSize);
     }
     return score;
 }
