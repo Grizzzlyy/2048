@@ -1,42 +1,41 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include "dynmatrix.h"
 
 //Создает и возвращает динамический массив нужного размера и нужного типа
-//При создании не забывайте потом освободить память функцией deleteDynamicMatrix!!!
-size_t** createDynamicMatrix(unsigned short matrixSize)
+//При создании не забывайте потом освободить память функцией deleteMatrix!!!
+size_t** createMatrix(unsigned short size)
 {
-    size_t** A = (size_t**)calloc(matrixSize, sizeof(size_t*));
-    for (int i = 0; i < matrixSize; i++)
+    size_t** A = (size_t**)calloc(size, sizeof(size_t*));
+    for (int i = 0; i < size; i++)
     {
-        A[i] = (size_t*)calloc(matrixSize, sizeof(size_t));
+        A[i] = (size_t*)calloc(size, sizeof(size_t));
     }
     return A;
 }
 
 //Освобождает память, занятую динамическим массивом
-void deleteDynamicMatrix(unsigned short** matrix, unsigned short matrixSize)
+void deleteMatrix(unsigned short** matrix, unsigned short size)
 {
-    for (unsigned short i = 0; i < matrixSize; i++)
+    for (unsigned short i = 0; i < size; i++)
     {
         free(matrix[i]);
     }
     free(matrix);
 }
 
-//Копирует sourceMatrix в changingMatrix
-void copyMatrix(unsigned short** sourceMatrix, unsigned short** changingMatrix, unsigned short matrixSize)
+//Копирует sourceMatrix в destinationMatrix
+void copyMatrix(unsigned short** sMatrix, unsigned short** dMatrix, unsigned short size)
 {
-    for (unsigned short i = 0; i < matrixSize; i++)
+    for (unsigned short i = 0; i < size; i++)
     {
-        for (unsigned short j = 0; j < matrixSize; j++)
+        for (unsigned short j = 0; j < size; j++)
         {
-            changingMatrix[i][j] = sourceMatrix[i][j];
+            dMatrix[i][j] = sMatrix[i][j];
         }
     }
 }
 
 //Если матрицы разные, возвращает 1, если одинаковые, то 0
-bool isMatricesDiffer(unsigned short** matrix1, unsigned short** matrix2, int size)
+bool cmpMatrix(unsigned short** matrix1, unsigned short** matrix2, int size)
 {
     for (int i = 0; i < size; i++)
     {

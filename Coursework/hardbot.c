@@ -1,28 +1,21 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdbool.h>
 #include "hardbot.h"
-#include "2048.h"
 #include "dynmatrix.h"
 
-#define MAX_DEPTH 3
+#define MAX_DEPTH 2
 #define FIXED_WEIGHT 0
 #define EMPTY_WEIGHT 5
 #define MERGES_WEIGHT 2
 #define MONOTONICITY_WEIGHT 3
 #define SUM_WEIGHT 1
 
-void simulateMove(player_t* bot, int fieldSize, enum action move)
-{
-    swipeFieldAndChangeScore(bot, fieldSize, move);
-}
-
-enum action determineNextMove(player_t* bot, int fieldSize)
+//determines best next move (the biggest probability to win)
+enum action determineNextMove(unsigned short** board, int boardSize)
 {
     enum action bestMove = NONE;
-    int bestScore = 0;
+    float bestScore = 0;
     for (enum action move = 0; move < 4; move++)
     {
-        int score = calculateScore(bot, move, fieldSize);
+        float score = calculateScore(board, move, boardSize);
         if (score > bestScore)
         {
             bestScore = score;
@@ -31,258 +24,431 @@ enum action determineNextMove(player_t* bot, int fieldSize)
     }
     return bestMove;
 }
-
-int calculateScore(player_t* bot, enum action move, int fieldSize)
+//calculates the score of the move (how good is this move)
+float calculateScore(unsigned short** board, enum action move, int boardSize)
 {
-    player_t tmp;
-    initializePlayerData(&tmp, fieldSize);
-    copyStruct(*bot, &tmp, fieldSize);
-    simulateMove(&tmp, fieldSize, move);
-    if (isMatricesDiffer(tmp.field, bot->field, fieldSize) == 0)
+    unsigned short** newBoard;
+    newBoard = (unsigned short**)createMatrix(boardSize);
+    copyMatrix(board, newBoard, boardSize);
+    simulateMove(newBoard, move, boardSize);
+
+    if (cmpMatrix(newBoard, board, boardSize) == 0)
     {
-        deleteDynamicMatrix(tmp.field, fieldSize);
+        deleteMatrix(newBoard, boardSize);
         return 0;
     }
         
-    copyStruct(*bot, &tmp, fieldSize);
-    /*
-    int possible = doAction(&tmp, fieldSize, move);
-    copyStruct(*bot, &tmp, fieldSize);
-    if (possible == 1)
-        return 0;
-        */
-    int res = generateScore(&tmp, 0, fieldSize);
-    deleteDynamicMatrix(tmp.field, fieldSize);
-    return res;
+    float score = generateScore(newBoard, 0, boardSize);
+    deleteMatrix(newBoard, boardSize);
+    return score;
 }
-
-int generateScore(player_t* bot, int curDepth, int fieldSize)
+//generates score of this move (how good is this move), recursive function
+float generateScore(unsigned short** board, int curDepth, int boardSize)
 {
     if (curDepth == MAX_DEPTH)
-        return calculateFinalScore(bot, fieldSize);
+        return calculateFinalScore(board, boardSize);
 
-    int totalScore = 0;
-    for (int i = 0; i < fieldSize; i++)
+    float totalScore = 0;
+    for (int i = 0; i < boardSize; i++)
     {
-        for (int j = 0; j < fieldSize; j++)
+        for (int j = 0; j < boardSize; j++)
         {
-            if (bot->field[i][j] == 0)
+            if (board[i][j] == 0)
             {
                 //for 2 spawning
-                player_t tmp2;
-                initializePlayerData(&tmp2, fieldSize);
-                copyStruct(*bot, &tmp2, fieldSize);
-                tmp2.field[i][j] = 2;
-                int moveScore2 = calculateMoveScore(&tmp2, curDepth, fieldSize);
-                deleteDynamicMatrix(tmp2.field, fieldSize);
+                unsigned short** newBoard2;
+                newBoard2 = (unsigned short**)createMatrix(boardSize);
+                copyMatrix(board, newBoard2, boardSize);
+                newBoard2[i][j] = 2;
+                float moveScore2 = calculateMoveScore(newBoard2, curDepth, boardSize);
+                deleteMatrix(newBoard2, boardSize);
                 totalScore += (0.9 * moveScore2);
                 //for 4 spawning
-                player_t tmp4;
-                initializePlayerData(&tmp4, fieldSize);
-                copyStruct(*bot, &tmp4, fieldSize);
-                tmp4.field[i][j] = 4;
-                int moveScore4 = calculateMoveScore(&tmp4, curDepth, fieldSize);
-                deleteDynamicMatrix(tmp4.field, fieldSize);
+                unsigned short** newBoard4;
+                newBoard4 = (unsigned short**)createMatrix(boardSize);
+                copyMatrix(board, newBoard4, boardSize);
+                newBoard4[i][j] = 4;
+                float moveScore4 = calculateMoveScore(newBoard4, curDepth, boardSize);
+                deleteMatrix(newBoard4, boardSize);
                 totalScore += (0.1 * moveScore4);
             }
         }
     }
+    return totalScore;
 }
-
-int calculateMoveScore(player_t* bot, int curDepth, int fieldSize)
+//recursive function
+float calculateMoveScore(unsigned short** board, int curDepth, int boardSize)
 {
-    int bestScore = 0;
+    float bestScore = 0;
     for (enum action move = 0; move < 4; move++)
     {
-        player_t tmp;
-        initializePlayerData(&tmp, fieldSize);
-        copyStruct(*bot, &tmp, fieldSize);
-        simulateMove(&tmp, fieldSize, move);
-        /*
-        int same = 1;
-        for (int i = 0; i < fieldSize; i++)
+        unsigned short** newBoard;
+        newBoard = (unsigned short**)createMatrix(boardSize);
+        copyMatrix(board, newBoard, boardSize);
+        simulateMove(newBoard, move, boardSize);
+        if (cmpMatrix(board, newBoard, boardSize) == 1)
         {
-            for (int j = 0; j < fieldSize; j++)
-            {
-                if (tmp.field[i][j] != bot->field[i][j])
-                {
-                    same = 0;
-                    break;
-                }
-            }
-            if (same == 0)
-                break;
+            float score = generateScore(newBoard, curDepth + 1, boardSize);
+            bestScore = (score > bestScore) ? score : bestScore;
         }
-        */
-        if (isMatricesDiffer(tmp.field, bot->field, fieldSize) == 1)
-        {
-            int score = generateScore(&tmp, curDepth + 1, fieldSize);
-            if (score > bestScore)
-                bestScore = score;
-        }
-        deleteDynamicMatrix(tmp.field, fieldSize);
+        deleteMatrix(newBoard, boardSize);
     }
     return bestScore;
 }
-
-int calculateFinalScore(player_t* bot, int fieldSize)
+//calculates final score of this move (after that it goes to calculateScore and determineNextMove)
+float calculateFinalScore(unsigned short** board, int boardSize)
 {
-    int score = 0;
-    for (int row_n = 0; row_n < fieldSize; row_n++)
+    float score = 0;
+    for (int row_n = 0; row_n < boardSize; row_n++)
     {
         score += FIXED_WEIGHT;
-        score += EMPTY_WEIGHT * emptyCellsInRow(bot, row_n, fieldSize);
-        score += MERGES_WEIGHT * mergesInRow(bot, row_n, fieldSize);
-        score -= MONOTONICITY_WEIGHT * _min(leftMonotonicityInRow(bot, row_n, fieldSize), rightMonotonicityInRow(bot, row_n, fieldSize));
-        score -= SUM_WEIGHT * sumInRow(bot, row_n, fieldSize);
+        score += EMPTY_WEIGHT * emptyCellsInRow(board, row_n, boardSize);
+        score += MERGES_WEIGHT * mergesInRow(board, row_n, boardSize);
+        score -= MONOTONICITY_WEIGHT * _min(leftMonotonicityInRow(board, row_n, boardSize), rightMonotonicityInRow(board, row_n, boardSize));
+        score -= SUM_WEIGHT * sumInRow(board, row_n, boardSize);
     }
-    for (int col_n = 0; col_n < fieldSize; col_n++)
+    for (int col_n = 0; col_n < boardSize; col_n++)
     {
         score += FIXED_WEIGHT;
-        score += EMPTY_WEIGHT * emptyCellsInCol(bot, col_n, fieldSize);
-        score += MERGES_WEIGHT * mergesInCol(bot, col_n, fieldSize);
-        score -= MONOTONICITY_WEIGHT * _min(leftMonotonicityInCol(bot, col_n, fieldSize), rightMonotonicityInCol(bot, col_n, fieldSize));
-        score -= SUM_WEIGHT * sumInCol(bot, col_n, fieldSize);
+        score += EMPTY_WEIGHT * emptyCellsInCol(board, col_n, boardSize);
+        score += MERGES_WEIGHT * mergesInCol(board, col_n, boardSize);
+        score -= MONOTONICITY_WEIGHT * _min(leftMonotonicityInCol(board, col_n, boardSize), rightMonotonicityInCol(board, col_n, boardSize));
+        score -= SUM_WEIGHT * sumInCol(board, col_n, boardSize);
     }
     return score;
 }
-
-int emptyCellsInRow(player_t* player, int row_n, int fieldSize)
+//swipe board in some direction
+void simulateMove(unsigned short** board, enum action move, int boardSize)
 {
-    int res = 0;
-    for (int i = 0; i < fieldSize; i++)
-    {
-        if (player->field[row_n][i] == 0)
-            res++;
-    }
-    return res;
-}
 
-int emptyCellsInCol(player_t* player, int col_n, int fieldSize)
-{
-    int res = 0;
-    for (int i = 0; i < fieldSize; i++)
+    switch (move)
     {
-        if (player->field[i][col_n] == 0)
-            res++;
-    }
-    return res;
-}
-
-int mergesInRow(player_t* player, int row_n, int fieldSize)
-{
-    int res = 0;
-    for (int i = 0; i < fieldSize - 1; i++)
-    {
-        if (player->field[row_n][i] == player->field[row_n][i + 1])
-            res++;
-    }
-    return res;
-}
-
-int mergesInCol(player_t* player, int col_n, int fieldSize)
-{
-    int res = 0;
-    for (int i = 0; i < fieldSize - 1; i++)
-    {
-        if (player->field[i][col_n] == player->field[i + 1][col_n])
-            res++;
-    }
-    return res;
-}
-
-int leftMonotonicityInRow(player_t* player, int row_n, int fieldSize)
-{
-    int res = 0;
-    int tmp = 0;
-    for (int i = 0; i < fieldSize - 1; i++)
-    {
-        if (player->field[row_n][i] < player->field[row_n][i + 1])
-            tmp++;
-        else
+    case UP:
+        //1)Сдвигаем все элементы к верхнему краю
+        //Перебираем столбцы
+        for (int i = 0; i < boardSize; i++)
         {
-            res = tmp;
-            tmp = 0;
+            //Перебираем элементы столбцов
+            for (int j = 0; j < boardSize; j++)
+            {
+                int k = j;
+                //Пропускаем нулевые элементы
+                while (k < boardSize && board[k][i] == 0)
+                {
+                    k++;
+                }
+                //for (k = j; k <= fieldSize-1 && matrix[k][i] == 0; k++);
+                if (k == boardSize)
+                    break;
+                else
+                {
+                    unsigned short buffer;
+                    buffer = board[j][i];
+                    board[j][i] = board[k][i];
+                    board[k][i] = buffer;
+                }
+            }
         }
-    }
-    return res;
-}
-
-int rightMonotonicityInRow(player_t* player, int row_n, int fieldSize)
-{
-    int res = 0;
-    int tmp = 0;
-    for (int i = 0; i < fieldSize - 1; i++)
-    {
-        if (player->field[row_n][i] > player->field[row_n][i + 1])
-            tmp++;
-        else
+        //2)Складываем соседние одинаковые элементы в столбцах и добавляем к счету
+        //Перебираем столбцы
+        for (int i = 0; i < boardSize; i++)
         {
-            res = tmp;
-            tmp = 0;
+            //Перебираем элементы столбцов
+            for (int j = 0; j < boardSize - 1; j++)
+            {
+                //Если они равны, то склеиваем и подтягиваем остальные плитки
+                if (board[j][i] == board[j + 1][i] && board[j][i] != 0)
+                {
+                    board[j][i] *= 2;
+                    int k;
+                    for (k = j + 1; k < boardSize - 1; k++)
+                    {
+                        board[k][i] = board[k + 1][i];
+                    }
+                    board[k][i] = 0;
+                }
+            }
         }
-    }
-    return res;
-}
-
-int leftMonotonicityInCol(player_t* player, int col_n, int fieldSize)
-{
-    int res = 0;
-    int tmp = 0;
-    for (int i = 0; i < fieldSize - 1; i++)
-    {
-        if (player->field[i][col_n] < player->field[i + 1][col_n])
-            tmp++;
-        else
+        break;
+    case DOWN:
+        //1)Сдвигаем все элементы к нижнему краю
+    //Перебираем столбцы
+        for (int i = 0; i < boardSize; i++)
         {
-            res = tmp;
-            tmp = 0;
+            //Перебираем элементы столбцов
+            for (int j = boardSize - 1; j >= 0; j--)
+            {
+                int k = j;
+                //Пропускаем нулевые элементы
+                while (k >= 0 && board[k][i] == 0)
+                {
+                    k--;
+                }
+                if (k == -1)
+                    break;
+                else
+                {
+                    unsigned short buffer;
+                    buffer = board[j][i];
+                    board[j][i] = board[k][i];
+                    board[k][i] = buffer;
+                }
+            }
         }
-    }
-    return res;
-}
-
-int rightMonotonicityInCol(player_t* player, int col_n, int fieldSize)
-{
-    int res = 0;
-    int tmp = 0;
-    for (int i = 0; i < fieldSize - 1; i++)
-    {
-        if (player->field[i][col_n] > player->field[i + 1][col_n])
-            tmp++;
-        else
+        //2)Складываем соседние одинаковые элементы в столбцах и добавляем к счету
+        //Перебираем столбцы
+        for (int i = 0; i < boardSize; i++)
         {
-            res = tmp;
-            tmp = 0;
+            //Перебираем элементы столбцов
+            for (int j = boardSize - 1; j >= 1; j--)
+            {
+                //Если они равны, то склеиваем,увеличиваем счет и подтягиваем остальные плитки
+                if (board[j][i] == board[j - 1][i] && board[j][i] != 0)
+                {
+                    board[j][i] *= 2;
+                    int k;
+                    for (k = j - 1; k >= 1; k--)
+                    {
+                        board[k][i] = board[k - 1][i];
+                    }
+                    board[k][i] = 0;
+                }
+            }
         }
+        break;
+    case LEFT:
+        //1)Сдвигаем все элементы к левому краю
+    //Перебираем строки
+        for (int i = 0; i < boardSize; i++)
+        {
+            //Перебираем элементы строк
+            for (int j = 0; j < boardSize; j++)
+            {
+                int k = j;
+                //Пропускаем нулевые элементы
+                while (k < boardSize && board[i][k] == 0)
+                {
+                    k++;
+                }
+                if (k == boardSize)
+                    break;
+                else
+                {
+                    unsigned short buffer;
+                    buffer = board[i][j];
+                    board[i][j] = board[i][k];
+                    board[i][k] = buffer;
+                }
+            }
+        }
+        //2)Складываем соседние одинаковые элементы в столбцах и добавляем к счету
+        //Перебираем строки
+        for (int i = 0; i < boardSize; i++)
+        {
+            //Перебираем элементы строк
+            for (int j = 0; j < boardSize - 1; j++)
+            {
+                //Если они равны, то склеиваем,увеличиваем счет и подтягиваем остальные плитки
+                if (board[i][j] == board[i][j + 1] && board[i][j] != 0)
+                {
+                    board[i][j] *= 2;
+                    //player->score += board[i][j];
+                    int k;
+                    for (k = j + 1; k < boardSize - 1; k++)
+                    {
+                        board[i][k] = board[i][k + 1];
+                    }
+                    board[i][k] = 0;
+                }
+            }
+        }
+        break;
+    case RIGHT:
+        //1)Сдвигаем все элементы к правому краю
+    //Перебираем строки
+        for (int i = 0; i < boardSize; i++)
+        {
+            //Перебираем элементы строк
+            for (int j = boardSize - 1; j >= 0; j--)
+            {
+                int k = j;
+                //Пропускаем нулевые элементы
+                while (k >= 0 && board[i][k] == 0)
+                {
+                    k--;
+                }
+                if (k == -1)
+                    break;
+                else if (j != k)
+                {
+                    unsigned short buffer;
+                    buffer = board[i][j];
+                    board[i][j] = board[i][k];
+                    board[i][k] = buffer;
+                }
+            }
+        }
+        //2)Складываем соседние одинаковые элементы в столбцах и добавляем к счету
+        //Перебираем строки
+        for (int i = 0; i < boardSize; i++)
+        {
+            //Перебираем элементы строк
+            for (int j = boardSize - 1; j > 0; j--)
+            {
+                //Если они равны, то склеиваем,увеличиваем счет и подтягиваем остальные плитки
+                if (board[i][j] == board[i][j - 1] && board[i][j] != 0)
+                {
+                    board[i][j] *= 2;
+                    //player->score += board[i][j];
+                    int k;
+                    for (k = j - 1; k > 0; k--)
+                    {
+                        board[i][k] = board[i][k - 1];
+                    }
+                    board[i][k] = 0;
+                }
+            }
+        }
+        break;
+    default:
+        break;
     }
-    return res;
+    //swipeFieldAndChangeScore(bot, fieldSize, move);
 }
 
 int _min(int x1, int x2)
 {
-    if (x1 < x2)
-        return x1;
-    else
-        return x2;
+    return (x1 < x2) ? x1 : x2;
 }
 
-int sumInRow(player_t* player, int row_n, int fieldSize)
+int emptyCellsInRow(unsigned short** board, int row_n, int boardSize)
+{
+    int res = 0;
+    for (int i = 0; i < boardSize; i++)
+    {
+        if (board[row_n][i] == 0)
+            res++;
+    }
+    return res;
+}
+
+int emptyCellsInCol(unsigned short** board, int col_n, int boardSize)
+{
+    int res = 0;
+    for (int i = 0; i < boardSize; i++)
+    {
+        if (board[i][col_n] == 0)
+            res++;
+    }
+    return res;
+}
+
+int mergesInRow(unsigned short** board, int row_n, int boardSize)
+{
+    int res = 0;
+    for (int i = 0; i < boardSize - 1; i++)
+    {
+        if (board[row_n][i] == board[row_n][i + 1])
+            res++;
+    }
+    return res;
+}
+
+int mergesInCol(unsigned short** board, int col_n, int boardSize)
+{
+    int res = 0;
+    for (int i = 0; i < boardSize - 1; i++)
+    {
+        if (board[i][col_n] == board[i + 1][col_n])
+            res++;
+    }
+    return res;
+}
+
+int leftMonotonicityInRow(unsigned short** board, int row_n, int boardSize)
+{
+    int res = 0;
+    int tmp = 0;
+    for (int i = 0; i < boardSize - 1; i++)
+    {
+        if (board[row_n][i] < board[row_n][i + 1])
+            tmp++;
+        else
+        {
+            res = tmp;
+            tmp = 0;
+        }
+    }
+    return res;
+}
+
+int rightMonotonicityInRow(unsigned short** board, int row_n, int boardSize)
+{
+    int res = 0;
+    int tmp = 0;
+    for (int i = 0; i < boardSize - 1; i++)
+    {
+        if (board[row_n][i] > board[row_n][i + 1])
+            tmp++;
+        else
+        {
+            res = tmp;
+            tmp = 0;
+        }
+    }
+    return res;
+}
+
+int leftMonotonicityInCol(unsigned short** board, int col_n, int boardSize)
+{
+    int res = 0;
+    int tmp = 0;
+    for (int i = 0; i < boardSize - 1; i++)
+    {
+        if (board[i][col_n] < board[i + 1][col_n])
+            tmp++;
+        else
+        {
+            res = tmp;
+            tmp = 0;
+        }
+    }
+    return res;
+}
+
+int rightMonotonicityInCol(unsigned short** board, int col_n, int boardSize)
+{
+    int res = 0;
+    int tmp = 0;
+    for (int i = 0; i < boardSize - 1; i++)
+    {
+        if (board[i][col_n] > board[i + 1][col_n])
+            tmp++;
+        else
+        {
+            res = tmp;
+            tmp = 0;
+        }
+    }
+    return res;
+}
+
+int sumInRow(unsigned short** board, int row_n, int boardSize)
 {
     int sum = 0;
-    for (int i = 0; i < fieldSize; i++)
+    for (int i = 0; i < boardSize; i++)
     {
-        sum += player->field[row_n][i];
+        sum += board[row_n][i];
     }
     return sum;
 }
 
-int sumInCol(player_t* player, int col_n, int fieldSize)
+int sumInCol(unsigned short** board, int col_n, int boardSize)
 {
     int sum = 0;
-    for (int i = 0; i < fieldSize; i++)
+    for (int i = 0; i < boardSize; i++)
     {
-        sum += player->field[i][col_n];
+        sum += board[i][col_n];
     }
     return sum;
 }

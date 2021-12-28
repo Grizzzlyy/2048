@@ -43,8 +43,8 @@ void play2048withBot()
         printf("You lose =(\n");
     }
 
-    deleteDynamicMatrix(human.field, gameMode.fieldSize);
-    deleteDynamicMatrix(bot.field, gameMode.fieldSize);
+    deleteMatrix(human.field, gameMode.fieldSize);
+    deleteMatrix(bot.field, gameMode.fieldSize);
     exit(0);
 }
 
@@ -130,7 +130,7 @@ void initializePlayerData(player_t* player, int fieldSize)
     player->isWin = 0;
     player->isLose = 0;
     player->score = 0;
-    player->field = (unsigned short**)createDynamicMatrix(fieldSize);
+    player->field = (unsigned short**)createMatrix(fieldSize);
     spawnNumberOnField(player->field, fieldSize);
     spawnNumberOnField(player->field, fieldSize);
 }
@@ -413,16 +413,16 @@ int doAction(player_t* player, int fieldSize, enum action action)
 
     swipeFieldAndChangeScore(&simulation, fieldSize, action); //ѕроводим действи€ в симул€ции
 
-    if (isMatricesDiffer(simulation.field, player->field, fieldSize)) //≈сли происход€т изменени€, то делаем этот ход и возвращаем 0
+    if (cmpMatrix(simulation.field, player->field, fieldSize)) //≈сли происход€т изменени€, то делаем этот ход и возвращаем 0
     {
         copyStruct(simulation, player, fieldSize);
-        deleteDynamicMatrix(simulation.field, fieldSize);
+        deleteMatrix(simulation.field, fieldSize);
         return 0; //ƒействие сделано
     }
     else //≈сли изменений нет, то так нельз€ ходить
     {
         //printf("You cannot do this action, please change your choice\n");
-        deleteDynamicMatrix(simulation.field, fieldSize);
+        deleteMatrix(simulation.field, fieldSize);
         return 1;//ƒействие не сделано
     }
 }
@@ -491,10 +491,11 @@ void doBotStepEasy(player_t* bot, int fieldSize)
 
 void doBotStepHard(player_t* bot, int fieldSize)
 {
-    enum action bestMove = determineNextMove(bot, fieldSize);
+    enum action bestMove = determineNextMove(bot->field, fieldSize);
     if (bestMove == NONE)
     {
         bot->isLose = 1;
+        return;
     }
     doAction(bot, fieldSize, bestMove);
     spawnNumberOnField(bot->field, fieldSize);
@@ -573,8 +574,8 @@ void watchBotsGame()
         printf("Bot #2 win!\n");
     }
 
-    deleteDynamicMatrix(bot1.field, gameMode.fieldSize);
-    deleteDynamicMatrix(bot2.field, gameMode.fieldSize);
+    deleteMatrix(bot1.field, gameMode.fieldSize);
+    deleteMatrix(bot2.field, gameMode.fieldSize);
     system("pause");
     exit(0);
 }
