@@ -47,3 +47,15 @@ bool cmpMatrix(unsigned short** matrix1, unsigned short** matrix2, int size)
     }
     return 0;
 }
+
+void printMatrix(unsigned short** matrix, unsigned short size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            printf("%hu ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}

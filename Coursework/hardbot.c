@@ -2,11 +2,11 @@
 #include "dynmatrix.h"
 
 #define MAX_DEPTH 2
-#define FIXED_WEIGHT 0
-#define EMPTY_WEIGHT 5
-#define MERGES_WEIGHT 2
-#define MONOTONICITY_WEIGHT 3
-#define SUM_WEIGHT 1
+#define FIXED_WEIGHT 0.7 //if empty cells 0, mersges 0, monot max 2, so 0.7 - 2*0.2 greater than 0 
+#define EMPTY_WEIGHT 1
+#define MERGES_WEIGHT 0.4
+#define MONOTONICITY_WEIGHT 0.2
+#define SUM_WEIGHT 0
 
 //determines best next move (the biggest probability to win)
 enum action determineNextMove(unsigned short** board, int boardSize)

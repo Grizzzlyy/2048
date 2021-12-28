@@ -8,5 +8,6 @@ size_t** createMatrix(unsigned short size);
 void deleteMatrix(unsigned short** matrix, unsigned short size);
 void copyMatrix(unsigned short** sMatrix, unsigned short** dMatrix, unsigned short size);
 bool cmpMatrix(unsigned short** matrix1, unsigned short** matrix2, int size);
+void printMatrix(unsigned short** matrix, unsigned short size);
 
 #endif

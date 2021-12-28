@@ -12,7 +12,7 @@ void selectGameParameters(gamemode_t* gameMode);
 //Инициализация данных структуры player_t
 void initializePlayerData(player_t* player, int fieldSize);
 //Заспавнить новое число на поле
-void spawnNumberOnField(unsigned short** field, int fieldSize);
+void spawnTileOnBoard(unsigned short** field, int fieldSize);
 //Вывести в консоль игровое поле с данными
 void printGame(player_t human, player_t bot, gamemode_t gameMode, int turnsCounter);
 //Свайпнуть клетки поля и поменять счет игрока

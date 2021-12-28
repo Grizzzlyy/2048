@@ -20,7 +20,7 @@ enum action
 
 typedef struct player
 {
-    unsigned short** field;
+    unsigned short** board;
     int score;
     bool isWin;
     bool isLose;
@@ -28,7 +28,7 @@ typedef struct player
 
 typedef struct gameMode
 {
-    int fieldSize;
+    int boardSize;
     int finalNumber;
     enum selectedBot selectedBot;
 } gamemode_t;

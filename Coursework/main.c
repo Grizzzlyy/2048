@@ -3,7 +3,8 @@
 int main() {
     int choice;
 menu:
-    printf("0)Exit program\n"
+    printf("Game 2048:\n"
+        "0)Exit program\n"
         "1)Play with bot\n"
         "2)Watch the game of bots\n\n"
         "Your choice:");
@@ -11,15 +12,16 @@ menu:
     switch (choice)
     {
     case 0:
-        return 0;
+        break;
     case 1:
         play2048withBot();
-        return 0;
+        break;
     case 2:
         watchBotsGame();
-        return 0;
+        break;
     default:
-        printf("Wrong number, try again\n");
+        printf("Wrong number, try again\n\n");
         goto menu;
     }
+    return 0;
 }
