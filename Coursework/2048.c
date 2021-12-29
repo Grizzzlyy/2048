@@ -665,3 +665,109 @@ void printBotsGame(player_t bot1, player_t bot2, gamemode_t gameMode, int turnsC
         printf("----------------");
     printf("\n");
 }
+
+void watchGameBotEasy()
+{
+    gamemode_t gameMode;
+    player_t bot;
+
+    printInfoAboutGame();
+
+    selectBotsGameParameters(&gameMode);
+
+    initializePlayerData(&bot, gameMode.boardSize);
+
+    //Основной алгоритм, сама игра, длится пока кто-то не выиграет или не проиграет
+    for (int turnsCount = 0; bot.isWin != 1 && bot.isLose != 1; turnsCount++)
+    {
+        printBotGame(bot, gameMode, turnsCount); //Выводим поле
+        doBotStepEasy(&bot, gameMode.boardSize);
+        checkIfBotWon(&bot, gameMode); //Устанавливаем значения перменным isWin, если кто-то выиграл
+    }
+
+    if (bot.isWin) //Выводим результаты игры
+    {
+        printf("Bot win!\n");
+    }
+    if (bot.isLose)
+    {
+        printf("Bot lose!\n");
+    }
+
+    deleteMatrix(bot.board, gameMode.boardSize);
+    system("pause");
+    exit(0);//Создаем структуры параметры игры, бот1, бот2 и счетчик сделанных ходов
+}
+
+void watchGameBotHard()
+{
+    gamemode_t gameMode;
+    player_t bot;
+
+    printInfoAboutGame();
+
+    selectBotsGameParameters(&gameMode);
+
+    initializePlayerData(&bot, gameMode.boardSize);
+
+    //Основной алгоритм, сама игра, длится пока кто-то не выиграет или не проиграет
+    for (int turnsCount = 0; bot.isWin != 1 && bot.isLose != 1; turnsCount++)
+    {
+        printBotGame(bot, gameMode, turnsCount); //Выводим поле
+        doBotStepHard(&bot, gameMode.boardSize);
+        checkIfBotWon(&bot, gameMode); //Устанавливаем значения перменным isWin, если кто-то выиграл
+    }
+
+    if (bot.isWin) //Выводим результаты игры
+    {
+        printf("Bot win!\n");
+    }
+    if (bot.isLose)
+    {
+        printf("Bot lose!\n");
+    }
+
+    deleteMatrix(bot.board, gameMode.boardSize);
+    system("pause");
+    exit(0);//Создаем структуры параметры игры, бот1, бот2 и счетчик сделанных ходов
+
+}
+
+void printBotGame(player_t bot, gamemode_t gameMode, int turnsCounter)
+{
+    system("cls");
+    printf("Number to win: %d\n", gameMode.finalNumber);
+    printf("Number of turns: %d\n\n", turnsCounter);
+    if(gameMode.selectedBot == EASY)
+        printf("Easy bot score: %d\n", bot.score);
+    else if (gameMode.selectedBot == HARD)
+        printf("Hard bot score: %d\n", bot.score);
+
+    for (int i = 0; i < gameMode.boardSize; i++)
+    {
+        for (int j = 0; j < gameMode.boardSize; j++)
+            printf("----------------");
+        printf("\n");
+        for (int j = 0; j < gameMode.boardSize; j++)
+            printf("|\t%hu\t", bot.board[i][j]);
+        printf("|\n");
+    }
+    for (int j = 0; j < gameMode.boardSize; j++)
+        printf("----------------");
+    printf("\n");
+}
+
+void checkIfBotWon(player_t *bot, gamemode_t gameMode)
+{
+    for (int i = 0; i < gameMode.boardSize; i++)
+    {
+        for (int j = 0; j < gameMode.boardSize; j++)
+        {
+            if (bot->board[i][j] == gameMode.finalNumber)
+            {
+                bot->isWin = 1;
+                break;
+            }
+        }
+    }
+}

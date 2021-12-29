@@ -38,4 +38,11 @@ void watchBotsGame();
 void selectBotsGameParameters(gamemode_t* gameMode);
 //Вывести в консоль данные игры ботов
 void printBotsGame(player_t bot1, player_t bot2, gamemode_t gameMode, int turnsCounter);
+
+//watch how easy bot play 2048
+void watchGameBotEasy();
+//watch how hard bot play 2048
+void watchGameBotHard();
+void printBotGame();
+void checkIfBotWon(player_t* bot, gamemode_t gameMode);
 #endif
