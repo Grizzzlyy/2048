@@ -1,4 +1,6 @@
+#define _CRT_SECURE_NO_WARNINGS  
 #include "2048.h"
+#include <stdio.h>
 
 int main() {
     int choice;
