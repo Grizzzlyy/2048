@@ -225,7 +225,7 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
                 {
                     k++;
                 }
-                //for (k = j; k <= boardSize-1 && matrix[k][i] == 0; k++);
+                //for (testNum = j; testNum <= boardSize-1 && matrix[testNum][i] == 0; testNum++);
                 if (k == boardSize)
                     break;
                 else
@@ -770,4 +770,122 @@ void checkIfBotWon(player_t *bot, gamemode_t gameMode)
             }
         }
     }
+}
+
+void testHardBot()
+{
+    //vars for testing
+    FILE* testsFile = fopen("tests.txt", "a");
+    int numOfTests=0;
+    long long averageMaxNumber=0;
+    int averageNumOfMoves = 0;
+    int numOfWins = 0;
+    clock_t testsTime = 0;
+    
+    //entering testing parameters
+    int size, finalNum;
+    printf("Enter number of tests you want to do: ");
+    scanf("%d", &numOfTests);
+    printf("Size (4, 6, 8) : ");
+    scanf("%d", &size);
+    printf("Final num (2048, 4096) : ");
+    scanf("%d", &finalNum);
+    printf("\n");
+
+    //writing in testing parameters
+    printf("Size: %dx%d\nFinal number: %d\n\n", size, size, finalNum);
+    fprintf(testsFile,"Testing hardbot parameters:\nSize: %dx%d\nFinal num: %d\n", size, size, finalNum);
+    fprintf(testsFile, "Number of tests:%d\n", numOfTests);
+    fprintf(testsFile, "-----------------------------------------------------------\n");
+
+    for (int testNum = 1; testNum <= numOfTests; testNum++)
+    {
+        clock_t testTime = clock();
+        fprintf(testsFile, "Test #%d\n", testNum);
+        fclose(testsFile);
+        printf("Test %d running\n", testNum);
+
+        gamemode_t gameMode;
+        player_t bot;
+
+        gameMode.boardSize = size;
+        gameMode.finalNumber = finalNum;
+        gameMode.selectedBot = HARD;
+
+        initializePlayerData(&bot, gameMode.boardSize);
+
+        //Game
+        int turnsCount;
+        for (turnsCount = 0; bot.isWin != 1 && bot.isLose != 1; turnsCount++)
+        {
+            doBotStepHard(&bot, gameMode.boardSize);
+            checkIfBotWon(&bot, gameMode); //Устанавливаем значения перменным isWin, если кто-то выиграл
+        }
+        averageNumOfMoves += turnsCount;
+        if (bot.isWin == 1) numOfWins++;
+
+        //writing in file board
+        testsFile = fopen("tests.txt", "a");
+        for (int i = 0; i < gameMode.boardSize; i++)
+        {
+            for (int j = 0; j < gameMode.boardSize; j++)
+            {
+                fprintf(testsFile, "%d\t\t", bot.board[i][j]);
+                if(bot.board[i][j] > 1000)
+                    fprintf(testsFile, "\t");
+                else
+                    fprintf(testsFile, "\t\t");
+            }
+            fprintf(testsFile, "\n");
+        }
+        fprintf(testsFile, "isL:%d isW:%d score:%d\n", bot.isLose, bot.isWin, bot.score);
+
+        //Finding max number on field
+        int maxOnField=0;
+        for (int i = 0; i < gameMode.boardSize; i++)
+        {
+            for (int j = 0; j < gameMode.boardSize; j++)
+            {
+                if (bot.board[i][j] > maxOnField)
+                    maxOnField = bot.board[i][j];
+            }
+        }
+        averageMaxNumber += maxOnField;
+
+        //we don't need board anymore
+        deleteMatrix(bot.board, gameMode.boardSize);
+        
+        testTime = (clock() - testTime) / CLOCKS_PER_SEC;
+        fprintf(testsFile, "max:%d\n", maxOnField);
+        fprintf(testsFile, "moves: %d\n", turnsCount);
+        fprintf(testsFile,"time:%d\n\n", testTime);
+        printf("Test %d done\n", testNum);
+        printf("Max number: %d\n", maxOnField);
+        printf("Moves: %d\n", turnsCount);
+        printf("Time: %d seconds\n\n", testTime);
+        testsTime += testTime;
+    }
+
+    averageMaxNumber /= numOfTests;
+    averageNumOfMoves /= numOfTests;
+
+    fprintf(testsFile, "-----------------------------------------------------------\n");
+    fprintf(testsFile, "Average max num: %d\n", averageMaxNumber);
+    fprintf(testsFile, "Average num of moves: %d\n", averageNumOfMoves);
+    fprintf(testsFile, "Num of wins: %d (of %d games)\n", numOfWins, numOfTests);
+    fprintf(testsFile, "Tests time: %d\n", testsTime);
+    fprintf(testsFile, "Average test time: %d\n", testsTime / numOfTests);
+    fprintf(testsFile, "Moves per sec: %f\n\n", (float)averageNumOfMoves / ((float)testsTime / numOfTests));
+    fclose(testsFile);
+
+    printf("Average max number : %d\n", averageMaxNumber);
+    printf("Average num of moves : %d\n", averageNumOfMoves);
+    printf("Num of wins: %d (of %d games)\n", numOfWins, numOfTests);
+    printf("Tests time: %d\n", testsTime);
+    printf("Average test time: %d\n", testsTime / numOfTests);
+    printf("Moves per sec: %f\n", (float)averageNumOfMoves/ ((float)testsTime/numOfTests));
+    printf("For more details check tests.txt\n\n");
+
+    system("pause");
+    exit(0);
 }

@@ -45,4 +45,5 @@ void watchGameBotEasy();
 void watchGameBotHard();
 void printBotGame();
 void checkIfBotWon(player_t* bot, gamemode_t gameMode);
+void testHardBot();
 #endif

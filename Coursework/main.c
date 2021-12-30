@@ -10,7 +10,8 @@ menu:
         "1)Play with bot\n"
         "2)Watch the game of bots\n"
         "3)Watch the game of easy bot\n"
-        "4)Watch the game of hard bot\n\n"
+        "4)Watch the game of hard bot\n"
+        "5)Test hard bot\n\n"
         "Your choice:");
     scanf("%d", &choice);
     switch (choice)
@@ -28,6 +29,9 @@ menu:
         break;
     case 4:
         watchGameBotHard();
+        break;
+    case 5:
+        testHardBot();
         break;
     default:
         printf("Wrong number, try again\n\n");

@@ -1,0 +1,33 @@
+weights
+
+16 times
+score += FIXED_WEIGHT;
+        score += EMPTY_WEIGHT * emptyCellsInRow(board, row_n, boardSize);
+        score += MERGES_WEIGHT * mergesInRow(board, row_n, boardSize);
+        score -= MONOTONICITY_WEIGHT * _min(leftMonotonicityInRow(board, row_n, boardSize), rightMonotonicityInRow(board, row_n, boardSize));
+        score -= SUM_WEIGHT * sumInRow(board, row_n, boardSize);
+
+16 times * 64 times  = 1024 times
++= fixed
++= empty*max(16)
++= merges*max(15)
+-= monot*max(4)
+-= sum*~5000
+
+fixed > mon*4 + sum*5000
+
+#define MAX_DEPTH 2
+#define FIXED_WEIGHT 0.7 //if empty cells 0, mersges 0, monot max 2, so 0.7 - 2*0.2 greater than 0 
+#define EMPTY_WEIGHT 1
+#define MERGES_WEIGHT 0.4
+#define MONOTONICITY_WEIGHT 0.2
+#define SUM_WEIGHT 0
+
+turns = 445
+num = 512
+
+turns = 967
+num = 1024
+
+turns = 485
+num = 512
