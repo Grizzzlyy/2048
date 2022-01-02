@@ -2,10 +2,10 @@
 #include "dynmatrix.h"
 
 #define MAX_DEPTH 2
-#define FIXED_WEIGHT 0.7 //if empty cells 0, mersges 0, monot max 2, so 0.7 - 2*0.2 greater than 0 
-#define EMPTY_WEIGHT 1
-#define MERGES_WEIGHT 0.4
-#define MONOTONICITY_WEIGHT 0.2
+#define FIXED_WEIGHT 5.0f //if empty cells 0, mersges 0, monot max 2, so 0.7 - 2*0.2 greater than 0 
+#define EMPTY_WEIGHT 0.6f
+#define MERGES_WEIGHT 1.5f
+#define MONOTONICITY_WEIGHT 0.5f
 #define SUM_WEIGHT 0
 
 //determines best next move (the biggest probability to win)

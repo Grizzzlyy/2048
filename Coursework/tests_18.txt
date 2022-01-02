@@ -1,0 +1,5019 @@
+#define FIXED_WEIGHT 5.0f //if empty cells 0, mersges 0, monot max 2, so 0.7 - 2*0.2 greater than 0 
+#define EMPTY_WEIGHT 0.5f
+#define MERGES_WEIGHT 0.7f
+#define MONOTONICITY_WEIGHT 0.5f
+#define SUM_WEIGHT 0
+
+Testing hardbot parameters:
+Size: 4x4
+Final num: 2048
+Number of tests:500
+-----------------------------------------------------------
+Test #1
+8				16				8				2				
+2				64				128				4				
+32				256				1024			16				
+8				4				2				64				
+isL:1 isW:0 score:11756
+max:1024
+moves: 583
+time:14
+
+Test #2
+32				2				0				0				
+16				4				0				0				
+2048			2				2				0				
+256				8				0				0				
+isL:0 isW:1 score:22468
+max:2048
+moves: 1183
+time:12
+
+Test #3
+8				64				32				8				
+32				512				16				2				
+16				1024			128				32				
+8				4				2				0				
+isL:1 isW:0 score:14932
+max:1024
+moves: 943
+time:11
+
+Test #4
+4				2				32				8				
+64				256				512				4				
+128				1024			64				2				
+2				4				32				16				
+isL:1 isW:0 score:16844
+max:1024
+moves: 1076
+time:11
+
+Test #5
+4				16				256				8				
+2				64				512				8				
+8				256				32				64				
+4				16				128				8				
+isL:1 isW:0 score:8340
+max:512
+moves: 431
+time:4
+
+Test #6
+4				512				32				2				
+8				16				128				4				
+32				64				32				8				
+4				256				4				2				
+isL:1 isW:0 score:6712
+max:512
+moves: 367
+time:3
+
+Test #7
+2				64				8				4				
+4				512				128				16				
+128				8				32				64				
+2				4				1024			4				
+isL:1 isW:0 score:15236
+max:1024
+moves: 882
+time:10
+
+Test #8
+4				16				2				2048			
+8				64				128				16				
+0				128				32				2				
+0				0				2				0				
+isL:0 isW:1 score:22580
+max:2048
+moves: 1223
+time:12
+
+Test #9
+4				16				32				8				
+16				1024			256				128				
+8				32				64				8				
+2				4				16				2				
+isL:1 isW:0 score:12552
+max:1024
+moves: 809
+time:9
+
+Test #10
+4				16				32				2				
+2				8				64				8				
+32				256				128				32				
+2				4				32				4				
+isL:1 isW:0 score:3484
+max:256
+moves: 312
+time:4
+
+Test #11
+4				32				16				2				
+8				128				512				4				
+1024			32				8				64				
+4				16				4				2				
+isL:1 isW:0 score:13952
+max:1024
+moves: 717
+time:7
+
+Test #12
+4				8				16				32				
+2				256				128				4				
+1024			8				32				512				
+2				4				128				8				
+isL:1 isW:0 score:16112
+max:1024
+moves: 860
+time:7
+
+Test #13
+8				2				128				256				
+32				1024			64				16				
+4				16				32				4				
+2				8				2				128				
+isL:1 isW:0 score:12880
+max:1024
+moves: 768
+time:7
+
+Test #14
+2				8				32				8				
+4				64				16				512				
+128				1024			128				32				
+8				2				4				16				
+isL:1 isW:0 score:15576
+max:1024
+moves: 993
+time:9
+
+Test #15
+2				4				64				2				
+8				256				8				4				
+16				32				512				16				
+8				16				1024			8				
+isL:1 isW:0 score:15768
+max:1024
+moves: 989
+time:9
+
+Test #16
+8				32				8				2				
+32				512				16				4				
+128				256				1024			32				
+2				4				32				16				
+isL:1 isW:0 score:16520
+max:1024
+moves: 1053
+time:10
+
+Test #17
+8				16				128				8				
+64				512				16				4				
+4				1024			2				64				
+16				4				16				0				
+isL:1 isW:0 score:14236
+max:1024
+moves: 762
+time:8
+
+Test #18
+4				1024			4				2				
+128				16				512				16				
+16				256				128				64				
+2				32				16				4				
+isL:1 isW:0 score:16144
+max:1024
+moves: 824
+time:7
+
+Test #19
+16				32				8				2				
+8				1024			64				32				
+4				32				256				16				
+2				16				64				2				
+isL:1 isW:0 score:12212
+max:1024
+moves: 788
+time:7
+
+Test #20
+2				1024			32				2				
+4				8				64				8				
+16				32				128				32				
+2				2				512				8				
+isL:1 isW:0 score:14884
+max:1024
+moves: 937
+time:10
+
+Test #21
+8				2				64				8				
+128				16				32				4				
+4				1024			256				512				
+2				8				32				8				
+isL:1 isW:0 score:16568
+max:1024
+moves: 1053
+time:9
+
+Test #22
+16				32				512				4				
+64				128				1024			128				
+4				2				32				16				
+0				16				4				8				
+isL:1 isW:0 score:14932
+max:1024
+moves: 828
+time:9
+
+Test #23
+8				4				8				4				
+64				128				16				2				
+256				2				4				512				
+32				8				32				4				
+isL:1 isW:0 score:6844
+max:512
+moves: 416
+time:5
+
+Test #24
+8				64				4				2				
+16				128				1024			8				
+4				64				512				256				
+2				8				32				2				
+isL:1 isW:0 score:15840
+max:1024
+moves: 840
+time:8
+
+Test #25
+2				16				8				2				
+128				512				128				4				
+8				32				8				16				
+2				4				16				4				
+isL:1 isW:0 score:5964
+max:512
+moves: 444
+time:6
+
+Test #26
+4				32				8				4				
+1024			256				16				32				
+4				16				512				4				
+2				8				64				8				
+isL:1 isW:0 score:15840
+max:1024
+moves: 996
+time:11
+
+Test #27
+2				32				2				4				
+4				8				256				32				
+16				64				128				512				
+2				32				16				2				
+isL:1 isW:0 score:7480
+max:512
+moves: 555
+time:6
+
+Test #28
+4				16				8				4				
+64				512				128				2				
+4				8				16				8				
+2				256				4				2				
+isL:1 isW:0 score:7136
+max:512
+moves: 518
+time:7
+
+Test #29
+8				1024			32				4				
+4				128				64				16				
+2				16				256				32				
+0				8				64				8				
+isL:1 isW:0 score:12068
+max:1024
+moves: 643
+time:7
+
+Test #30
+4				32				8				2				
+128				512				256				32				
+16				32				64				128				
+2				4				8				2				
+isL:1 isW:0 score:7704
+max:512
+moves: 486
+time:5
+
+Test #31
+512				8				4				8				
+16				32				16				64				
+4				64				256				4				
+4				16				8				2				
+isL:1 isW:0 score:6572
+max:512
+moves: 435
+time:5
+
+Test #32
+8				32				16				8				
+2				4				128				1024			
+8				512				16				4				
+0				2				4				32				
+isL:1 isW:0 score:14492
+max:1024
+moves: 899
+time:9
+
+Test #33
+2				256				4				2				
+4				8				64				8				
+32				1024			512				32				
+4				16				256				8				
+isL:1 isW:0 score:17580
+max:1024
+moves: 1115
+time:10
+
+Test #34
+2				32				8				4				
+4				64				256				32				
+8				128				8				4				
+32				1024			4				2				
+isL:1 isW:0 score:12544
+max:1024
+moves: 805
+time:10
+
+Test #35
+16				512				8				2				
+256				128				32				64				
+4				32				256				16				
+2				8				2				1024			
+isL:1 isW:0 score:16976
+max:1024
+moves: 831
+time:8
+
+Test #36
+64				4				256				8				
+2				16				32				16				
+4				32				1024			64				
+0				8				16				8				
+isL:1 isW:0 score:11044
+max:1024
+moves: 511
+time:5
+
+Test #37
+64				8				32				64				
+2				256				16				8				
+4				64				128				2				
+16				2				16				0				
+isL:1 isW:0 score:3788
+max:256
+moves: 330
+time:4
+
+Test #38
+8				64				4				2				
+2				16				512				128				
+4				32				1024			64				
+8				2				4				2				
+isL:1 isW:0 score:14940
+max:1024
+moves: 937
+time:9
+
+Test #39
+8				2				8				2				
+128				32				16				4				
+8				512				64				32				
+16				1024			2				8				
+isL:1 isW:0 score:14820
+max:1024
+moves: 932
+time:10
+
+Test #40
+0				4				8				64				
+128				2				16				4				
+16				512				32				64				
+8				1024			256				8				
+isL:1 isW:0 score:16704
+max:1024
+moves: 1050
+time:10
+
+Test #41
+8				16				4				2				
+16				64				256				8				
+8				128				512				32				
+2				4				16				8				
+isL:1 isW:0 score:6776
+max:512
+moves: 405
+time:4
+
+Test #42
+4				8				2				4				
+16				256				32				8				
+128				32				128				16				
+4				8				512				64				
+isL:1 isW:0 score:7524
+max:512
+moves: 452
+time:4
+
+Test #43
+0				0				0				0				
+2				0				0				4				
+2				16				2048			8				
+4				8				32				4				
+isL:0 isW:1 score:20288
+max:2048
+moves: 959
+time:10
+
+Test #44
+4				8				512				16				
+16				1024			128				2				
+8				256				64				16				
+128				4				2				0				
+isL:1 isW:0 score:17144
+max:1024
+moves: 1093
+time:10
+
+Test #45
+4				128				8				2				
+16				256				1024			4				
+8				32				16				32				
+4				64				8				2				
+isL:1 isW:0 score:12508
+max:1024
+moves: 803
+time:8
+
+Test #46
+2				16				32				1024			
+4				64				4				2				
+512				16				256				32				
+8				2				4				8				
+isL:1 isW:0 score:15544
+max:1024
+moves: 923
+time:11
+
+Test #47
+4				2				64				4				
+8				128				4				8				
+32				16				512				16				
+4				4				2				32				
+isL:1 isW:0 score:5088
+max:512
+moves: 294
+time:4
+
+Test #48
+8				16				64				4				
+128				1024			2				8				
+32				512				64				8				
+4				8				128				32				
+isL:1 isW:0 score:14424
+max:1024
+moves: 660
+time:6
+
+Test #49
+4				512				8				2				
+128				16				32				64				
+8				64				1024			16				
+2				4				16				8				
+isL:1 isW:0 score:15020
+max:1024
+moves: 946
+time:10
+
+Test #50
+4				16				8				2				
+2				128				512				4				
+16				32				8				64				
+8				16				4				2				
+isL:1 isW:0 score:5516
+max:512
+moves: 412
+time:5
+
+Test #51
+8				16				4				2				
+32				64				512				32				
+4				128				256				16				
+2				8				32				8				
+isL:1 isW:0 score:7512
+max:512
+moves: 561
+time:7
+
+Test #52
+2				16				4				512				
+4				1024			32				4				
+8				16				256				64				
+2				4				8				4				
+isL:1 isW:0 score:15700
+max:1024
+moves: 979
+time:10
+
+Test #53
+0				16				32				4				
+8				2				128				16				
+32				64				32				256				
+8				16				1024			16				
+isL:1 isW:0 score:11788
+max:1024
+moves: 596
+time:8
+
+Test #54
+0				2				0				0				
+4				0				0				0				
+128				2048			4				8				
+4				4				2				2				
+isL:0 isW:1 score:20500
+max:2048
+moves: 906
+time:8
+
+Test #55
+64				128				8				2				
+4				512				256				4				
+16				32				1024			64				
+4				8				16				2				
+isL:1 isW:0 score:16780
+max:1024
+moves: 1071
+time:9
+
+Test #56
+16				8				16				4				
+4				32				64				8				
+2				1024			512				32				
+0				64				128				8				
+isL:1 isW:0 score:15128
+max:1024
+moves: 960
+time:9
+
+Test #57
+8				2				4				8				
+64				16				32				64				
+4				1024			256				16				
+2				16				32				4				
+isL:1 isW:0 score:12092
+max:1024
+moves: 775
+time:9
+
+Test #58
+4				8				64				16				
+16				256				128				2				
+512				64				32				4				
+2				4				16				4				
+isL:1 isW:0 score:7376
+max:512
+moves: 509
+time:6
+
+Test #59
+4				32				16				512				
+32				16				256				4				
+8				1024			64				2				
+2				16				8				4				
+isL:1 isW:0 score:14972
+max:1024
+moves: 775
+time:8
+
+Test #60
+2				32				8				4				
+128				1024			512				32				
+4				32				256				16				
+2				16				64				8				
+isL:1 isW:0 score:16328
+max:1024
+moves: 973
+time:7
+
+Test #61
+2				32				4				2				
+4				8				256				8				
+32				64				1024			128				
+4				16				64				32				
+isL:1 isW:0 score:12892
+max:1024
+moves: 839
+time:9
+
+Test #62
+2				8				64				2				
+16				1024			128				4				
+8				256				32				16				
+2				4				16				4				
+isL:1 isW:0 score:12412
+max:1024
+moves: 792
+time:9
+
+Test #63
+512				4				16				8				
+2				64				32				1024			
+4				16				256				4				
+2				32				128				4				
+isL:1 isW:0 score:16576
+max:1024
+moves: 1053
+time:11
+
+Test #64
+4				16				128				4				
+2				64				512				16				
+8				1024			128				32				
+8				32				8				4				
+isL:1 isW:0 score:14536
+max:1024
+moves: 733
+time:7
+
+Test #65
+8				4				16				4				
+64				128				512				32				
+8				1024			128				8				
+2				4				16				2				
+isL:1 isW:0 score:14556
+max:1024
+moves: 755
+time:6
+
+Test #66
+8				32				8				2				
+2				1024			128				4				
+8				4				512				32				
+2				128				16				4				
+isL:1 isW:0 score:15212
+max:1024
+moves: 956
+time:12
+
+Test #67
+16				4				2				4				
+32				512				32				8				
+128				1024			64				16				
+16				32				8				2				
+isL:1 isW:0 score:14968
+max:1024
+moves: 949
+time:11
+
+Test #68
+2				4				64				4				
+128				8				128				16				
+4				1024			64				32				
+2				16				512				4				
+isL:1 isW:0 score:15744
+max:1024
+moves: 1005
+time:10
+
+Test #69
+256				32				16				4				
+4				64				2				32				
+8				512				128				4				
+128				32				1024			4				
+isL:1 isW:0 score:16084
+max:1024
+moves: 789
+time:7
+
+Test #70
+8				4				8				0				
+16				64				128				32				
+8				1024			256				512				
+4				128				16				4				
+isL:1 isW:0 score:16160
+max:1024
+moves: 834
+time:9
+
+Test #71
+128				4				2				64				
+4				8				32				8				
+32				512				256				4				
+1024			64				16				2				
+isL:1 isW:0 score:16832
+max:1024
+moves: 1072
+time:11
+
+Test #72
+2				32				8				4				
+8				256				1024			2				
+32				64				32				4				
+4				2				8				2				
+isL:1 isW:0 score:11772
+max:1024
+moves: 741
+time:9
+
+Test #73
+16				8				4				2				
+2				256				128				32				
+8				64				1024			512				
+4				16				2				16				
+isL:1 isW:0 score:16504
+max:1024
+moves: 1046
+time:11
+
+Test #74
+2				256				4				2				
+4				8				64				16				
+16				32				512				128				
+4				16				32				4				
+isL:1 isW:0 score:6956
+max:512
+moves: 436
+time:5
+
+Test #75
+4				1024			32				512				
+32				128				256				2				
+2				16				32				64				
+4				8				2				8				
+isL:1 isW:0 score:15656
+max:1024
+moves: 810
+time:7
+
+Test #76
+2				2				8				8				
+0				4				64				2048			
+0				0				2				0				
+0				0				0				0				
+isL:0 isW:1 score:19920
+max:2048
+moves: 838
+time:8
+
+Test #77
+128				8				512				4				
+16				256				32				64				
+4				32				128				16				
+2				8				4				2				
+isL:1 isW:0 score:8140
+max:512
+moves: 607
+time:8
+
+Test #78
+8				64				16				512				
+128				256				8				4				
+4				16				1024			2				
+32				2				4				0				
+isL:1 isW:0 score:16460
+max:1024
+moves: 1039
+time:11
+
+Test #79
+2				8				128				4				
+4				32				512				32				
+64				8				256				8				
+4				64				4				2				
+isL:1 isW:0 score:7616
+max:512
+moves: 565
+time:7
+
+Test #80
+2				4				32				2				
+8				128				8				4				
+32				16				256				512				
+8				64				1024			8				
+isL:1 isW:0 score:15432
+max:1024
+moves: 769
+time:8
+
+Test #81
+4				4				2048			16				
+16				16				0				16				
+0				256				0				4				
+0				4				0				0				
+isL:0 isW:1 score:20944
+max:2048
+moves: 806
+time:8
+
+Test #82
+8				512				4				2				
+16				256				8				128				
+8				128				64				4				
+4				32				16				2				
+isL:1 isW:0 score:8008
+max:512
+moves: 590
+time:7
+
+Test #83
+2				8				16				8				
+32				256				512				128				
+4				16				32				2				
+2				64				16				2				
+isL:1 isW:0 score:7412
+max:512
+moves: 549
+time:7
+
+Test #84
+8				32				8				2				
+2048			32				0				0				
+4				8				0				0				
+4				2				0				0				
+isL:0 isW:1 score:20792
+max:2048
+moves: 1072
+time:10
+
+Test #85
+2				0				0				0				
+2				0				0				0				
+16				4				16				0				
+2048			4				8				2				
+isL:0 isW:1 score:19908
+max:2048
+moves: 876
+time:11
+
+Test #86
+4				8				512				8				
+4				256				32				16				
+64				128				1024			128				
+8				16				32				8				
+isL:1 isW:0 score:15900
+max:1024
+moves: 752
+time:8
+
+Test #87
+0				0				0				0				
+4				16				0				0				
+2048			2				2				0				
+8				4				4				8				
+isL:0 isW:1 score:20268
+max:2048
+moves: 970
+time:9
+
+Test #88
+2				8				32				4				
+4				32				128				8				
+64				1024			512				4				
+8				32				4				2				
+isL:1 isW:0 score:14848
+max:1024
+moves: 933
+time:10
+
+Test #89
+4				32				4				2				
+8				64				256				32				
+32				16				128				64				
+8				512				4				4				
+isL:1 isW:0 score:7776
+max:512
+moves: 584
+time:8
+
+Test #90
+0				4				8				16				
+64				2				64				256				
+16				128				512				8				
+8				1024			16				4				
+isL:1 isW:0 score:16280
+max:1024
+moves: 956
+time:11
+
+Test #91
+4				0				0				2				
+4				2				32				0				
+32				2048			0				0				
+16				4				0				0				
+isL:0 isW:1 score:20196
+max:2048
+moves: 920
+time:8
+
+Test #92
+4				4				512				32				
+8				256				128				8				
+32				128				2				32				
+8				16				64				8				
+isL:1 isW:0 score:7224
+max:512
+moves: 364
+time:4
+
+Test #93
+16				2				4				8				
+128				32				256				16				
+4				512				128				64				
+2				32				8				4				
+isL:1 isW:0 score:8128
+max:512
+moves: 604
+time:7
+
+Test #94
+2				8				4				2				
+4				32				128				8				
+16				64				1024			64				
+4				256				16				8				
+isL:1 isW:0 score:12700
+max:1024
+moves: 819
+time:8
+
+Test #95
+8				64				4				2				
+2				16				1024			8				
+4				32				512				16				
+8				256				128				64				
+isL:1 isW:0 score:16792
+max:1024
+moves: 1073
+time:11
+
+Test #96
+8				2048			4				2				
+16				0				0				0				
+2				0				0				0				
+2				0				0				0				
+isL:0 isW:1 score:19944
+max:2048
+moves: 888
+time:10
+
+Test #97
+4				8				32				512				
+1024			64				16				4				
+64				2				64				2				
+4				16				8				4				
+isL:1 isW:0 score:13624
+max:1024
+moves: 683
+time:7
+
+Test #98
+0				0				0				2				
+0				0				0				2				
+0				0				0				128				
+2				8				2048			4				
+isL:0 isW:1 score:20836
+max:2048
+moves: 987
+time:10
+
+Test #99
+0				0				2				0				
+0				0				0				0				
+4				4				2				0				
+32				2048			16				0				
+isL:0 isW:1 score:20664
+max:2048
+moves: 1052
+time:12
+
+Test #100
+0				16				2				8				
+2				128				1024			32				
+4				32				64				16				
+8				16				256				8				
+isL:1 isW:0 score:12548
+max:1024
+moves: 807
+time:10
+
+Test #101
+4				16				8				4				
+1024			256				128				32				
+16				32				64				8				
+2				512				4				2				
+isL:1 isW:0 score:15788
+max:1024
+moves: 855
+time:10
+
+Test #102
+4				256				8				16				
+64				128				64				32				
+16				2				512				16				
+4				4				128				4				
+isL:1 isW:0 score:7552
+max:512
+moves: 424
+time:5
+
+Test #103
+2				4				128				16				
+8				16				32				1024			
+16				512				64				4				
+8				32				8				2				
+isL:1 isW:0 score:14380
+max:1024
+moves: 818
+time:8
+
+Test #104
+8				1024			32				8				
+128				64				256				512				
+16				32				128				16				
+8				4				2				0				
+isL:1 isW:0 score:17364
+max:1024
+moves: 1118
+time:9
+
+Test #105
+2				4				8				16				
+16				1024			512				128				
+32				64				32				8				
+2				16				8				4				
+isL:1 isW:0 score:14856
+max:1024
+moves: 937
+time:10
+
+Test #106
+16				8				16				4				
+0				0				2048			128				
+0				0				4				16				
+0				2				0				2				
+isL:0 isW:1 score:21108
+max:2048
+moves: 1043
+time:12
+
+Test #107
+4				16				128				8				
+2				512				1024			64				
+16				32				2				16				
+8				256				8				8				
+isL:1 isW:0 score:15728
+max:1024
+moves: 850
+time:9
+
+Test #108
+2				4				16				8				
+4				512				128				32				
+64				1024			16				256				
+16				64				8				4				
+isL:1 isW:0 score:16724
+max:1024
+moves: 1052
+time:10
+
+Test #109
+8				128				32				2				
+2				256				512				4				
+8				16				128				8				
+2				4				1024			32				
+isL:1 isW:0 score:17000
+max:1024
+moves: 1082
+time:12
+
+Test #110
+16				8				4				2				
+8				128				64				16				
+512				64				1024			4				
+8				256				16				2				
+isL:1 isW:0 score:16712
+max:1024
+moves: 1065
+time:10
+
+Test #111
+4				128				2				4				
+8				512				256				8				
+64				32				128				16				
+8				8				64				8				
+isL:1 isW:0 score:7852
+max:512
+moves: 505
+time:6
+
+Test #112
+16				32				64				16				
+4				2				512				32				
+32				64				256				8				
+4				8				2				4				
+isL:1 isW:0 score:6480
+max:512
+moves: 384
+time:5
+
+Test #113
+2				4				16				8				
+16				64				1024			32				
+32				128				512				8				
+8				64				4				2				
+isL:1 isW:0 score:14704
+max:1024
+moves: 855
+time:9
+
+Test #114
+0				0				0				0				
+0				0				2				4				
+0				2				2048			16				
+8				32				64				2				
+isL:0 isW:1 score:20996
+max:2048
+moves: 1087
+time:10
+
+Test #115
+2				4				1024			4				
+16				8				64				32				
+32				128				8				256				
+4				512				128				4				
+isL:1 isW:0 score:17312
+max:1024
+moves: 1112
+time:11
+
+Test #116
+0				0				0				2				
+0				16				64				2				
+0				2				4				2048			
+0				0				4				8				
+isL:0 isW:1 score:20292
+max:2048
+moves: 928
+time:9
+
+Test #117
+2				64				8				2				
+16				1024			32				4				
+128				64				128				16				
+16				8				2				32				
+isL:1 isW:0 score:10872
+max:1024
+moves: 533
+time:5
+
+Test #118
+8				16				4				32				
+16				128				64				8				
+8				32				1024			2				
+2				4				16				256				
+isL:1 isW:0 score:11660
+max:1024
+moves: 586
+time:6
+
+Test #119
+16				256				8				0				
+512				1024			16				2				
+16				64				32				4				
+8				4				16				8				
+isL:1 isW:0 score:15800
+max:1024
+moves: 992
+time:8
+
+Test #120
+2				4				16				4				
+8				512				64				32				
+128				32				1024			16				
+4				16				256				4				
+isL:1 isW:0 score:16624
+max:1024
+moves: 1060
+time:11
+
+Test #121
+2				32				8				2				
+4				8				256				64				
+512				128				32				16				
+2				16				1024			4				
+isL:1 isW:0 score:16584
+max:1024
+moves: 1054
+time:11
+
+Test #122
+64				16				0				0				
+2048			0				0				0				
+16				0				0				0				
+4				0				0				2				
+isL:0 isW:1 score:20108
+max:2048
+moves: 875
+time:9
+
+Test #123
+8				2				8				2				
+2048			0				0				0				
+32				64				0				0				
+4				2				0				2				
+isL:0 isW:1 score:19824
+max:2048
+moves: 799
+time:9
+
+Test #124
+4				128				8				64				
+16				64				16				4				
+256				4				1024			2				
+8				2				16				0				
+isL:1 isW:0 score:12604
+max:1024
+moves: 807
+time:9
+
+Test #125
+4				16				64				8				
+64				32				512				16				
+32				128				64				4				
+2				4				8				2				
+isL:1 isW:0 score:6220
+max:512
+moves: 479
+time:7
+
+Test #126
+2				4				8				2				
+16				128				16				4				
+256				1024			64				32				
+8				32				8				4				
+isL:1 isW:0 score:12508
+max:1024
+moves: 803
+time:9
+
+Test #127
+2				8				2				8				
+4				128				32				4				
+32				256				512				64				
+2				8				16				32				
+isL:1 isW:0 score:7464
+max:512
+moves: 554
+time:8
+
+Test #128
+0				0				16				4				
+4				0				2048			4				
+0				32				4				256				
+0				4				8				4				
+isL:0 isW:1 score:21356
+max:2048
+moves: 907
+time:10
+
+Test #129
+4				8				16				8				
+8				256				64				32				
+4				64				1024			128				
+2				8				4				2				
+isL:1 isW:0 score:12424
+max:1024
+moves: 754
+time:9
+
+Test #130
+4				512				8				2				
+8				1024			16				4				
+32				64				128				2				
+4				16				2				32				
+isL:1 isW:0 score:14796
+max:1024
+moves: 928
+time:10
+
+Test #131
+4				64				16				4				
+512				128				32				8				
+32				64				16				2				
+2				4				8				256				
+isL:1 isW:0 score:7692
+max:512
+moves: 575
+time:7
+
+Test #132
+8				4				2				8				
+4				512				64				32				
+32				256				1024			4				
+8				64				8				2				
+isL:1 isW:0 score:16076
+max:1024
+moves: 1015
+time:10
+
+Test #133
+8				16				4				2				
+2				64				32				8				
+16				256				1024			128				
+8				64				16				4				
+isL:1 isW:0 score:12124
+max:1024
+moves: 670
+time:6
+
+Test #134
+2				16				64				8				
+32				128				16				512				
+8				1024			256				2				
+4				8				16				2				
+isL:1 isW:0 score:15444
+max:1024
+moves: 780
+time:7
+
+Test #135
+2				4				64				16				
+16				32				256				128				
+4				128				64				2				
+2				8				16				2				
+isL:1 isW:0 score:4264
+max:256
+moves: 371
+time:4
+
+Test #136
+2				32				16				8				
+4				128				256				512				
+8				64				1024			16				
+2				4				16				4				
+isL:1 isW:0 score:16508
+max:1024
+moves: 1047
+time:11
+
+Test #137
+2				32				4				2				
+64				128				64				8				
+2				16				512				16				
+8				64				8				4				
+isL:1 isW:0 score:6104
+max:512
+moves: 466
+time:6
+
+Test #138
+8				64				16				8				
+16				512				128				4				
+4				8				16				32				
+2				64				4				2				
+isL:1 isW:0 score:5836
+max:512
+moves: 443
+time:6
+
+Test #139
+8				32				16				8				
+128				1024			64				16				
+16				32				128				4				
+2				4				8				2				
+isL:1 isW:0 score:11228
+max:1024
+moves: 670
+time:9
+
+Test #140
+4				256				16				4				
+16				2				64				32				
+4				64				128				4				
+8				16				256				4				
+isL:1 isW:0 score:4656
+max:256
+moves: 277
+time:3
+
+Test #141
+64				8				4				128				
+128				512				1024			16				
+8				256				32				8				
+4				32				2				4				
+isL:1 isW:0 score:15956
+max:1024
+moves: 772
+time:6
+
+Test #142
+4				16				2				8				
+8				128				64				32				
+16				256				512				4				
+8				64				8				2				
+isL:1 isW:0 score:7548
+max:512
+moves: 554
+time:8
+
+Test #143
+2				4				16				4				
+8				1024			64				32				
+512				32				256				16				
+4				16				64				4				
+isL:1 isW:0 score:16176
+max:1024
+moves: 1028
+time:10
+
+Test #144
+16				2				8				2				
+2048			0				0				0				
+32				4				0				0				
+2				4				0				2				
+isL:0 isW:1 score:20680
+max:2048
+moves: 1058
+time:11
+
+Test #145
+2				8				2				32				
+8				32				256				4				
+4				512				1024			64				
+2				128				8				32				
+isL:1 isW:0 score:16064
+max:1024
+moves: 916
+time:10
+
+Test #146
+8				32				1024			16				
+16				64				512				32				
+256				32				16				4				
+8				128				4				0				
+isL:1 isW:0 score:15560
+max:1024
+moves: 775
+time:8
+
+Test #147
+4				16				4				2				
+4				512				256				16				
+16				1024			32				2				
+4				64				4				8				
+isL:1 isW:0 score:15708
+max:1024
+moves: 977
+time:11
+
+Test #148
+2				16				1024			8				
+32				512				256				16				
+4				16				128				8				
+2				8				64				16				
+isL:1 isW:0 score:16564
+max:1024
+moves: 1055
+time:11
+
+Test #149
+8				2				16				0				
+16				64				32				2				
+512				1024			64				4				
+4				32				16				8				
+isL:1 isW:0 score:14392
+max:1024
+moves: 901
+time:10
+
+Test #150
+4				64				256				8				
+8				2				512				32				
+8				64				128				256				
+32				8				16				32				
+isL:1 isW:0 score:8832
+max:512
+moves: 525
+time:7
+
+Test #151
+8				32				64				8				
+2				1024			2				32				
+16				64				256				4				
+8				32				8				4				
+isL:1 isW:0 score:11496
+max:1024
+moves: 617
+time:8
+
+Test #152
+2				8				4				2				
+64				16				32				8				
+8				128				512				128				
+4				1024			8				4				
+isL:1 isW:0 score:15128
+max:1024
+moves: 902
+time:10
+
+Test #153
+2				8				2				32				
+4				32				64				8				
+16				512				128				16				
+64				2				32				8				
+isL:1 isW:0 score:6036
+max:512
+moves: 464
+time:7
+
+Test #154
+2				8				2				8				
+4				512				32				4				
+128				16				64				128				
+2				8				256				8				
+isL:1 isW:0 score:7992
+max:512
+moves: 590
+time:6
+
+Test #155
+2				8				64				8				
+4				512				128				32				
+16				128				64				8				
+8				16				4				2				
+isL:1 isW:0 score:6568
+max:512
+moves: 501
+time:7
+
+Test #156
+2				4				16				4				
+128				8				256				32				
+4				32				64				4				
+2				512				16				8				
+isL:1 isW:0 score:7376
+max:512
+moves: 545
+time:7
+
+Test #157
+0				0				0				0				
+0				0				4				16				
+0				8				8				16				
+0				16				2048			4				
+isL:0 isW:1 score:19320
+max:2048
+moves: 722
+time:7
+
+Test #158
+16				64				16				2				
+1024			32				128				4				
+4				16				512				16				
+2				4				32				8				
+isL:1 isW:0 score:14424
+max:1024
+moves: 826
+time:10
+
+Test #159
+8				32				16				2				
+2				1024			8				4				
+16				32				128				2				
+8				4				2				256				
+isL:1 isW:0 score:12184
+max:1024
+moves: 771
+time:9
+
+Test #160
+32				8				16				4				
+2				4				2048			8				
+0				0				8				2				
+2				0				0				32				
+isL:0 isW:1 score:20840
+max:2048
+moves: 1081
+time:11
+
+Test #161
+4				16				1024			8				
+64				8				128				512				
+2				32				2				32				
+4				8				16				4				
+isL:1 isW:0 score:14780
+max:1024
+moves: 923
+time:10
+
+Test #162
+16				8				4				2				
+8				64				256				16				
+4				128				512				8				
+64				32				4				2				
+isL:1 isW:0 score:6824
+max:512
+moves: 374
+time:4
+
+Test #163
+4				0				16				8				
+512				2				32				64				
+4				256				1024			16				
+32				8				32				4				
+isL:1 isW:0 score:14984
+max:1024
+moves: 765
+time:8
+
+Test #164
+2				16				4				0				
+2048			64				0				0				
+64				8				0				0				
+0				2				2				0				
+isL:0 isW:1 score:21116
+max:2048
+moves: 1085
+time:11
+
+Test #165
+2				16				4				2				
+4				8				64				8				
+1024			256				128				4				
+64				32				4				16				
+isL:1 isW:0 score:12688
+max:1024
+moves: 817
+time:9
+
+Test #166
+4				32				2				0				
+2048			8				2				0				
+32				0				0				0				
+2				0				0				0				
+isL:0 isW:1 score:20756
+max:2048
+moves: 1063
+time:13
+
+Test #167
+0				16				256				32				
+4				2				128				64				
+8				32				512				8				
+16				8				16				4				
+isL:1 isW:0 score:6940
+max:512
+moves: 429
+time:5
+
+Test #168
+16				32				8				2				
+128				512				32				4				
+32				16				8				16				
+8				1024			4				2				
+isL:1 isW:0 score:13800
+max:1024
+moves: 705
+time:7
+
+Test #169
+8				64				4				2				
+2				16				32				8				
+64				512				256				64				
+8				16				8				1024			
+isL:1 isW:0 score:16140
+max:1024
+moves: 989
+time:9
+
+Test #170
+4				32				16				2				
+8				128				512				4				
+256				32				128				32				
+8				16				4				4				
+isL:1 isW:0 score:7952
+max:512
+moves: 592
+time:7
+
+Test #171
+4				128				8				4				
+16				64				32				16				
+4				128				1024			8				
+4				256				4				2				
+isL:1 isW:0 score:13140
+max:1024
+moves: 850
+time:9
+
+Test #172
+2				32				4				2				
+2				16				128				8				
+32				64				1024			16				
+256				8				32				8				
+isL:1 isW:0 score:12628
+max:1024
+moves: 816
+time:10
+
+Test #173
+8				512				8				2				
+32				1024			128				32				
+16				256				64				8				
+8				16				4				2				
+isL:1 isW:0 score:15516
+max:1024
+moves: 785
+time:8
+
+Test #174
+2				8				64				4				
+8				32				512				256				
+4				16				32				16				
+2				64				8				4				
+isL:1 isW:0 score:6540
+max:512
+moves: 415
+time:6
+
+Test #175
+0				2				4				8				
+0				16				32				2048			
+0				0				0				2				
+0				0				0				2				
+isL:0 isW:1 score:20676
+max:2048
+moves: 1055
+time:10
+
+Test #176
+8				16				4				64				
+32				64				256				2				
+4				128				8				16				
+4				1024			4				2				
+isL:1 isW:0 score:12688
+max:1024
+moves: 817
+time:10
+
+Test #177
+4				256				4				2				
+64				16				32				128				
+4				2				64				1024			
+2				32				4				8				
+isL:1 isW:0 score:12752
+max:1024
+moves: 822
+time:8
+
+Test #178
+8				128				4				0				
+32				64				16				4				
+16				2				1024			32				
+128				8				512				16				
+isL:1 isW:0 score:14900
+max:1024
+moves: 819
+time:8
+
+Test #179
+2				4				512				16				
+8				256				32				8				
+64				128				64				4				
+8				2				16				2				
+isL:1 isW:0 score:7004
+max:512
+moves: 419
+time:6
+
+Test #180
+2				32				16				2				
+16				128				256				32				
+64				512				32				8				
+2				16				4				2				
+isL:1 isW:0 score:7308
+max:512
+moves: 507
+time:6
+
+Test #181
+4				4				2048			16				
+2				16				16				4				
+0				0				0				2				
+0				0				0				0				
+isL:0 isW:1 score:20636
+max:2048
+moves: 1054
+time:10
+
+Test #182
+32				8				4				2				
+16				64				128				32				
+8				512				1024			16				
+4				64				32				4				
+isL:1 isW:0 score:15244
+max:1024
+moves: 974
+time:10
+
+Test #183
+2				4				1024			4				
+8				128				8				64				
+16				256				16				4				
+8				128				8				2				
+isL:1 isW:0 score:13036
+max:1024
+moves: 839
+time:7
+
+Test #184
+4				16				32				8				
+512				2				512				8				
+16				32				128				32				
+4				8				64				4				
+isL:1 isW:0 score:9080
+max:512
+moves: 505
+time:6
+
+Test #185
+4				8				64				4				
+64				512				1024			16				
+8				128				8				4				
+2				4				64				2				
+isL:1 isW:0 score:14068
+max:1024
+moves: 686
+time:7
+
+Test #186
+4				8				32				8				
+32				64				128				2				
+512				1024			16				32				
+8				4				2				0				
+isL:1 isW:0 score:14724
+max:1024
+moves: 896
+time:9
+
+Test #187
+2				32				16				4				
+256				64				128				16				
+16				8				1024			8				
+4				128				4				2				
+isL:1 isW:0 score:13180
+max:1024
+moves: 855
+time:11
+
+Test #188
+2				8				512				8				
+32				1024			16				128				
+4				64				256				16				
+2				32				4				2				
+isL:1 isW:0 score:16584
+max:1024
+moves: 1054
+time:11
+
+Test #189
+2				4				32				4				
+128				8				64				16				
+4				16				256				32				
+2				64				8				2				
+isL:1 isW:0 score:3596
+max:256
+moves: 320
+time:4
+
+Test #190
+4				16				64				16				
+128				1024			256				32				
+4				32				2				8				
+4				16				64				16				
+isL:1 isW:0 score:11488
+max:1024
+moves: 491
+time:4
+
+Test #191
+0				0				0				0				
+2				128				0				0				
+2048			16				0				2				
+8				16				4				0				
+isL:0 isW:1 score:20212
+max:2048
+moves: 822
+time:6
+
+Test #192
+2				0				4				8				
+0				0				4				2				
+0				0				2				2048			
+4				2				128				16				
+isL:0 isW:1 score:21184
+max:2048
+moves: 1073
+time:10
+
+Test #193
+0				0				4				2048			
+0				0				16				16				
+0				2				2				16				
+0				0				0				0				
+isL:0 isW:1 score:20628
+max:2048
+moves: 1050
+time:11
+
+Test #194
+16				32				4				2				
+32				1024			64				8				
+16				256				16				2				
+2				8				32				8				
+isL:1 isW:0 score:11908
+max:1024
+moves: 760
+time:9
+
+Test #195
+8				128				32				4				
+32				256				64				16				
+64				128				2				1024			
+32				8				8				4				
+isL:1 isW:0 score:12864
+max:1024
+moves: 702
+time:8
+
+Test #196
+4				2				8				4				
+8				16				256				16				
+32				128				512				64				
+8				256				8				4				
+isL:1 isW:0 score:8320
+max:512
+moves: 475
+time:5
+
+Test #197
+0				4				64				8				
+4				16				512				256				
+32				2				64				32				
+8				16				512				8				
+isL:1 isW:0 score:10124
+max:512
+moves: 541
+time:5
+
+Test #198
+2				8				2				8				
+4				16				1024			32				
+64				256				512				16				
+16				32				4				2				
+isL:1 isW:0 score:15788
+max:1024
+moves: 979
+time:11
+
+Test #199
+8				256				8				2				
+32				128				512				4				
+8				64				32				16				
+4				8				4				2				
+isL:1 isW:0 score:7356
+max:512
+moves: 543
+time:7
+
+Test #200
+2				32				8				4				
+8				64				1024			32				
+4				16				512				16				
+2				64				128				2				
+isL:1 isW:0 score:15112
+max:1024
+moves: 958
+time:10
+
+Test #201
+2				4				8				4				
+64				512				1024			8				
+8				256				32				4				
+4				128				8				2				
+isL:1 isW:0 score:15828
+max:1024
+moves: 890
+time:10
+
+Test #202
+16				8				32				8				
+4				64				128				512				
+2				256				32				8				
+64				16				4				2				
+isL:1 isW:0 score:7212
+max:512
+moves: 454
+time:5
+
+Test #203
+2				32				512				4				
+4				1024			32				16				
+8				32				64				256				
+2				128				32				2				
+isL:1 isW:0 score:15696
+max:1024
+moves: 804
+time:6
+
+Test #204
+8				16				4				2				
+32				256				32				8				
+16				64				16				64				
+2				128				8				2				
+isL:1 isW:0 score:3652
+max:256
+moves: 328
+time:5
+
+Test #205
+0				2				32				32				
+0				0				4				2048			
+0				2				2				16				
+0				0				0				4				
+isL:0 isW:1 score:20792
+max:2048
+moves: 1069
+time:10
+
+Test #206
+8				2				16				2				
+4				1024			8				4				
+8				128				32				64				
+2				4				1024			8				
+isL:1 isW:0 score:19772
+max:1024
+moves: 1168
+time:10
+
+Test #207
+8				32				4				2				
+2				64				8				128				
+32				512				256				16				
+4				32				64				2				
+isL:1 isW:0 score:7768
+max:512
+moves: 582
+time:8
+
+Test #208
+2				8				32				4				
+4				512				256				2				
+16				8				32				16				
+2				4				64				8				
+isL:1 isW:0 score:6036
+max:512
+moves: 338
+time:4
+
+Test #209
+4				64				32				4				
+8				128				1024			32				
+16				256				2				8				
+4				8				64				8				
+isL:1 isW:0 score:11560
+max:1024
+moves: 521
+time:5
+
+Test #210
+128				8				4				2				
+2				512				256				32				
+4				32				1024			128				
+16				8				64				8				
+isL:1 isW:0 score:17076
+max:1024
+moves: 1052
+time:10
+
+Test #211
+0				4				8				16				
+0				0				0				2048			
+0				0				2				4				
+0				0				2				64				
+isL:0 isW:1 score:20872
+max:2048
+moves: 1072
+time:15
+
+Test #212
+8				128				32				4				
+16				64				1024			8				
+256				2				64				32				
+0				4				8				16				
+isL:1 isW:0 score:12664
+max:1024
+moves: 792
+time:13
+
+Test #213
+0				2				0				4				
+0				2				2048			4				
+16				32				128				32				
+0				4				16				8				
+isL:0 isW:1 score:20280
+max:2048
+moves: 809
+time:13
+
+Test #214
+8				32				2				16				
+128				2				512				8				
+2				32				256				64				
+2				16				4				2				
+isL:1 isW:0 score:7364
+max:512
+moves: 542
+time:11
+
+Test #215
+2				4				16				2				
+8				256				32				8				
+2				8				512				16				
+128				32				8				4				
+isL:1 isW:0 score:7080
+max:512
+moves: 518
+time:9
+
+Test #216
+4				256				4				2				
+16				32				1024			16				
+8				64				128				64				
+4				16				4				8				
+isL:1 isW:0 score:12736
+max:1024
+moves: 824
+time:14
+
+Test #217
+4				16				4				0				
+32				2048			0				0				
+32				4				0				4				
+0				0				0				0				
+isL:0 isW:1 score:19716
+max:2048
+moves: 799
+time:13
+
+Test #218
+2				4				128				8				
+8				16				512				32				
+4				32				128				1024			
+2				8				64				4				
+isL:1 isW:0 score:15524
+max:1024
+moves: 985
+time:15
+
+Test #219
+2				4				64				2				
+8				1024			32				8				
+2				64				256				16				
+8				512				8				4				
+isL:1 isW:0 score:15992
+max:1024
+moves: 1006
+time:15
+
+Test #220
+0				4				8				2				
+0				16				2048			4				
+0				32				16				2				
+2				0				8				2				
+isL:0 isW:1 score:19864
+max:2048
+moves: 850
+time:10
+
+Test #221
+8				16				32				2				
+16				256				1024			4				
+4				64				128				16				
+2				4				16				8				
+isL:1 isW:0 score:11780
+max:1024
+moves: 629
+time:8
+
+Test #222
+16				32				8				32				
+128				256				64				4				
+2				16				32				1024			
+64				2				4				2				
+isL:1 isW:0 score:12920
+max:1024
+moves: 842
+time:14
+
+Test #223
+8				2				8				16				
+512				16				64				8				
+8				256				128				4				
+4				64				16				2				
+isL:1 isW:0 score:7512
+max:512
+moves: 557
+time:10
+
+Test #224
+8				8				32				4				
+512				64				256				64				
+2				16				1024			4				
+4				8				64				16				
+isL:1 isW:0 score:15848
+max:1024
+moves: 917
+time:14
+
+Test #225
+32				4				16				8				
+64				512				64				256				
+16				128				2				4				
+8				64				8				4				
+isL:1 isW:0 score:7220
+max:512
+moves: 424
+time:8
+
+Test #226
+4				32				4				2				
+4				16				128				512				
+64				1024			256				16				
+4				16				64				8				
+isL:1 isW:0 score:16780
+max:1024
+moves: 1067
+time:13
+
+Test #227
+4				64				8				4				
+32				512				128				16				
+8				64				1024			64				
+16				8				4				2				
+isL:1 isW:0 score:15324
+max:1024
+moves: 978
+time:14
+
+Test #228
+8				16				4				8				
+2				256				128				1024			
+16				32				64				16				
+0				2				4				8				
+isL:1 isW:0 score:12236
+max:1024
+moves: 746
+time:13
+
+Test #229
+32				64				16				4				
+512				256				32				1024			
+8				128				8				4				
+2				4				64				2				
+isL:1 isW:0 score:15652
+max:1024
+moves: 777
+time:11
+
+Test #230
+8				4				2				0				
+16				32				1024			32				
+512				64				256				128				
+8				16				4				16				
+isL:1 isW:0 score:16632
+max:1024
+moves: 1060
+time:14
+
+Test #231
+4				32				16				4				
+16				512				256				128				
+1024			64				32				16				
+4				8				4				2				
+isL:1 isW:0 score:16624
+max:1024
+moves: 1060
+time:15
+
+Test #232
+4				8				32				16				
+128				512				256				32				
+16				128				2				4				
+8				64				8				4				
+isL:1 isW:0 score:7568
+max:512
+moves: 463
+time:9
+
+Test #233
+4				32				16				4				
+2				1024			64				32				
+16				64				512				8				
+2				256				4				2				
+isL:1 isW:0 score:14680
+max:1024
+moves: 659
+time:7
+
+Test #234
+4				256				4				2				
+32				16				8				64				
+64				512				128				4				
+8				4				16				2				
+isL:1 isW:0 score:7380
+max:512
+moves: 514
+time:8
+
+Test #235
+8				4				16				8				
+4				32				128				32				
+2				512				256				8				
+1024			8				4				2				
+isL:1 isW:0 score:16252
+max:1024
+moves: 1023
+time:15
+
+Test #236
+2				8				4				2				
+4				16				32				8				
+64				512				256				16				
+8				32				1024			4				
+isL:1 isW:0 score:15540
+max:1024
+moves: 921
+time:15
+
+Test #237
+4				32				4				2				
+8				512				8				16				
+32				128				256				128				
+8				16				4				2				
+isL:1 isW:0 score:7280
+max:512
+moves: 440
+time:7
+
+Test #238
+4				128				8				2				
+32				256				64				32				
+512				16				32				8				
+4				1024			2				4				
+isL:1 isW:0 score:16484
+max:1024
+moves: 1017
+time:17
+
+Test #239
+2				8				16				2				
+4				64				128				32				
+32				512				1024			512				
+4				64				16				4				
+isL:1 isW:0 score:19196
+max:1024
+moves: 1211
+time:15
+
+Test #240
+128				16				128				16				
+0				2				2048			16				
+0				8				4				4				
+0				4				0				0				
+isL:0 isW:1 score:20868
+max:2048
+moves: 855
+time:11
+
+Test #241
+2				16				32				16				
+8				128				512				32				
+16				64				1024			4				
+8				2				8				2				
+isL:1 isW:0 score:14060
+max:1024
+moves: 738
+time:11
+
+Test #242
+4				16				8				2				
+64				32				1024			4				
+8				16				128				256				
+4				8				2				16				
+isL:1 isW:0 score:12428
+max:1024
+moves: 795
+time:14
+
+Test #243
+2				16				8				4				
+1024			256				32				128				
+8				128				512				8				
+2				4				16				2				
+isL:1 isW:0 score:16920
+max:1024
+moves: 1074
+time:14
+
+Test #244
+2				16				32				8				
+4				8				64				128				
+256				1024			16				4				
+16				32				4				2				
+isL:1 isW:0 score:11824
+max:1024
+moves: 628
+time:11
+
+Test #245
+0				0				2				0				
+0				64				0				4				
+4				8				0				8				
+2				2				2048			4				
+isL:0 isW:1 score:20452
+max:2048
+moves: 973
+time:14
+
+Test #246
+4				2048			64				32				
+32				32				4				2				
+2				8				0				0				
+0				0				2				0				
+isL:0 isW:1 score:21208
+max:2048
+moves: 1113
+time:15
+
+Test #247
+8				16				64				4				
+64				256				512				16				
+32				2				32				1024			
+4				64				4				4				
+isL:1 isW:0 score:16192
+max:1024
+moves: 988
+time:12
+
+Test #248
+4				128				32				4				
+256				8				2				8				
+32				1024			128				32				
+4				4				512				4				
+isL:1 isW:0 score:15680
+max:1024
+moves: 741
+time:11
+
+Test #249
+4				8				128				4				
+16				256				64				16				
+8				512				32				8				
+2				64				4				2				
+isL:1 isW:0 score:7520
+max:512
+moves: 548
+time:9
+
+Test #250
+8				32				2				256				
+2				128				4				8				
+32				64				16				4				
+4				1024			512				2				
+isL:1 isW:0 score:16540
+max:1024
+moves: 1048
+time:16
+
+Test #251
+4				16				32				4				
+4				2				4				16				
+256				512				1024			64				
+4				16				64				4				
+isL:1 isW:0 score:15160
+max:1024
+moves: 792
+time:11
+
+Test #252
+4				8				64				16				
+2				16				512				2				
+64				128				256				16				
+4				16				64				4				
+isL:1 isW:0 score:6872
+max:512
+moves: 346
+time:5
+
+Test #253
+0				0				0				0				
+2				0				2				0				
+16				2				8				0				
+16				2048			2				32				
+isL:0 isW:1 score:20368
+max:2048
+moves: 974
+time:14
+
+Test #254
+4				8				16				4				
+16				32				512				32				
+8				128				1024			4				
+2				4				256				4				
+isL:1 isW:0 score:16276
+max:1024
+moves: 1026
+time:14
+
+Test #255
+4				16				8				2				
+2				256				64				4				
+4				1024			16				32				
+2				32				512				4				
+isL:1 isW:0 score:15444
+max:1024
+moves: 899
+time:15
+
+Test #256
+4				8				16				2				
+16				512				256				1024			
+2				64				32				8				
+4				8				2				32				
+isL:1 isW:0 score:14976
+max:1024
+moves: 780
+time:11
+
+Test #257
+8				4				64				8				
+2				512				256				32				
+8				256				64				4				
+2				4				1024			16				
+isL:1 isW:0 score:17772
+max:1024
+moves: 1131
+time:19
+
+Test #258
+2				32				4				2				
+8				64				8				32				
+16				1024			128				2				
+2				8				64				16				
+isL:1 isW:0 score:11028
+max:1024
+moves: 705
+time:12
+
+Test #259
+2				8				32				2				
+4				512				256				16				
+128				64				128				64				
+4				4				16				4				
+isL:1 isW:0 score:7844
+max:512
+moves: 502
+time:7
+
+Test #260
+2				16				128				8				
+8				64				1024			16				
+256				16				8				4				
+2				4				32				2				
+isL:1 isW:0 score:11752
+max:1024
+moves: 626
+time:9
+
+Test #261
+2				64				32				2				
+4				32				1024			4				
+16				128				64				512				
+8				16				2				2				
+isL:1 isW:0 score:15096
+max:1024
+moves: 955
+time:14
+
+Test #262
+4				8				1024			2				
+2				128				256				4				
+512				64				16				32				
+8				4				2				8				
+isL:1 isW:0 score:16428
+max:1024
+moves: 1036
+time:14
+
+Test #263
+8				16				2048			2				
+8				128				2				0				
+4				0				0				0				
+2				0				0				0				
+isL:0 isW:1 score:20536
+max:2048
+moves: 908
+time:11
+
+Test #264
+2				8				64				4				
+4				32				1024			32				
+256				16				128				8				
+8				32				4				2				
+isL:1 isW:0 score:12264
+max:1024
+moves: 730
+time:11
+
+Test #265
+64				2				4				8				
+32				512				128				16				
+4				128				16				2				
+2				64				4				8				
+isL:1 isW:0 score:6540
+max:512
+moves: 496
+time:7
+
+Test #266
+4				32				8				2				
+2				256				128				4				
+8				1024			8				16				
+4				64				4				2				
+isL:1 isW:0 score:12336
+max:1024
+moves: 782
+time:15
+
+Test #267
+2				4				1024			32				
+8				128				64				2				
+512				256				128				4				
+4				32				16				8				
+isL:1 isW:0 score:16844
+max:1024
+moves: 995
+time:13
+
+Test #268
+2				8				2				4				
+4				512				8				32				
+128				16				128				8				
+2				8				256				4				
+isL:1 isW:0 score:6992
+max:512
+moves: 389
+time:6
+
+Test #269
+4				32				8				2				
+64				1024			128				4				
+8				32				64				32				
+2				4				256				8				
+isL:1 isW:0 score:12704
+max:1024
+moves: 796
+time:13
+
+Test #270
+0				2				0				8				
+0				0				0				32				
+0				0				2048			4				
+8				4				4				2				
+isL:0 isW:1 score:20652
+max:2048
+moves: 1054
+time:17
+
+Test #271
+4				64				16				4				
+16				512				1024			4				
+4				128				2				128				
+8				4				16				4				
+isL:1 isW:0 score:14204
+max:1024
+moves: 681
+time:12
+
+Test #272
+2				256				4				2				
+16				128				8				16				
+512				32				64				2				
+8				4				2				16				
+isL:1 isW:0 score:6840
+max:512
+moves: 423
+time:7
+
+Test #273
+8				2				64				8				
+16				128				1024			4				
+64				512				16				2				
+2				4				32				8				
+isL:1 isW:0 score:15000
+max:1024
+moves: 946
+time:15
+
+Test #274
+2				4				32				8				
+4				16				64				16				
+32				256				512				4				
+16				128				16				2				
+isL:1 isW:0 score:7452
+max:512
+moves: 555
+time:10
+
+Test #275
+4				8				16				8				
+16				128				256				2				
+64				32				64				4				
+2				4				16				4				
+isL:1 isW:0 score:3520
+max:256
+moves: 313
+time:8
+
+Test #276
+2				128				32				8				
+4				64				256				512				
+8				32				128				32				
+2				64				8				2				
+isL:1 isW:0 score:7884
+max:512
+moves: 486
+time:8
+
+Test #277
+4				128				8				2				
+4				32				256				16				
+16				128				64				32				
+4				512				8				4				
+isL:1 isW:0 score:7888
+max:512
+moves: 544
+time:9
+
+Test #278
+8				512				8				2				
+16				128				256				32				
+8				32				64				4				
+4				16				8				2				
+isL:1 isW:0 score:7400
+max:512
+moves: 549
+time:11
+
+Test #279
+2				4				32				8				
+8				512				16				64				
+256				64				32				8				
+8				128				16				2				
+isL:1 isW:0 score:7716
+max:512
+moves: 579
+time:10
+
+Test #280
+2				128				4				2				
+4				16				512				64				
+8				256				128				8				
+64				8				2				4				
+isL:1 isW:0 score:8172
+max:512
+moves: 604
+time:10
+
+Test #281
+4				128				8				2				
+64				512				16				4				
+16				8				256				32				
+4				16				2				8				
+isL:1 isW:0 score:6848
+max:512
+moves: 424
+time:9
+
+Test #282
+64				8				128				8				
+16				256				32				4				
+128				1024			16				2				
+2				4				2				32				
+isL:1 isW:0 score:12992
+max:1024
+moves: 796
+time:8
+
+Test #283
+2				64				4				2				
+4				8				16				8				
+128				1024			64				4				
+32				64				8				16				
+isL:1 isW:0 score:11228
+max:1024
+moves: 723
+time:15
+
+Test #284
+2				32				4				0				
+2048			2				0				0				
+4				16				0				0				
+4				0				0				2				
+isL:0 isW:1 score:20668
+max:2048
+moves: 1055
+time:15
+
+Test #285
+2				64				32				4				
+4				1024			512				8				
+8				256				64				32				
+32				2				4				8				
+isL:1 isW:0 score:15084
+max:1024
+moves: 751
+time:11
+
+Test #286
+2				256				4				2				
+2				32				1024			8				
+16				64				128				32				
+8				32				16				4				
+isL:1 isW:0 score:12424
+max:1024
+moves: 766
+time:10
+
+Test #287
+8				8				0				0				
+2048			0				0				0				
+4				32				0				0				
+4				0				0				2				
+isL:0 isW:1 score:20648
+max:2048
+moves: 1051
+time:13
+
+Test #288
+2				4				256				4				
+8				1024			16				512				
+16				128				32				4				
+8				64				8				2				
+isL:1 isW:0 score:16476
+max:1024
+moves: 1043
+time:15
+
+Test #289
+16				2				8				4				
+128				32				512				16				
+4				256				128				32				
+2				8				64				8				
+isL:1 isW:0 score:7404
+max:512
+moves: 422
+time:8
+
+Test #290
+8				4				2				16				
+1024			16				128				256				
+32				512				16				4				
+8				128				8				2				
+isL:1 isW:0 score:16764
+max:1024
+moves: 1030
+time:11
+
+Test #291
+2				64				32				2				
+32				512				64				4				
+8				1024			128				256				
+2				4				32				16				
+isL:1 isW:0 score:16968
+max:1024
+moves: 1090
+time:15
+
+Test #292
+2				4				256				16				
+16				512				64				2				
+32				64				256				16				
+16				32				2				2				
+isL:1 isW:0 score:8772
+max:512
+moves: 645
+time:10
+
+Test #293
+8				16				128				8				
+64				512				256				16				
+4				32				64				1024			
+4				8				128				8				
+isL:1 isW:0 score:16624
+max:1024
+moves: 901
+time:11
+
+Test #294
+16				2				4				8				
+8				256				32				16				
+4				32				64				128				
+2				16				512				4				
+isL:1 isW:0 score:7116
+max:512
+moves: 475
+time:9
+
+Test #295
+8				32				2				2				
+256				128				16				32				
+16				8				1024			8				
+4				32				4				2				
+isL:1 isW:0 score:12312
+max:1024
+moves: 786
+time:13
+
+Test #296
+2				4				32				4				
+8				64				128				1024			
+2				256				8				16				
+8				16				2				4				
+isL:1 isW:0 score:12380
+max:1024
+moves: 788
+time:13
+
+Test #297
+2				8				256				4				
+4				128				16				64				
+32				64				512				8				
+8				2				16				4				
+isL:1 isW:0 score:7424
+max:512
+moves: 524
+time:7
+
+Test #298
+8				32				2				0				
+2048			4				0				0				
+32				0				0				0				
+4				2				2				0				
+isL:0 isW:1 score:19756
+max:2048
+moves: 814
+time:13
+
+Test #299
+2				64				16				2				
+4				128				32				4				
+32				64				16				2				
+1024			2				4				8				
+isL:1 isW:0 score:11004
+max:1024
+moves: 701
+time:12
+
+Test #300
+8				4				2				8				
+16				512				64				16				
+64				128				32				4				
+4				8				16				2				
+isL:1 isW:0 score:5836
+max:512
+moves: 443
+time:9
+
+Test #301
+4				8				2				64				
+8				16				512				16				
+4				256				128				4				
+2				16				64				2				
+isL:1 isW:0 score:7484
+max:512
+moves: 552
+time:9
+
+Test #302
+8				16				8				2				
+32				64				128				256				
+2				1024			16				32				
+2				64				8				4				
+isL:1 isW:0 score:12044
+max:1024
+moves: 638
+time:10
+
+Test #303
+8				2				16				256				
+32				1024			32				4				
+4				16				64				128				
+2				8				512				8				
+isL:1 isW:0 score:16268
+max:1024
+moves: 974
+time:13
+
+Test #304
+4				8				16				4				
+64				512				256				16				
+16				8				32				4				
+4				128				8				2				
+isL:1 isW:0 score:7312
+max:512
+moves: 540
+time:13
+
+Test #305
+2				8				32				8				
+16				128				256				16				
+8				512				64				32				
+4				2				4				16				
+isL:1 isW:0 score:7432
+max:512
+moves: 553
+time:11
+
+Test #306
+8				4				64				0				
+512				32				2				32				
+8				1024			128				256				
+4				64				8				32				
+isL:1 isW:0 score:15196
+max:1024
+moves: 649
+time:7
+
+Test #307
+2048			8				4				0				
+8				32				2				2				
+4				8				0				0				
+2				0				0				0				
+isL:0 isW:1 score:19640
+max:2048
+moves: 801
+time:11
+
+Test #308
+16				4				128				4				
+32				64				32				8				
+16				256				512				4				
+4				32				16				2				
+isL:1 isW:0 score:7536
+max:512
+moves: 564
+time:11
+
+Test #309
+2				4				8				4				
+16				512				128				8				
+2				64				8				16				
+8				128				4				2				
+isL:1 isW:0 score:6124
+max:512
+moves: 456
+time:8
+
+Test #310
+16				8				32				16				
+8				128				64				512				
+4				2				1024			256				
+0				32				128				8				
+isL:1 isW:0 score:16712
+max:1024
+moves: 955
+time:14
+
+Test #311
+8				32				4				2				
+64				256				1024			8				
+4				32				512				64				
+2				8				128				8				
+isL:1 isW:0 score:15672
+max:1024
+moves: 785
+time:12
+
+Test #312
+0				2				4				2				
+0				8				16				2				
+0				16				2048			64				
+0				0				4				8				
+isL:0 isW:1 score:20936
+max:2048
+moves: 1085
+time:18
+
+Test #313
+2				4				32				64				
+8				128				512				2				
+16				1024			16				4				
+8				64				4				8				
+isL:1 isW:0 score:15004
+max:1024
+moves: 947
+time:14
+
+Test #314
+2				16				1024			4				
+64				128				16				4				
+16				32				64				32				
+2				256				16				4				
+isL:1 isW:0 score:12072
+max:1024
+moves: 638
+time:10
+
+Test #315
+8				32				2				4				
+16				512				16				8				
+4				128				32				16				
+2				4				256				8				
+isL:1 isW:0 score:6872
+max:512
+moves: 462
+time:9
+
+Test #316
+4				64				8				2				
+4				32				256				4				
+1024			16				32				512				
+4				64				4				8				
+isL:1 isW:0 score:16100
+max:1024
+moves: 1018
+time:14
+
+Test #317
+2				4				8				16				
+16				128				512				32				
+2				256				64				16				
+16				2				4				2				
+isL:1 isW:0 score:7320
+max:512
+moves: 539
+time:11
+
+Test #318
+16				8				4				2				
+64				512				32				16				
+16				256				1024			4				
+4				64				128				2				
+isL:1 isW:0 score:15824
+max:1024
+moves: 828
+time:13
+
+Test #319
+32				64				8				4				
+16				512				256				128				
+8				32				64				32				
+2				4				16				4				
+isL:1 isW:0 score:7612
+max:512
+moves: 538
+time:8
+
+Test #320
+2				8				16				32				
+16				128				1024			16				
+32				8				256				4				
+4				32				8				2				
+isL:1 isW:0 score:12360
+max:1024
+moves: 793
+time:15
+
+Test #321
+4				8				16				8				
+1024			32				512				16				
+32				256				128				32				
+8				4				2				0				
+isL:1 isW:0 score:16408
+max:1024
+moves: 1040
+time:16
+
+Test #322
+0				32				16				8				
+4				1024			128				16				
+16				32				2				8				
+8				64				4				64				
+isL:1 isW:0 score:9972
+max:1024
+moves: 435
+time:6
+
+Test #323
+8				64				8				2				
+16				256				128				4				
+4				8				32				64				
+2				1024			16				8				
+isL:1 isW:0 score:12116
+max:1024
+moves: 672
+time:10
+
+Test #324
+16				64				4				2				
+64				8				512				4				
+4				32				128				1024			
+2				8				16				32				
+isL:1 isW:0 score:15116
+max:1024
+moves: 959
+time:13
+
+Test #325
+2				8				64				8				
+4				512				1024			32				
+16				256				16				8				
+8				32				4				2				
+isL:1 isW:0 score:15848
+max:1024
+moves: 997
+time:15
+
+Test #326
+32				128				8				4				
+128				2				1024			16				
+4				32				16				128				
+4				8				256				8				
+isL:1 isW:0 score:12500
+max:1024
+moves: 592
+time:9
+
+Test #327
+4				16				4				2				
+32				256				64				8				
+128				512				128				16				
+16				32				4				4				
+isL:1 isW:0 score:7716
+max:512
+moves: 497
+time:7
+
+Test #328
+4				16				4				2				
+4				64				32				8				
+32				256				128				2				
+4				64				4				32				
+isL:1 isW:0 score:3668
+max:256
+moves: 327
+time:6
+
+Test #329
+32				2				4				8				
+8				16				1024			32				
+4				512				64				8				
+2				16				256				4				
+isL:1 isW:0 score:15836
+max:1024
+moves: 995
+time:13
+
+Test #330
+8				4				32				16				
+4				1024			64				4				
+16				256				128				16				
+4				2				4				512				
+isL:1 isW:0 score:15780
+max:1024
+moves: 866
+time:15
+
+Test #331
+8				64				32				2				
+32				16				256				4				
+2				128				512				16				
+2				16				1024			4				
+isL:1 isW:0 score:15644
+max:1024
+moves: 815
+time:11
+
+Test #332
+0				0				0				0				
+16				2				0				0				
+2048			0				0				0				
+32				8				2				0				
+isL:0 isW:1 score:20576
+max:2048
+moves: 1028
+time:12
+
+Test #333
+8				64				16				2				
+32				256				512				4				
+16				64				128				8				
+8				4				2				64				
+isL:1 isW:0 score:7896
+max:512
+moves: 593
+time:12
+
+Test #334
+64				8				2				4				
+512				256				32				8				
+4				16				64				16				
+4				128				4				2				
+isL:1 isW:0 score:7568
+max:512
+moves: 561
+time:9
+
+Test #335
+8				16				32				8				
+128				2				1024			64				
+4				32				128				16				
+4				8				64				8				
+isL:1 isW:0 score:10652
+max:1024
+moves: 481
+time:6
+
+Test #336
+2				4				16				128				
+32				8				32				1024			
+8				256				16				8				
+2				4				128				4				
+isL:1 isW:0 score:12232
+max:1024
+moves: 654
+time:12
+
+Test #337
+8				32				8				2				
+16				256				64				4				
+64				1024			512				16				
+4				16				4				4				
+isL:1 isW:0 score:16064
+max:1024
+moves: 1016
+time:16
+
+Test #338
+2				1024			32				4				
+256				16				64				32				
+8				32				128				2				
+2				4				8				16				
+isL:1 isW:0 score:12616
+max:1024
+moves: 814
+time:12
+
+Test #339
+8				8				2				64				
+32				2048			4				0				
+8				0				2				2				
+0				0				0				0				
+isL:0 isW:1 score:20132
+max:2048
+moves: 875
+time:12
+
+Test #340
+2				32				8				4				
+4				512				1024			8				
+8				64				128				4				
+2				4				256				2				
+isL:1 isW:0 score:16152
+max:1024
+moves: 972
+time:13
+
+Test #341
+8				128				4				2				
+128				1024			16				8				
+16				32				64				16				
+4				2				512				2				
+isL:1 isW:0 score:15480
+max:1024
+moves: 982
+time:15
+
+Test #342
+4				128				16				4				
+2				32				64				4				
+32				1024			128				16				
+8				32				256				4				
+isL:1 isW:0 score:12944
+max:1024
+moves: 768
+time:11
+
+Test #343
+512				4				2				4				
+16				256				16				8				
+128				1024			128				2				
+4				16				8				4				
+isL:1 isW:0 score:15976
+max:1024
+moves: 851
+time:11
+
+Test #344
+4				128				64				2				
+2				512				32				4				
+8				64				16				256				
+1024			4				2				64				
+isL:1 isW:0 score:16960
+max:1024
+moves: 1073
+time:14
+
+Test #345
+4				16				4				2				
+32				128				32				8				
+64				256				1024			64				
+128				4				16				4				
+isL:1 isW:0 score:13568
+max:1024
+moves: 892
+time:13
+
+Test #346
+4				64				8				4				
+4				32				128				16				
+2				64				512				8				
+4				16				64				4				
+isL:1 isW:0 score:5748
+max:512
+moves: 378
+time:8
+
+Test #347
+8				32				4				2				
+32				512				1024			4				
+8				128				16				32				
+2				16				64				8				
+isL:1 isW:0 score:13844
+max:1024
+moves: 672
+time:9
+
+Test #348
+4				8				128				4				
+128				32				16				32				
+2				256				1024			8				
+32				16				4				2				
+isL:1 isW:0 score:12908
+max:1024
+moves: 807
+time:13
+
+Test #349
+2				32				2				0				
+8				4				0				0				
+2				32				0				0				
+2				2048			4				0				
+isL:0 isW:1 score:20760
+max:2048
+moves: 1066
+time:14
+
+Test #350
+4				128				4				2				
+32				256				16				128				
+4				1024			32				4				
+8				64				8				2				
+isL:1 isW:0 score:13020
+max:1024
+moves: 808
+time:15
+
+Test #351
+8				1024			16				4				
+4				32				512				8				
+2				16				128				32				
+8				256				4				2				
+isL:1 isW:0 score:15840
+max:1024
+moves: 916
+time:12
+
+Test #352
+2				16				64				4				
+8				1024			32				16				
+512				64				256				4				
+2				16				32				4				
+isL:1 isW:0 score:16172
+max:1024
+moves: 1027
+time:15
+
+Test #353
+8				32				4				2				
+64				1024			16				8				
+16				128				256				4				
+8				2				8				2				
+isL:1 isW:0 score:12392
+max:1024
+moves: 790
+time:15
+
+Test #354
+2				8				32				8				
+16				64				512				64				
+4				256				128				16				
+2				8				64				8				
+isL:1 isW:0 score:7364
+max:512
+moves: 459
+time:7
+
+Test #355
+4				64				32				8				
+16				8				128				64				
+4				256				16				2				
+2				8				32				2				
+isL:1 isW:0 score:3396
+max:256
+moves: 269
+time:6
+
+Test #356
+4				8				32				2				
+32				256				128				8				
+16				512				64				32				
+4				16				4				4				
+isL:1 isW:0 score:7404
+max:512
+moves: 535
+time:8
+
+Test #357
+4				4				16				32				
+32				64				1024			256				
+64				512				32				8				
+2				4				8				4				
+isL:1 isW:0 score:16224
+max:1024
+moves: 1032
+time:13
+
+Test #358
+2				32				4				2				
+8				64				128				8				
+16				1024			512				256				
+8				32				16				8				
+isL:1 isW:0 score:16612
+max:1024
+moves: 1059
+time:13
+
+Test #359
+4				32				16				8				
+16				128				2				4				
+64				512				256				16				
+4				16				64				4				
+isL:1 isW:0 score:6980
+max:512
+moves: 405
+time:5
+
+Test #360
+4				32				8				8				
+16				128				256				1024			
+2				64				512				32				
+4				16				64				4				
+isL:1 isW:0 score:15748
+max:1024
+moves: 796
+time:8
+
+Test #361
+2				16				32				4				
+4				1024			64				16				
+8				64				128				32				
+2				4				8				4				
+isL:1 isW:0 score:10976
+max:1024
+moves: 693
+time:10
+
+Test #362
+8				2				4				16				
+256				32				64				8				
+4				512				8				2				
+2				16				32				128				
+isL:1 isW:0 score:7384
+max:512
+moves: 546
+time:6
+
+Test #363
+16				8				4				2				
+256				32				128				64				
+8				512				1024			8				
+2				64				16				2				
+isL:1 isW:0 score:16788
+max:1024
+moves: 1072
+time:13
+
+Test #364
+2				16				32				4				
+8				256				128				8				
+128				16				64				32				
+4				4				1024			4				
+isL:1 isW:0 score:12356
+max:1024
+moves: 637
+time:7
+
+Test #365
+4				8				32				2				
+256				128				16				8				
+8				512				64				4				
+4				8				128				2				
+isL:1 isW:0 score:7368
+max:512
+moves: 434
+time:5
+
+Test #366
+4				2048			8				2				
+64				2				0				0				
+4				2				0				0				
+0				0				0				0				
+isL:0 isW:1 score:20532
+max:2048
+moves: 992
+time:11
+
+Test #367
+2				8				32				8				
+64				256				128				64				
+32				512				16				4				
+2				4				8				2				
+isL:1 isW:0 score:7656
+max:512
+moves: 570
+time:9
+
+Test #368
+32				128				2				4				
+2				1024			16				8				
+8				64				32				256				
+4				128				16				2				
+isL:1 isW:0 score:13256
+max:1024
+moves: 862
+time:12
+
+Test #369
+16				2				0				2				
+2048			0				0				0				
+8				2				0				0				
+32				2				0				0				
+isL:0 isW:1 score:19984
+max:2048
+moves: 882
+time:12
+
+Test #370
+2				2				2				0				
+8				0				8				0				
+4				4				2				2				
+2				2048			8				4				
+isL:0 isW:1 score:19832
+max:2048
+moves: 869
+time:10
+
+Test #371
+8				32				8				4				
+2				64				128				512				
+8				256				64				8				
+2				4				32				2				
+isL:1 isW:0 score:7624
+max:512
+moves: 566
+time:8
+
+Test #372
+2				4				16				2				
+8				128				8				4				
+16				512				16				128				
+8				256				32				4				
+isL:1 isW:0 score:7756
+max:512
+moves: 571
+time:10
+
+Test #373
+4				2				8				4				
+16				256				64				16				
+32				1024			128				8				
+16				32				512				4				
+isL:1 isW:0 score:16352
+max:1024
+moves: 991
+time:14
+
+Test #374
+0				0				0				0				
+0				0				0				4				
+4				2				0				16				
+8				8				2048			64				
+isL:0 isW:1 score:20068
+max:2048
+moves: 870
+time:11
+
+Test #375
+2				4				16				2				
+16				8				256				128				
+32				64				32				8				
+8				1024			4				2				
+isL:1 isW:0 score:12392
+max:1024
+moves: 774
+time:11
+
+Test #376
+4				512				16				8				
+8				256				1024			4				
+16				64				32				2				
+8				2				16				0				
+isL:1 isW:0 score:15752
+max:1024
+moves: 985
+time:14
+
+Test #377
+4				1024			8				64				
+16				32				128				8				
+64				16				2				8				
+4				8				512				4				
+isL:1 isW:0 score:14632
+max:1024
+moves: 853
+time:10
+
+Test #378
+32				64				16				8				
+4				512				128				32				
+128				1024			2				256				
+32				8				8				4				
+isL:1 isW:0 score:15964
+max:1024
+moves: 757
+time:9
+
+Test #379
+8				4				16				2				
+64				128				64				4				
+8				512				32				1024			
+2				4				64				4				
+isL:1 isW:0 score:15044
+max:1024
+moves: 914
+time:10
+
+Test #380
+64				8				4				2				
+2				256				16				32				
+64				32				4				64				
+4				8				512				2				
+isL:1 isW:0 score:7196
+max:512
+moves: 536
+time:10
+
+Test #381
+4				2				0				2				
+16				64				0				0				
+2048			16				0				0				
+4				32				4				0				
+isL:0 isW:1 score:21036
+max:2048
+moves: 1094
+time:12
+
+Test #382
+4				16				4				0				
+128				32				4				0				
+8				2048			0				0				
+8				64				16				8				
+isL:0 isW:1 score:20732
+max:2048
+moves: 888
+time:12
+
+Test #383
+4				8				128				8				
+4				32				16				128				
+512				256				2				16				
+8				16				64				8				
+isL:1 isW:0 score:7244
+max:512
+moves: 393
+time:5
+
+Test #384
+2				2				64				16				
+16				32				1024			128				
+2				16				512				16				
+8				64				4				2				
+isL:1 isW:0 score:15032
+max:1024
+moves: 946
+time:13
+
+Test #385
+2				4				16				256				
+64				8				64				32				
+4				256				1024			8				
+2				8				32				4				
+isL:1 isW:0 score:13804
+max:1024
+moves: 891
+time:14
+
+Test #386
+4				32				128				4				
+64				2				256				16				
+4				512				1024			32				
+4				16				4				64				
+isL:1 isW:0 score:16136
+max:1024
+moves: 895
+time:9
+
+Test #387
+8				32				2				8				
+4				64				256				128				
+2				512				64				32				
+0				16				2				8				
+isL:1 isW:0 score:7116
+max:512
+moves: 434
+time:6
+
+Test #388
+128				512				64				2				
+32				1024			32				4				
+16				256				16				8				
+4				8				4				2				
+isL:1 isW:0 score:16248
+max:1024
+moves: 970
+time:12
+
+Test #389
+16				32				2				2				
+32				64				512				1024			
+16				128				32				4				
+2				4				8				16				
+isL:1 isW:0 score:14952
+max:1024
+moves: 946
+time:12
+
+Test #390
+4				16				32				2				
+8				512				256				16				
+16				1024			64				4				
+8				128				8				2				
+isL:1 isW:0 score:16520
+max:1024
+moves: 1049
+time:13
+
+Test #391
+4				8				32				128				
+32				8				512				8				
+4				2				1024			32				
+32				64				16				4				
+isL:1 isW:0 score:14020
+max:1024
+moves: 704
+time:9
+
+Test #392
+4				32				4				8				
+4				64				2				256				
+16				128				512				16				
+4				256				32				8				
+isL:1 isW:0 score:8328
+max:512
+moves: 462
+time:6
+
+Test #393
+2				4				1024			8				
+4				512				16				32				
+32				64				128				4				
+16				8				32				2				
+isL:1 isW:0 score:14900
+max:1024
+moves: 937
+time:11
+
+Test #394
+2				8				16				4				
+64				128				32				256				
+4				8				64				8				
+2				1024			32				2				
+isL:1 isW:0 score:12776
+max:1024
+moves: 826
+time:10
+
+Test #395
+2				4				64				4				
+8				16				512				8				
+4				128				64				32				
+2				32				4				2				
+isL:1 isW:0 score:5856
+max:512
+moves: 442
+time:8
+
+Test #396
+8				4				32				4				
+64				256				512				64				
+4				16				128				16				
+2				8				64				8				
+isL:1 isW:0 score:7348
+max:512
+moves: 456
+time:5
+
+Test #397
+128				64				4				8				
+4				32				2				4				
+128				1024			256				16				
+8				32				64				4				
+isL:1 isW:0 score:12448
+max:1024
+moves: 616
+time:8
+
+Test #398
+8				16				8				2				
+32				64				32				4				
+16				128				16				256				
+8				64				8				2				
+isL:1 isW:0 score:3316
+max:256
+moves: 243
+time:3
+
+Test #399
+16				64				4				32				
+64				128				256				16				
+4				8				32				8				
+2				1024			4				2				
+isL:1 isW:0 score:12812
+max:1024
+moves: 831
+time:9
+
+Test #400
+8				2				16				8				
+512				128				32				1024			
+2				4				64				16				
+8				32				4				2				
+isL:1 isW:0 score:14808
+max:1024
+moves: 930
+time:12
+
+Test #401
+32				1024			4				16				
+16				64				256				128				
+8				128				512				8				
+4				2				32				4				
+isL:1 isW:0 score:16844
+max:1024
+moves: 990
+time:14
+
+Test #402
+16				8				4				0				
+128				64				256				16				
+16				2				64				32				
+4				32				1024			8				
+isL:1 isW:0 score:11912
+max:1024
+moves: 600
+time:9
+
+Test #403
+2				4				256				2				
+8				16				1024			8				
+128				8				128				32				
+4				64				16				8				
+isL:1 isW:0 score:12948
+max:1024
+moves: 800
+time:10
+
+Test #404
+8				16				4				2				
+64				32				256				4				
+8				64				1024			64				
+2				32				8				16				
+isL:1 isW:0 score:12376
+max:1024
+moves: 801
+time:10
+
+Test #405
+2				32				8				2				
+4				128				64				4				
+32				1024			128				16				
+8				64				4				4				
+isL:1 isW:0 score:11744
+max:1024
+moves: 761
+time:12
+
+Test #406
+16				16				8				0				
+2048			0				0				0				
+4				0				0				0				
+4				0				4				0				
+isL:0 isW:1 score:19700
+max:2048
+moves: 822
+time:12
+
+Test #407
+8				32				4				2				
+256				1024			8				32				
+4				64				16				2				
+2				8				512				8				
+isL:1 isW:0 score:14928
+max:1024
+moves: 772
+time:7
+
+Test #408
+2				4				16				2				
+8				256				32				512				
+16				128				64				8				
+32				8				16				4				
+isL:1 isW:0 score:7432
+max:512
+moves: 553
+time:9
+
+Test #409
+0				1024			2				8				
+2				16				512				32				
+4				32				128				16				
+8				16				64				4				
+isL:1 isW:0 score:14840
+max:1024
+moves: 933
+time:11
+
+Test #410
+2				4				16				4				
+8				64				256				512				
+32				16				8				2				
+8				64				32				128				
+isL:1 isW:0 score:7704
+max:512
+moves: 577
+time:10
+
+Test #411
+32				16				8				2				
+16				1024			32				4				
+256				128				16				512				
+64				8				4				2				
+isL:1 isW:0 score:15676
+max:1024
+moves: 822
+time:10
+
+Test #412
+8				4				16				8				
+128				1024			32				16				
+8				16				512				4				
+2				4				256				64				
+isL:1 isW:0 score:16056
+max:1024
+moves: 933
+time:11
+
+Test #413
+4				64				8				2				
+8				512				16				4				
+16				64				256				128				
+8				32				16				4				
+isL:1 isW:0 score:7628
+max:512
+moves: 570
+time:8
+
+Test #414
+8				0				0				0				
+2				64				4				2				
+2				8				2048			0				
+4				32				8				0				
+isL:0 isW:1 score:20984
+max:2048
+moves: 1089
+time:14
+
+Test #415
+4				64				16				8				
+1024			2				32				256				
+8				512				128				16				
+8				32				8				4				
+isL:1 isW:0 score:15604
+max:1024
+moves: 807
+time:10
+
+Test #416
+0				2				4				8				
+16				64				32				16				
+32				512				1024			64				
+8				16				8				4				
+isL:1 isW:0 score:13512
+max:1024
+moves: 680
+time:8
+
+Test #417
+4				64				4				2				
+512				128				32				64				
+4				256				16				2				
+2				1024			4				8				
+isL:1 isW:0 score:16564
+max:1024
+moves: 1023
+time:10
+
+Test #418
+2				4				1024			16				
+4				256				32				128				
+16				8				64				4				
+32				128				2				16				
+isL:1 isW:0 score:13292
+max:1024
+moves: 867
+time:11
+
+Test #419
+0				0				0				2				
+0				8				2				8				
+0				4				2048			4				
+2				2				8				16				
+isL:0 isW:1 score:20584
+max:2048
+moves: 1050
+time:11
+
+Test #420
+2				4				8				2				
+32				256				1024			32				
+64				32				8				2				
+16				128				4				8				
+isL:1 isW:0 score:12004
+max:1024
+moves: 665
+time:8
+
+Test #421
+32				2				16				4				
+4				16				512				32				
+8				1024			128				4				
+2				32				64				4				
+isL:1 isW:0 score:13904
+max:1024
+moves: 689
+time:9
+
+Test #422
+4				64				16				1024			
+16				32				256				32				
+8				128				64				16				
+2				4				32				4				
+isL:1 isW:0 score:12972
+max:1024
+moves: 850
+time:11
+
+Test #423
+2				4				8				2				
+16				512				32				4				
+2				16				64				16				
+8				256				128				4				
+isL:1 isW:0 score:7292
+max:512
+moves: 536
+time:8
+
+Test #424
+2				4				16				2				
+8				128				32				2				
+4				64				1024			16				
+512				4				8				32				
+isL:1 isW:0 score:14796
+max:1024
+moves: 928
+time:13
+
+Test #425
+4				2				32				4				
+64				8				16				64				
+32				512				128				8				
+2				2				16				256				
+isL:1 isW:0 score:7688
+max:512
+moves: 574
+time:9
+
+Test #426
+2				1024			16				2				
+4				8				128				4				
+32				16				64				256				
+8				512				2				4				
+isL:1 isW:0 score:16460
+max:1024
+moves: 1040
+time:13
+
+Test #427
+16				4				32				8				
+64				1024			64				16				
+16				128				8				2				
+32				4				16				4				
+isL:1 isW:0 score:10588
+max:1024
+moves: 586
+time:10
+
+Test #428
+2				1024			8				4				
+2				64				128				16				
+16				32				512				8				
+8				16				64				2				
+isL:1 isW:0 score:14508
+max:1024
+moves: 818
+time:11
+
+Test #429
+8				128				64				2				
+2048			8				0				0				
+16				2				0				0				
+2				0				0				0				
+isL:0 isW:1 score:21512
+max:2048
+moves: 1103
+time:14
+
+Test #430
+8				32				16				4				
+16				64				1024			2				
+4				32				256				4				
+2				128				16				4				
+isL:1 isW:0 score:12528
+max:1024
+moves: 805
+time:13
+
+Test #431
+16				8				32				256				
+4				1024			2				4				
+16				32				512				32				
+4				128				4				4				
+isL:1 isW:0 score:16164
+max:1024
+moves: 982
+time:13
+
+Test #432
+8				4				32				4				
+128				512				16				2				
+64				1024			32				4				
+8				512				16				4				
+isL:1 isW:0 score:17360
+max:1024
+moves: 800
+time:9
+
+Test #433
+2				4				32				16				
+8				512				128				256				
+128				16				64				4				
+8				32				8				2				
+isL:1 isW:0 score:8140
+max:512
+moves: 606
+time:9
+
+Test #434
+4				16				64				4				
+128				32				128				16				
+4				512				8				32				
+4				256				4				2				
+isL:1 isW:0 score:8132
+max:512
+moves: 606
+time:7
+
+Test #435
+8				512				4				2				
+2				16				128				8				
+4				64				32				64				
+8				16				8				4				
+isL:1 isW:0 score:5804
+max:512
+moves: 439
+time:5
+
+Test #436
+8				16				4				2				
+2				64				1024			8				
+4				256				512				16				
+8				64				32				4				
+isL:1 isW:0 score:16028
+max:1024
+moves: 1011
+time:13
+
+Test #437
+4				16				8				2				
+8				512				32				4				
+64				128				1024			64				
+4				16				8				2				
+isL:1 isW:0 score:14224
+max:1024
+moves: 752
+time:10
+
+Test #438
+16				4				2				4				
+4				64				16				8				
+2				256				1024			512				
+16				64				4				2				
+isL:1 isW:0 score:15424
+max:1024
+moves: 874
+time:9
+
+Test #439
+1024			8				4				2				
+8				32				512				32				
+2				64				128				4				
+4				8				16				2				
+isL:1 isW:0 score:14764
+max:1024
+moves: 924
+time:12
+
+Test #440
+2				4				32				16				
+8				64				256				64				
+2				32				512				4				
+16				2				16				2				
+isL:1 isW:0 score:6952
+max:512
+moves: 515
+time:9
+
+Test #441
+4				64				32				2				
+8				512				256				32				
+16				32				16				4				
+2				4				8				2				
+isL:1 isW:0 score:6732
+max:512
+moves: 496
+time:8
+
+Test #442
+4				4				2048			8				
+0				2				2				8				
+0				0				0				0				
+0				0				0				0				
+isL:0 isW:1 score:19812
+max:2048
+moves: 859
+time:10
+
+Test #443
+2				4				64				8				
+8				32				1024			2				
+128				8				128				16				
+4				32				4				256				
+isL:1 isW:0 score:12720
+max:1024
+moves: 732
+time:8
+
+Test #444
+8				4				2				0				
+64				512				16				8				
+2				8				128				1024			
+4				256				16				8				
+isL:1 isW:0 score:16360
+max:1024
+moves: 1029
+time:11
+
+Test #445
+2				8				32				8				
+4				16				64				4				
+128				256				128				8				
+4				32				1024			2				
+isL:1 isW:0 score:13228
+max:1024
+moves: 859
+time:11
+
+Test #446
+4				8				2				4				
+64				1024			64				8				
+16				256				32				16				
+4				16				8				256				
+isL:1 isW:0 score:13100
+max:1024
+moves: 722
+time:11
+
+Test #447
+2				32				8				2				
+4				8				1024			4				
+512				64				256				16				
+16				4				16				64				
+isL:1 isW:0 score:14984
+max:1024
+moves: 746
+time:9
+
+Test #448
+16				8				4				2				
+8				32				64				128				
+4				256				512				32				
+2				16				64				4				
+isL:1 isW:0 score:7692
+max:512
+moves: 575
+time:8
+
+Test #449
+2				8				16				64				
+4				128				256				8				
+32				512				16				4				
+8				32				8				2				
+isL:1 isW:0 score:7400
+max:512
+moves: 549
+time:8
+
+Test #450
+8				4				2				8				
+256				16				32				16				
+8				128				512				4				
+4				1024			16				2				
+isL:1 isW:0 score:16204
+max:1024
+moves: 1019
+time:14
+
+Test #451
+0				32				16				8				
+4				2				1024			512				
+8				64				128				32				
+32				4				2				8				
+isL:1 isW:0 score:13992
+max:1024
+moves: 713
+time:9
+
+Test #452
+2				16				32				4				
+2				128				8				32				
+32				256				64				8				
+8				16				32				2				
+isL:1 isW:0 score:3284
+max:256
+moves: 256
+time:4
+
+Test #453
+4				2048			8				8				
+8				8				32				0				
+64				0				4				0				
+2				0				2				0				
+isL:0 isW:1 score:20768
+max:2048
+moves: 1034
+time:11
+
+Test #454
+8				4				1024			2				
+16				512				128				32				
+32				256				64				8				
+2				16				4				2				
+isL:1 isW:0 score:16584
+max:1024
+moves: 1054
+time:12
+
+Test #455
+8				32				2048			4				
+4				32				16				2				
+0				2				0				0				
+0				0				0				0				
+isL:0 isW:1 score:20808
+max:2048
+moves: 1072
+time:12
+
+Test #456
+8				16				128				0				
+32				1024			2				4				
+8				512				16				8				
+32				128				4				64				
+isL:1 isW:0 score:14256
+max:1024
+moves: 662
+time:7
+
+Test #457
+2				64				4				2				
+16				32				128				32				
+256				1024			64				8				
+2				4				8				512				
+isL:1 isW:0 score:15896
+max:1024
+moves: 838
+time:8
+
+Test #458
+2				16				4				2				
+2				64				32				8				
+1024			256				64				4				
+128				32				4				16				
+isL:1 isW:0 score:12796
+max:1024
+moves: 828
+time:11
+
+Test #459
+8				16				2				8				
+128				1024			32				16				
+8				32				64				8				
+2				4				16				2				
+isL:1 isW:0 score:10772
+max:1024
+moves: 684
+time:9
+
+Test #460
+8				4				2				0				
+16				128				64				16				
+256				1024			512				4				
+8				16				32				8				
+isL:1 isW:0 score:16136
+max:1024
+moves: 952
+time:13
+
+Test #461
+2				16				32				2				
+8				256				128				16				
+4				64				256				32				
+2				32				8				16				
+isL:1 isW:0 score:4660
+max:256
+moves: 292
+time:5
+
+Test #462
+4				32				4				4				
+128				64				2				16				
+16				1024			64				32				
+8				32				4				16				
+isL:1 isW:0 score:10040
+max:1024
+moves: 438
+time:5
+
+Test #463
+32				512				4				2				
+2				256				32				16				
+4				32				1024			64				
+16				8				16				4				
+isL:1 isW:0 score:15968
+max:1024
+moves: 1008
+time:12
+
+Test #464
+2				4				16				2				
+64				256				8				4				
+512				8				2				16				
+4				64				1024			4				
+isL:1 isW:0 score:15888
+max:1024
+moves: 994
+time:12
+
+Test #465
+4				128				16				8				
+8				256				64				2				
+32				1024			32				8				
+4				8				2				4				
+isL:1 isW:0 score:12364
+max:1024
+moves: 771
+time:11
+
+Test #466
+8				16				4				0				
+256				512				128				8				
+32				64				2				32				
+8				128				16				8				
+isL:1 isW:0 score:7360
+max:512
+moves: 409
+time:6
+
+Test #467
+4				2				64				4				
+8				16				32				16				
+32				1024			8				4				
+2				4				128				2				
+isL:1 isW:0 score:10084
+max:1024
+moves: 519
+time:6
+
+Test #468
+8				16				2				2				
+16				64				128				1024			
+4				256				8				32				
+2				64				2				4				
+isL:1 isW:0 score:12680
+max:1024
+moves: 815
+time:11
+
+Test #469
+4				16				8				4				
+16				128				512				64				
+64				256				128				4				
+2				4				8				2				
+isL:1 isW:0 score:8208
+max:512
+moves: 609
+time:9
+
+Test #470
+4				32				16				2				
+16				1024			256				128				
+8				128				8				16				
+2				4				64				4				
+isL:1 isW:0 score:13180
+max:1024
+moves: 855
+time:11
+
+Test #471
+4				32				4				8				
+4				128				512				64				
+64				2				256				16				
+4				32				64				8				
+isL:1 isW:0 score:7348
+max:512
+moves: 445
+time:8
+
+Test #472
+8				64				16				4				
+128				256				512				128				
+16				32				64				16				
+4				2				4				4				
+isL:1 isW:0 score:7536
+max:512
+moves: 420
+time:6
+
+Test #473
+4				8				32				64				
+32				1024			256				2				
+64				128				16				8				
+2				8				4				2				
+isL:1 isW:0 score:12744
+max:1024
+moves: 818
+time:11
+
+Test #474
+32				16				8				2				
+4				256				128				4				
+32				512				32				64				
+8				4				2				16				
+isL:1 isW:0 score:7500
+max:512
+moves: 559
+time:9
+
+Test #475
+4				8				64				16				
+1024			512				32				4				
+8				128				64				2				
+256				2				32				0				
+isL:1 isW:0 score:16856
+max:1024
+moves: 1077
+time:13
+
+Test #476
+2				4				32				8				
+16				64				16				32				
+256				1024			512				2				
+2				4				16				2				
+isL:1 isW:0 score:14648
+max:1024
+moves: 695
+time:9
+
+Test #477
+4				16				32				4				
+32				2				512				16				
+4				128				64				128				
+4				16				4				32				
+isL:1 isW:0 score:5740
+max:512
+moves: 308
+time:4
+
+Test #478
+2				8				16				4				
+512				128				1024			8				
+8				64				256				128				
+4				2				4				8				
+isL:1 isW:0 score:17076
+max:1024
+moves: 1085
+time:11
+
+Test #479
+4				8				64				8				
+16				128				512				4				
+32				64				1024			2				
+2				4				8				32				
+isL:1 isW:0 score:15084
+max:1024
+moves: 955
+time:12
+
+Test #480
+16				64				8				2				
+8				32				256				32				
+4				1024			128				16				
+2				16				64				8				
+isL:1 isW:0 score:12868
+max:1024
+moves: 839
+time:11
+
+Test #481
+8				4				2				8				
+16				32				16				64				
+2				1024			256				4				
+4				16				512				2				
+isL:1 isW:0 score:14392
+max:1024
+moves: 647
+time:7
+
+Test #482
+4				16				32				8				
+2				64				128				64				
+8				128				256				8				
+4				16				4				64				
+isL:1 isW:0 score:4056
+max:256
+moves: 273
+time:5
+
+Test #483
+2				32				64				8				
+4				128				512				2				
+32				1024			32				8				
+8				128				4				2				
+isL:1 isW:0 score:15568
+max:1024
+moves: 984
+time:13
+
+Test #484
+8				64				16				8				
+32				1024			32				4				
+512				256				64				2				
+2				4				16				32				
+isL:1 isW:0 score:16264
+max:1024
+moves: 1037
+time:13
+
+Test #485
+8				16				32				4				
+64				128				256				16				
+32				1024			64				2				
+8				32				8				4				
+isL:1 isW:0 score:12452
+max:1024
+moves: 723
+time:10
+
+Test #486
+2				16				32				8				
+4				128				64				128				
+16				32				256				32				
+2				2				512				8				
+isL:1 isW:0 score:7784
+max:512
+moves: 501
+time:7
+
+Test #487
+4				8				32				4				
+256				16				2				16				
+128				64				32				8				
+4				2				16				4				
+isL:1 isW:0 score:2992
+max:256
+moves: 213
+time:4
+
+Test #488
+4				32				64				16				
+1024			512				256				32				
+4				8				16				8				
+2				64				4				2				
+isL:1 isW:0 score:16084
+max:1024
+moves: 1009
+time:12
+
+Test #489
+16				512				64				2				
+4				2				128				16				
+256				16				8				1024			
+8				32				4				2				
+isL:1 isW:0 score:16504
+max:1024
+moves: 1046
+time:13
+
+Test #490
+4				128				8				2				
+8				512				32				4				
+32				128				256				16				
+8				4				64				4				
+isL:1 isW:0 score:8112
+max:512
+moves: 604
+time:9
+
+Test #491
+16				256				4				32				
+64				512				64				16				
+16				2				32				8				
+0				4				8				16				
+isL:1 isW:0 score:6368
+max:512
+moves: 362
+time:5
+
+Test #492
+2				256				128				2				
+2				1024			512				8				
+16				64				32				16				
+8				16				8				2				
+isL:1 isW:0 score:15616
+max:1024
+moves: 823
+time:7
+
+Test #493
+2				32				4				2				
+4				128				64				8				
+32				1024			256				16				
+4				16				4				4				
+isL:1 isW:0 score:12268
+max:1024
+moves: 745
+time:10
+
+Test #494
+2				8				32				64				
+4				512				256				8				
+16				64				1024			32				
+4				128				16				4				
+isL:1 isW:0 score:16908
+max:1024
+moves: 1086
+time:14
+
+Test #495
+2				8				128				32				
+4				64				16				4				
+32				512				1024			16				
+8				32				4				2				
+isL:1 isW:0 score:14924
+max:1024
+moves: 943
+time:12
+
+Test #496
+4				8				128				8				
+256				32				512				4				
+16				2				128				16				
+4				4				32				4				
+isL:1 isW:0 score:6976
+max:512
+moves: 365
+time:5
+
+Test #497
+4				128				2				8				
+32				512				16				32				
+8				64				256				2				
+2				4				16				4				
+isL:1 isW:0 score:6940
+max:512
+moves: 436
+time:6
+
+Test #498
+2				8				128				2				
+32				16				8				4				
+512				64				512				1024			
+4				8				4				2				
+isL:1 isW:0 score:18576
+max:1024
+moves: 1125
+time:12
+
+Test #499
+2				8				4				2				
+4				64				16				64				
+16				128				256				8				
+4				512				32				4				
+isL:1 isW:0 score:7568
+max:512
+moves: 561
+time:9
+
+Test #500
+2				8				32				8				
+4				1024			128				16				
+64				32				256				32				
+16				2				8				2				
+isL:1 isW:0 score:12628
+max:1024
+moves: 816
+time:9
+
+-----------------------------------------------------------
+Average max num: 1000
+Average num of moves: 769
+Num of wins: 61 (of 500 games)
+Tests time: 4836
+Average test time: 9
+Moves per sec: 79.507858
+
