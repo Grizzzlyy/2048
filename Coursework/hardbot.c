@@ -99,6 +99,7 @@ float calculateMoveScore(unsigned short** board, int curDepth, int boardSize)
 float calculateFinalScore(unsigned short** board, int boardSize)
 {
     float score = 0;
+    //можно объединить два цикла 
     for (int row_n = 0; row_n < boardSize; row_n++)
     {
         score += FIXED_WEIGHT;
@@ -120,7 +121,7 @@ float calculateFinalScore(unsigned short** board, int boardSize)
 //swipe board in some direction
 void simulateMove(unsigned short** board, enum action move, int boardSize)
 {
-
+    // можно попробовать создать одну функцию, отвечающую за все изменения
     switch (move)
     {
     case UP:
@@ -131,6 +132,7 @@ void simulateMove(unsigned short** board, enum action move, int boardSize)
             //Перебираем элементы столбцов
             for (int j = 0; j < boardSize; j++)
             {
+                //заменить while на for (уточнить будет ли эффективнее?)
                 int k = j;
                 //Пропускаем нулевые элементы
                 while (k < boardSize && board[k][i] == 0)
@@ -138,6 +140,7 @@ void simulateMove(unsigned short** board, enum action move, int boardSize)
                     k++;
                 }
                 //for (k = j; k <= fieldSize-1 && matrix[k][i] == 0; k++);
+                //возможно лучше поменять условия местами, в зависимости что чаще получается 
                 if (k == boardSize)
                     break;
                 else

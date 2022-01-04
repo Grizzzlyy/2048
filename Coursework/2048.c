@@ -209,6 +209,7 @@ void printGame(player_t human, player_t bot, gamemode_t gameMode, int turnsCount
 
 void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action action)
 {
+    //опять же можно попробовать для 4 операций придумать одну функцию 
     switch (action)
     {
     case UP:
