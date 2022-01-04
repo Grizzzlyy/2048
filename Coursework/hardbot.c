@@ -99,22 +99,21 @@ float calculateMoveScore(unsigned short** board, int curDepth, int boardSize)
 float calculateFinalScore(unsigned short** board, int boardSize)
 {
     float score = 0;
-    //можно объединить два цикла 
+    //объединила два цикла в один, тк кол-во столбцов и строк одиннаковое
     for (int row_n = 0; row_n < boardSize; row_n++)
     {
+        //for colum
         score += FIXED_WEIGHT;
         score += EMPTY_WEIGHT * emptyCellsInRow(board, row_n, boardSize);
         score += MERGES_WEIGHT * mergesInRow(board, row_n, boardSize);
         score -= MONOTONICITY_WEIGHT * _min(leftMonotonicityInRow(board, row_n, boardSize), rightMonotonicityInRow(board, row_n, boardSize));
         score -= SUM_WEIGHT * sumInRow(board, row_n, boardSize);
-    }
-    for (int col_n = 0; col_n < boardSize; col_n++)
-    {
+        //for row
         score += FIXED_WEIGHT;
-        score += EMPTY_WEIGHT * emptyCellsInCol(board, col_n, boardSize);
-        score += MERGES_WEIGHT * mergesInCol(board, col_n, boardSize);
-        score -= MONOTONICITY_WEIGHT * _min(leftMonotonicityInCol(board, col_n, boardSize), rightMonotonicityInCol(board, col_n, boardSize));
-        score -= SUM_WEIGHT * sumInCol(board, col_n, boardSize);
+        score += EMPTY_WEIGHT * emptyCellsInCol(board, row_n, boardSize);
+        score += MERGES_WEIGHT * mergesInCol(board, row_n, boardSize);
+        score -= MONOTONICITY_WEIGHT * _min(leftMonotonicityInCol(board, row_n, boardSize), rightMonotonicityInCol(board, row_n, boardSize));
+        score -= SUM_WEIGHT * sumInCol(board, row_n, boardSize);
     }
     return score;
 }
