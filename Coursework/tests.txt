@@ -1,1 +1,6 @@
-hey ho! 
+hey ho! Testing hardbot parameters:
+Size: 6x6
+Final num: 4096
+Number of tests:5
+-----------------------------------------------------------
+Test #1
