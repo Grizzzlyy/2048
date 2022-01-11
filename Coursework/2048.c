@@ -376,8 +376,23 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
                 //Если они равны, то склеиваем,увеличиваем счет и подтягиваем остальные плитки
                 if (player->board[i][j] == player->board[i][j + 1] && player->board[i][j] != 0)
                 {
-                    player->board[i][j] *= 2;
-                    player->score += player->board[i][j];
+                   //player->board[i][j] *= 2;
+                    //player->score += player->board[i][j];
+
+                    int a = player->board[j][i], b = player->score;
+                    __asm
+                    {
+                        mov eax, a
+                        mov ebx, b
+                        mov ecx, 2
+                        mul ecx
+                        add ebx, eax
+                        mov a, eax
+                        mov b, ebx
+                    }
+                    player->score = b;
+                    player->board[j][i] = a;
+
                     int k;
                     for (k = j + 1; k < boardSize - 1; k++)
                     {
