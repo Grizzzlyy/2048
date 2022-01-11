@@ -576,13 +576,36 @@ void copyStruct(player_t sStruct, player_t* dStruct, int boardSize)
 
 int returnMaxScore(int score1, int score2, int score3, int score4)
 {
-    int maxScore = score1;
+    int maxScore;
+    __asm
+    {
+    mov eax,score1
+    mov ebx,score2
+    cmp ebx,eax
+    jg m2
+m2: mov eax,ebx
+    mov ebx,score3
+    cmp ebx, eax
+    jg m3
+m3: mov eax, ebx
+    mov ebx, score4
+    cmp ebx, eax
+    jg m4
+m4: mov eax, ebx
+    mov maxScore,eax
+
+
+    }
+
+
+    /*
     if (score2 > maxScore)
         maxScore = score2;
     if (score3 > maxScore)
         maxScore = score3;
     if (score4 > maxScore)
         maxScore = score4;
+    */
     return maxScore;
 }
 
