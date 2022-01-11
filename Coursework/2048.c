@@ -248,7 +248,7 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
                 //Если они равны, то склеиваем,увеличиваем счет и подтягиваем остальные плитки
                 if (player->board[j][i] == player->board[j + 1][i] && player->board[j][i] != 0)
                 {
-                    player->board[j][i] *= 2;
+                    player->board[j][i] = player->board[i][j] << 1;
                     player->score += player->board[j][i];
                     int k;
                     for (k = j + 1; k < boardSize - 1; k++)
@@ -295,7 +295,7 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
                 //Если они равны, то склеиваем,увеличиваем счет и подтягиваем остальные плитки
                 if (player->board[j][i] == player->board[j - 1][i] && player->board[j][i] != 0)
                 {
-                    player->board[j][i] *= 2;
+                    player->board[j][i] = player->board[i][j] << 1;
                     player->score += player->board[j][i];
                     int k;
                     for (k = j - 1; k >= 1; k--)
@@ -342,7 +342,7 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
                 //Если они равны, то склеиваем,увеличиваем счет и подтягиваем остальные плитки
                 if (player->board[i][j] == player->board[i][j + 1] && player->board[i][j] != 0)
                 {
-                    player->board[i][j] *= 2;
+                    player->board[i][j] = player->board[i][j] << 1;
                     player->score += player->board[i][j];
                     int k;
                     for (k = j + 1; k < boardSize - 1; k++)
@@ -389,7 +389,7 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
                 //Если они равны, то склеиваем,увеличиваем счет и подтягиваем остальные плитки
                 if (player->board[i][j] == player->board[i][j - 1] && player->board[i][j] != 0)
                 {
-                    player->board[i][j] *= 2;
+                    player->board[i][j] = player->board[i][j] << 1;
                     player->score += player->board[i][j];
                     int k;
                     for (k = j - 1; k > 0; k--)
