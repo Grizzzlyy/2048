@@ -8,6 +8,11 @@
 #include "dynmatrix.h"
 #include "hardbot.h"
 
+#include <Windows.h>
+//#include <iostream>
+
+
+
 void play2048withBot()
 {
     //Создаем структуры параметры игры, игрок-человек, игрок-компьютер и счетчик сделанных ходов
@@ -244,11 +249,27 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
             //Перебираем элементы столбцов
             for (int j = 0; j < boardSize - 1; j++)
             {
+               
+
+
                 //Если они равны, то склеиваем,увеличиваем счет и подтягиваем остальные плитки
                 if (player->board[j][i] == player->board[j + 1][i] && player->board[j][i] != 0)
                 {
-                    player->board[j][i] *= 2;
-                    player->score += player->board[j][i];
+                    //player->board[j][i] *= 2;
+                    int a = player->board[j][i] , b = player->score;
+                    __asm
+                    {
+                        mov eax, a
+                        mov ebx, b
+                        mov ecx,2
+                        mul ecx
+                        add ebx, eax
+                        mov a, eax
+                        mov b,ebx
+                    }
+                    player->score = b;
+                    player->board[j][i] = a;
+
                     int k;
                     for (k = j + 1; k < boardSize - 1; k++)
                     {
