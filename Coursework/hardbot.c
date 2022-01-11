@@ -80,10 +80,10 @@ float generateScore(unsigned short** board, int curDepth, int boardSize)
 float calculateMoveScore(unsigned short** board, int curDepth, int boardSize)
 {
     float bestScore = 0;
+    unsigned short** newBoard;
+    newBoard = (unsigned short**)createMatrix(boardSize);
     for (enum action move = 0; move < 4; move++)
     {
-        unsigned short** newBoard;
-        newBoard = (unsigned short**)createMatrix(boardSize);
         copyMatrix(board, newBoard, boardSize);
         simulateMove(newBoard, move, boardSize);
         if (cmpMatrix(board, newBoard, boardSize) == 1)
@@ -91,8 +91,8 @@ float calculateMoveScore(unsigned short** board, int curDepth, int boardSize)
             float score = generateScore(newBoard, curDepth + 1, boardSize);
             bestScore = (score > bestScore) ? score : bestScore;
         }
-        deleteMatrix(newBoard, boardSize);
     }
+    deleteMatrix(newBoard, boardSize);
     return bestScore;
 }
 //calculates final score of this move (after that it goes to calculateScore and determineNextMove)
