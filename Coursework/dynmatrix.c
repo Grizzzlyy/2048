@@ -6,12 +6,9 @@
 size_t** createMatrix(unsigned short size)
 {
     size_t** A = (size_t**)calloc(size, sizeof(size_t*));
-    for (int i = 0; i < size; i += 4)
+    for (int i = 0; i < size; i++)
     {
         A[i] = (size_t*)calloc(size, sizeof(size_t));
-        A[i + 1] = (size_t*)calloc(size, sizeof(size_t));
-        A[i + 2] = (size_t*)calloc(size, sizeof(size_t));
-        A[i + 3] = (size_t*)calloc(size, sizeof(size_t));
     }
     return A;
 }
@@ -19,12 +16,9 @@ size_t** createMatrix(unsigned short size)
 //ќсвобождает пам€ть, зан€тую динамическим массивом
 void deleteMatrix(unsigned short** matrix, unsigned short size)
 {
-    for (unsigned short i = 0; i < size; i += 4)
+    for (unsigned short i = 0; i < size; i++)
     {
         free(matrix[i]);
-        free(matrix[i + 1]);
-        free(matrix[i + 2]);
-        free(matrix[i + 3]);
     }
     free(matrix);
 }
