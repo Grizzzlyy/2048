@@ -60,7 +60,7 @@ bool cmpMatrix(unsigned short** matrix1, unsigned short** matrix2, int size)
 
 void printMatrix(unsigned short** matrix, unsigned short size)
 {
-    for (int i = 0; i < size; i += 4)
+    for (int i = 0; i < size; i++)
     {
         for (int j = 0; j < size; j += 4)
         {
