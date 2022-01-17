@@ -161,7 +161,7 @@ void simulateMove(unsigned short** board, enum action move, int boardSize)
                 //Если они равны, то склеиваем и подтягиваем остальные плитки
                 if (board[j][i] == board[j + 1][i] && board[j][i] != 0)
                 {
-                    board[j][i] *= 2;
+                    board[j][i] = board[j][i] << 1;
                     int k;
                     for (k = j + 1; k < boardSize - 1; k++)
                     {
@@ -207,7 +207,7 @@ void simulateMove(unsigned short** board, enum action move, int boardSize)
                 //Если они равны, то склеиваем,увеличиваем счет и подтягиваем остальные плитки
                 if (board[j][i] == board[j - 1][i] && board[j][i] != 0)
                 {
-                    board[j][i] *= 2;
+                    board[j][i] = board[j][i] << 1;
                     int k;
                     for (k = j - 1; k >= 1; k--)
                     {
@@ -253,7 +253,7 @@ void simulateMove(unsigned short** board, enum action move, int boardSize)
                 //Если они равны, то склеиваем,увеличиваем счет и подтягиваем остальные плитки
                 if (board[i][j] == board[i][j + 1] && board[i][j] != 0)
                 {
-                    board[i][j] *= 2;
+                    board[i][j] = board[i][j] << 1;
                     //player->score += board[i][j];
                     int k;
                     for (k = j + 1; k < boardSize - 1; k++)
@@ -300,7 +300,7 @@ void simulateMove(unsigned short** board, enum action move, int boardSize)
                 //Если они равны, то склеиваем,увеличиваем счет и подтягиваем остальные плитки
                 if (board[i][j] == board[i][j - 1] && board[i][j] != 0)
                 {
-                    board[i][j] *= 2;
+                    board[i][j] = board[i][j] << 1;
                     //player->score += board[i][j];
                     int k;
                     for (k = j - 1; k > 0; k--)
