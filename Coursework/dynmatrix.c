@@ -32,7 +32,7 @@ void deleteMatrix(unsigned short** matrix, unsigned short size)
 //Копирует sourceMatrix в destinationMatrix
 void copyMatrix(unsigned short** sMatrix, unsigned short** dMatrix, unsigned short size)
 {
-    for (unsigned short i = 0; i < size; i ++)
+    for (unsigned short i = 0; i < size; i++)
     {
         for (unsigned short j = 0; j < size; j += 4)
         {
@@ -47,7 +47,7 @@ void copyMatrix(unsigned short** sMatrix, unsigned short** dMatrix, unsigned sho
 //Если матрицы разные, возвращает 1, если одинаковые, то 0
 bool cmpMatrix(unsigned short** matrix1, unsigned short** matrix2, int size)
 {
-    for (int i = 0; i < size; i ++)
+    for (int i = 0; i < size; i++)
     {
         for (int j = 0; j < size; j += 2)
         {
@@ -60,7 +60,7 @@ bool cmpMatrix(unsigned short** matrix1, unsigned short** matrix2, int size)
 
 void printMatrix(unsigned short** matrix, unsigned short size)
 {
-    for (int i = 0; i < size; i ++)
+    for (int i = 0; i < size; i += 4)
     {
         for (int j = 0; j < size; j += 4)
         {
