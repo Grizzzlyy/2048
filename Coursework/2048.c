@@ -15,7 +15,7 @@
 
 void play2048withBot()
 {
-    //Создаем структуры параметры игры, игрок-человек, игрок-компьютер и счетчик сделанных ходов
+    //Г‘Г®Г§Г¤Г ГҐГ¬ Г±ГІГ°ГіГЄГІГіГ°Г» ГЇГ Г°Г Г¬ГҐГІГ°Г» ГЁГЈГ°Г», ГЁГЈГ°Г®ГЄ-Г·ГҐГ«Г®ГўГҐГЄ, ГЁГЈГ°Г®ГЄ-ГЄГ®Г¬ГЇГјГѕГІГҐГ° ГЁ Г±Г·ГҐГІГ·ГЁГЄ Г±Г¤ГҐГ«Г Г­Г­Г»Гµ ГµГ®Г¤Г®Гў
     gamemode_t gameMode;
     player_t human;
     player_t bot;
@@ -27,19 +27,19 @@ void play2048withBot()
     initializePlayerData(&human, gameMode.boardSize);
     initializePlayerData(&bot, gameMode.boardSize);
 
-    //Основной алгоритм, сама игра, длится пока кто-то не выиграет или не проиграет
+    //ГЋГ±Г­Г®ГўГ­Г®Г© Г Г«ГЈГ®Г°ГЁГІГ¬, Г±Г Г¬Г  ГЁГЈГ°Г , Г¤Г«ГЁГІГ±Гї ГЇГ®ГЄГ  ГЄГІГ®-ГІГ® Г­ГҐ ГўГ»ГЁГЈГ°Г ГҐГІ ГЁГ«ГЁ Г­ГҐ ГЇГ°Г®ГЁГЈГ°Г ГҐГІ
     for (int turnsCount = 0; human.isWin != 1 && bot.isWin != 1 && human.isLose != 1 && bot.isLose != 1; turnsCount++)
     {
-        printGame(human, bot, gameMode, turnsCount); //Выводим поле
-        doHumanStep(&human, gameMode.boardSize); //Делаем ход
-        if (gameMode.selectedBot) //Бот делает ход
+        printGame(human, bot, gameMode, turnsCount); //Г‚Г»ГўГ®Г¤ГЁГ¬ ГЇГ®Г«ГҐ
+        doHumanStep(&human, gameMode.boardSize); //Г„ГҐГ«Г ГҐГ¬ ГµГ®Г¤
+        if (gameMode.selectedBot) //ГЃГ®ГІ Г¤ГҐГ«Г ГҐГІ ГµГ®Г¤
             doBotStepHard(&bot, gameMode.boardSize);
         else
             doBotStepEasy(&bot, gameMode.boardSize);
-        checkWin(&human, &bot, gameMode); //Устанавливаем значения перменным isWin, если кто-то выиграл
+        checkWin(&human, &bot, gameMode); //Г“Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГ¬ Г§Г­Г Г·ГҐГ­ГЁГї ГЇГҐГ°Г¬ГҐГ­Г­Г»Г¬ isWin, ГҐГ±Г«ГЁ ГЄГІГ®-ГІГ® ГўГ»ГЁГЈГ°Г Г«
     }
 
-    if (human.isWin || bot.isLose) //Выводим результаты игры
+    if (human.isWin || bot.isLose) //Г‚Г»ГўГ®Г¤ГЁГ¬ Г°ГҐГ§ГіГ«ГјГІГ ГІГ» ГЁГЈГ°Г»
     {
         printf("Congretulations! You win!\n");
     }
@@ -145,7 +145,7 @@ void spawnTileOnBoard(unsigned short** board, int boardSize)
     srand(time(NULL));
     if (rand() % 10 == 0)
     {
-        //Спавним 4 на поле с вероятностью 0.1
+        //Г‘ГЇГ ГўГ­ГЁГ¬ 4 Г­Г  ГЇГ®Г«ГҐ Г± ГўГҐГ°Г®ГїГІГ­Г®Г±ГІГјГѕ 0.1
         while (1)
         {
             int x = rand() % boardSize;
@@ -159,7 +159,7 @@ void spawnTileOnBoard(unsigned short** board, int boardSize)
     }
     else
     {
-        //Спавним 2 на поле с вероятностью 0.9
+        //Г‘ГЇГ ГўГ­ГЁГ¬ 2 Г­Г  ГЇГ®Г«ГҐ Г± ГўГҐГ°Г®ГїГІГ­Г®Г±ГІГјГѕ 0.9
         while (1)
         {
             int x = rand() % boardSize;
@@ -214,18 +214,19 @@ void printGame(player_t human, player_t bot, gamemode_t gameMode, int turnsCount
 
 void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action action)
 {
+    //Г®ГЇГїГІГј Г¦ГҐ Г¬Г®Г¦Г­Г® ГЇГ®ГЇГ°Г®ГЎГ®ГўГ ГІГј Г¤Г«Гї 4 Г®ГЇГҐГ°Г Г¶ГЁГ© ГЇГ°ГЁГ¤ГіГ¬Г ГІГј Г®Г¤Г­Гі ГґГіГ­ГЄГ¶ГЁГѕ 
     switch (action)
     {
     case UP:
-        //1)Сдвигаем все элементы к верхнему краю
-    //Перебираем столбцы
+        //1)Г‘Г¤ГўГЁГЈГ ГҐГ¬ ГўГ±ГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ» ГЄ ГўГҐГ°ГµГ­ГҐГ¬Гі ГЄГ°Г Гѕ
+    //ГЏГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ Г±ГІГ®Г«ГЎГ¶Г»
         for (int i = 0; i < boardSize; i++)
         {
-            //Перебираем элементы столбцов
+            //ГЏГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г±ГІГ®Г«ГЎГ¶Г®Гў
             for (int j = 0; j < boardSize; j++)
             {
                 int k = j;
-                //Пропускаем нулевые элементы
+                //ГЏГ°Г®ГЇГіГ±ГЄГ ГҐГ¬ Г­ГіГ«ГҐГўГ»ГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ»
                 while (k < boardSize && player->board[k][i] == 0)
                 {
                     k++;
@@ -242,20 +243,20 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
                 }
             }
         }
-        //2)Складываем соседние одинаковые элементы в столбцах и добавляем к счету
-        //Перебираем столбцы
+        //2)Г‘ГЄГ«Г Г¤Г»ГўГ ГҐГ¬ Г±Г®Г±ГҐГ¤Г­ГЁГҐ Г®Г¤ГЁГ­Г ГЄГ®ГўГ»ГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Гў Г±ГІГ®Г«ГЎГ¶Г Гµ ГЁ Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ ГЄ Г±Г·ГҐГІГі
+        //ГЏГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ Г±ГІГ®Г«ГЎГ¶Г»
         for (int i = 0; i < boardSize; i++)
         {
-            //Перебираем элементы столбцов
+            //ГЏГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г±ГІГ®Г«ГЎГ¶Г®Гў
             for (int j = 0; j < boardSize - 1; j++)
             {
                
 
 
-                //Если они равны, то склеиваем,увеличиваем счет и подтягиваем остальные плитки
+                //Г…Г±Г«ГЁ Г®Г­ГЁ Г°Г ГўГ­Г», ГІГ® Г±ГЄГ«ГҐГЁГўГ ГҐГ¬,ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГ¬ Г±Г·ГҐГІ ГЁ ГЇГ®Г¤ГІГїГЈГЁГўГ ГҐГ¬ Г®Г±ГІГ Г«ГјГ­Г»ГҐ ГЇГ«ГЁГІГЄГЁ
                 if (player->board[j][i] == player->board[j + 1][i] && player->board[j][i] != 0)
                 {
-                    //player->board[j][i] *= 2;
+
                     int a = player->board[j][i] , b = player->score;
                     __asm
                     {
@@ -270,6 +271,7 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
                     player->score = b;
                     player->board[j][i] = a;
 
+
                     int k;
                     for (k = j + 1; k < boardSize - 1; k++)
                     {
@@ -281,15 +283,15 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
         }
         break;
     case DOWN:
-        //1)Сдвигаем все элементы к нижнему краю
-    //Перебираем столбцы
+        //1)Г‘Г¤ГўГЁГЈГ ГҐГ¬ ГўГ±ГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ» ГЄ Г­ГЁГ¦Г­ГҐГ¬Гі ГЄГ°Г Гѕ
+    //ГЏГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ Г±ГІГ®Г«ГЎГ¶Г»
         for (int i = 0; i < boardSize; i++)
         {
-            //Перебираем элементы столбцов
+            //ГЏГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г±ГІГ®Г«ГЎГ¶Г®Гў
             for (int j = boardSize - 1; j >= 0; j--)
             {
                 int k = j;
-                //Пропускаем нулевые элементы
+                //ГЏГ°Г®ГЇГіГ±ГЄГ ГҐГ¬ Г­ГіГ«ГҐГўГ»ГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ»
                 while (k >= 0 && player->board[k][i] == 0)
                 {
                     k--;
@@ -305,16 +307,17 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
                 }
             }
         }
-        //2)Складываем соседние одинаковые элементы в столбцах и добавляем к счету
-        //Перебираем столбцы
+        //2)Г‘ГЄГ«Г Г¤Г»ГўГ ГҐГ¬ Г±Г®Г±ГҐГ¤Г­ГЁГҐ Г®Г¤ГЁГ­Г ГЄГ®ГўГ»ГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Гў Г±ГІГ®Г«ГЎГ¶Г Гµ ГЁ Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ ГЄ Г±Г·ГҐГІГі
+        //ГЏГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ Г±ГІГ®Г«ГЎГ¶Г»
         for (int i = 0; i < boardSize; i++)
         {
-            //Перебираем элементы столбцов
+            //ГЏГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г±ГІГ®Г«ГЎГ¶Г®Гў
             for (int j = boardSize - 1; j >= 1; j--)
             {
-                //Если они равны, то склеиваем,увеличиваем счет и подтягиваем остальные плитки
+                //Г…Г±Г«ГЁ Г®Г­ГЁ Г°Г ГўГ­Г», ГІГ® Г±ГЄГ«ГҐГЁГўГ ГҐГ¬,ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГ¬ Г±Г·ГҐГІ ГЁ ГЇГ®Г¤ГІГїГЈГЁГўГ ГҐГ¬ Г®Г±ГІГ Г«ГјГ­Г»ГҐ ГЇГ«ГЁГІГЄГЁ
                 if (player->board[j][i] == player->board[j - 1][i] && player->board[j][i] != 0)
                 {
+
                     //player->board[j][i] *= 2;
                     //player->score += player->board[j][i];
                     int a = player->board[j][i] , b = player->score;
@@ -331,6 +334,7 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
                     player->score = b;
                     player->board[j][i] = a;
 
+
                     int k;
                     for (k = j - 1; k >= 1; k--)
                     {
@@ -342,15 +346,15 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
         }
         break;
     case LEFT:
-        //1)Сдвигаем все элементы к левому краю
-    //Перебираем строки
+        //1)Г‘Г¤ГўГЁГЈГ ГҐГ¬ ГўГ±ГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ» ГЄ Г«ГҐГўГ®Г¬Гі ГЄГ°Г Гѕ
+    //ГЏГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ Г±ГІГ°Г®ГЄГЁ
         for (int i = 0; i < boardSize; i++)
         {
-            //Перебираем элементы строк
+            //ГЏГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г±ГІГ°Г®ГЄ
             for (int j = 0; j < boardSize; j++)
             {
                 int k = j;
-                //Пропускаем нулевые элементы
+                //ГЏГ°Г®ГЇГіГ±ГЄГ ГҐГ¬ Г­ГіГ«ГҐГўГ»ГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ»
                 while (k < boardSize && player->board[i][k] == 0)
                 {
                     k++;
@@ -366,18 +370,17 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
                 }
             }
         }
-        //2)Складываем соседние одинаковые элементы в столбцах и добавляем к счету
-        //Перебираем строки
+        //2)Г‘ГЄГ«Г Г¤Г»ГўГ ГҐГ¬ Г±Г®Г±ГҐГ¤Г­ГЁГҐ Г®Г¤ГЁГ­Г ГЄГ®ГўГ»ГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Гў Г±ГІГ®Г«ГЎГ¶Г Гµ ГЁ Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ ГЄ Г±Г·ГҐГІГі
+        //ГЏГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ Г±ГІГ°Г®ГЄГЁ
         for (int i = 0; i < boardSize; i++)
         {
-            //Перебираем элементы строк
+            //ГЏГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г±ГІГ°Г®ГЄ
             for (int j = 0; j < boardSize - 1; j++)
             {
-                //Если они равны, то склеиваем,увеличиваем счет и подтягиваем остальные плитки
+                //Г…Г±Г«ГЁ Г®Г­ГЁ Г°Г ГўГ­Г», ГІГ® Г±ГЄГ«ГҐГЁГўГ ГҐГ¬,ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГ¬ Г±Г·ГҐГІ ГЁ ГЇГ®Г¤ГІГїГЈГЁГўГ ГҐГ¬ Г®Г±ГІГ Г«ГјГ­Г»ГҐ ГЇГ«ГЁГІГЄГЁ
                 if (player->board[i][j] == player->board[i][j + 1] && player->board[i][j] != 0)
                 {
-                   //player->board[i][j] *= 2;
-                    //player->score += player->board[i][j];
+
 
                     int a = player->board[j][i], b = player->score;
                     __asm
@@ -404,15 +407,15 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
         }
         break;
     case RIGHT:
-        //1)Сдвигаем все элементы к правому краю
-    //Перебираем строки
+        //1)Г‘Г¤ГўГЁГЈГ ГҐГ¬ ГўГ±ГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ» ГЄ ГЇГ°Г ГўГ®Г¬Гі ГЄГ°Г Гѕ
+    //ГЏГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ Г±ГІГ°Г®ГЄГЁ
         for (int i = 0; i < boardSize; i++)
         {
-            //Перебираем элементы строк
+            //ГЏГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г±ГІГ°Г®ГЄ
             for (int j = boardSize - 1; j >= 0; j--)
             {
                 int k = j;
-                //Пропускаем нулевые элементы
+                //ГЏГ°Г®ГЇГіГ±ГЄГ ГҐГ¬ Г­ГіГ«ГҐГўГ»ГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ»
                 while (k >= 0 && player->board[i][k] == 0)
                 {
                     k--;
@@ -428,18 +431,18 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
                 }
             }
         }
-        //2)Складываем соседние одинаковые элементы в столбцах и добавляем к счету
-        //Перебираем строки
+        //2)Г‘ГЄГ«Г Г¤Г»ГўГ ГҐГ¬ Г±Г®Г±ГҐГ¤Г­ГЁГҐ Г®Г¤ГЁГ­Г ГЄГ®ГўГ»ГҐ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Гў Г±ГІГ®Г«ГЎГ¶Г Гµ ГЁ Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ ГЄ Г±Г·ГҐГІГі
+        //ГЏГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ Г±ГІГ°Г®ГЄГЁ
         for (int i = 0; i < boardSize; i++)
         {
-            //Перебираем элементы строк
+            //ГЏГҐГ°ГҐГЎГЁГ°Г ГҐГ¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ» Г±ГІГ°Г®ГЄ
             for (int j = boardSize - 1; j > 0; j--)
             {
-                //Если они равны, то склеиваем,увеличиваем счет и подтягиваем остальные плитки
+                //Г…Г±Г«ГЁ Г®Г­ГЁ Г°Г ГўГ­Г», ГІГ® Г±ГЄГ«ГҐГЁГўГ ГҐГ¬,ГіГўГҐГ«ГЁГ·ГЁГўГ ГҐГ¬ Г±Г·ГҐГІ ГЁ ГЇГ®Г¤ГІГїГЈГЁГўГ ГҐГ¬ Г®Г±ГІГ Г«ГјГ­Г»ГҐ ГЇГ«ГЁГІГЄГЁ
                 if (player->board[i][j] == player->board[i][j - 1] && player->board[i][j] != 0)
                 {
-                    //player->board[i][j] *= 2;
-                    //player->score += player->board[i][j];
+
+                   
 
                     int a = player->board[j][i], b = player->score;
                     __asm
@@ -454,6 +457,7 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
                     }
                     player->score = b;
                     player->board[j][i] = a;
+
 
                     int k;
                     for (k = j - 1; k > 0; k--)
@@ -472,32 +476,32 @@ void swipeFieldAndChangeScore(player_t* player, int boardSize, enum action actio
 
 int doAction(player_t* player, int boardSize, enum action action)
 {
-    player_t simulation; //Создаем симуляцию
+    player_t simulation; //Г‘Г®Г§Г¤Г ГҐГ¬ Г±ГЁГ¬ГіГ«ГїГ¶ГЁГѕ
     initializePlayerData(&simulation, boardSize);
-    copyStruct(*player, &simulation, boardSize); //Копируем туда данные игрока
+    copyStruct(*player, &simulation, boardSize); //ГЉГ®ГЇГЁГ°ГіГҐГ¬ ГІГіГ¤Г  Г¤Г Г­Г­Г»ГҐ ГЁГЈГ°Г®ГЄГ 
 
-    swipeFieldAndChangeScore(&simulation, boardSize, action); //Проводим действия в симуляции
+    swipeFieldAndChangeScore(&simulation, boardSize, action); //ГЏГ°Г®ГўГ®Г¤ГЁГ¬ Г¤ГҐГ©Г±ГІГўГЁГї Гў Г±ГЁГ¬ГіГ«ГїГ¶ГЁГЁ
 
-    if (cmpMatrix(simulation.board, player->board, boardSize)) //Если происходят изменения, то делаем этот ход и возвращаем 0
+    if (cmpMatrix(simulation.board, player->board, boardSize)) //Г…Г±Г«ГЁ ГЇГ°Г®ГЁГ±ГµГ®Г¤ГїГІ ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГї, ГІГ® Г¤ГҐГ«Г ГҐГ¬ ГЅГІГ®ГІ ГµГ®Г¤ ГЁ ГўГ®Г§ГўГ°Г Г№Г ГҐГ¬ 0
     {
         copyStruct(simulation, player, boardSize);
         deleteMatrix(simulation.board, boardSize);
-        return 0; //Действие сделано
+        return 0; //Г„ГҐГ©Г±ГІГўГЁГҐ Г±Г¤ГҐГ«Г Г­Г®
     }
-    else //Если изменений нет, то так нельзя ходить
+    else //Г…Г±Г«ГЁ ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГ© Г­ГҐГІ, ГІГ® ГІГ ГЄ Г­ГҐГ«ГјГ§Гї ГµГ®Г¤ГЁГІГј
     {
         printf("You cannot do this action, please change your choice\n");
         deleteMatrix(simulation.board, boardSize);
-        return 1;//Действие не сделано
+        return 1;//Г„ГҐГ©Г±ГІГўГЁГҐ Г­ГҐ Г±Г¤ГҐГ«Г Г­Г®
     }
 }
 
 void doHumanStep(player_t* human, int boardSize)
 {
-    //Пасхалочка, без getchar scanf считывает не то, что нужно(прими это как данность)
-    //Не баг, а фича =)
+    //ГЏГ Г±ГµГ Г«Г®Г·ГЄГ , ГЎГҐГ§ getchar scanf Г±Г·ГЁГІГ»ГўГ ГҐГІ Г­ГҐ ГІГ®, Г·ГІГ® Г­ГіГ¦Г­Г®(ГЇГ°ГЁГ¬ГЁ ГЅГІГ® ГЄГ ГЄ Г¤Г Г­Г­Г®Г±ГІГј)
+    //ГЌГҐ ГЎГ ГЈ, Г  ГґГЁГ·Г  =)
     getchar();
-    int counterOfImpossibleMoves = 0; //Счетчик кол-ва невозможных ходов. Если равен 4 (никуда нельзя сходить), то игрок проиграл.
+    int counterOfImpossibleMoves = 0; //Г‘Г·ГҐГІГ·ГЁГЄ ГЄГ®Г«-ГўГ  Г­ГҐГўГ®Г§Г¬Г®Г¦Г­Г»Гµ ГµГ®Г¤Г®Гў. Г…Г±Г«ГЁ Г°Г ГўГҐГ­ 4 (Г­ГЁГЄГіГ¤Г  Г­ГҐГ«ГјГ§Гї Г±ГµГ®Г¤ГЁГІГј), ГІГ® ГЁГЈГ°Г®ГЄ ГЇГ°Г®ГЁГЈГ°Г Г«.
 choice:
     printf("Enter action:");
     int choice;
@@ -535,7 +539,7 @@ choice:
 
 void doBotStepEasy(player_t* bot, int boardSize)
 {
-    //Данный бот выбирает рандомную сторону и свайпает туда
+    //Г„Г Г­Г­Г»Г© ГЎГ®ГІ ГўГ»ГЎГЁГ°Г ГҐГІ Г°Г Г­Г¤Г®Г¬Г­ГіГѕ Г±ГІГ®Г°Г®Г­Гі ГЁ Г±ГўГ Г©ГЇГ ГҐГІ ГІГіГ¤Г 
     int action = rand() % 4;
     int counterOfImpossibleMoves = 0;
     do
@@ -632,7 +636,7 @@ void checkWin(player_t* player1, player_t* player2, gamemode_t gameMode)
 
 void watchBotsGame()
 {
-    //Создаем структуры параметры игры, бот1, бот2 и счетчик сделанных ходов
+    //Г‘Г®Г§Г¤Г ГҐГ¬ Г±ГІГ°ГіГЄГІГіГ°Г» ГЇГ Г°Г Г¬ГҐГІГ°Г» ГЁГЈГ°Г», ГЎГ®ГІ1, ГЎГ®ГІ2 ГЁ Г±Г·ГҐГІГ·ГЁГЄ Г±Г¤ГҐГ«Г Г­Г­Г»Гµ ГµГ®Г¤Г®Гў
     gamemode_t gameMode;
     player_t bot1;
     player_t bot2;
@@ -644,16 +648,16 @@ void watchBotsGame()
     initializePlayerData(&bot1, gameMode.boardSize);
     initializePlayerData(&bot2, gameMode.boardSize);
 
-    //Основной алгоритм, сама игра, длится пока кто-то не выиграет или не проиграет
+    //ГЋГ±Г­Г®ГўГ­Г®Г© Г Г«ГЈГ®Г°ГЁГІГ¬, Г±Г Г¬Г  ГЁГЈГ°Г , Г¤Г«ГЁГІГ±Гї ГЇГ®ГЄГ  ГЄГІГ®-ГІГ® Г­ГҐ ГўГ»ГЁГЈГ°Г ГҐГІ ГЁГ«ГЁ Г­ГҐ ГЇГ°Г®ГЁГЈГ°Г ГҐГІ
     for (int turnsCount = 0; bot1.isWin != 1 && bot2.isWin != 1 && bot1.isLose != 1 && bot2.isLose != 1; turnsCount++)
     {
-        printBotsGame(bot1, bot2, gameMode, turnsCount); //Выводим поле
+        printBotsGame(bot1, bot2, gameMode, turnsCount); //Г‚Г»ГўГ®Г¤ГЁГ¬ ГЇГ®Г«ГҐ
         doBotStepEasy(&bot1, gameMode.boardSize);
         doBotStepHard(&bot2, gameMode.boardSize);
-        checkWin(&bot1, &bot2, gameMode); //Устанавливаем значения перменным isWin, если кто-то выиграл
+        checkWin(&bot1, &bot2, gameMode); //Г“Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГ¬ Г§Г­Г Г·ГҐГ­ГЁГї ГЇГҐГ°Г¬ГҐГ­Г­Г»Г¬ isWin, ГҐГ±Г«ГЁ ГЄГІГ®-ГІГ® ГўГ»ГЁГЈГ°Г Г«
     }
 
-    if (bot1.isWin || bot2.isLose) //Выводим результаты игры
+    if (bot1.isWin || bot2.isLose) //Г‚Г»ГўГ®Г¤ГЁГ¬ Г°ГҐГ§ГіГ«ГјГІГ ГІГ» ГЁГЈГ°Г»
     {
         printf("Bot #1 win!\n");
     }
@@ -765,15 +769,15 @@ void watchGameBotEasy()
 
     initializePlayerData(&bot, gameMode.boardSize);
 
-    //Основной алгоритм, сама игра, длится пока кто-то не выиграет или не проиграет
+    //ГЋГ±Г­Г®ГўГ­Г®Г© Г Г«ГЈГ®Г°ГЁГІГ¬, Г±Г Г¬Г  ГЁГЈГ°Г , Г¤Г«ГЁГІГ±Гї ГЇГ®ГЄГ  ГЄГІГ®-ГІГ® Г­ГҐ ГўГ»ГЁГЈГ°Г ГҐГІ ГЁГ«ГЁ Г­ГҐ ГЇГ°Г®ГЁГЈГ°Г ГҐГІ
     for (int turnsCount = 0; bot.isWin != 1 && bot.isLose != 1; turnsCount++)
     {
-        printBotGame(bot, gameMode, turnsCount); //Выводим поле
+        printBotGame(bot, gameMode, turnsCount); //Г‚Г»ГўГ®Г¤ГЁГ¬ ГЇГ®Г«ГҐ
         doBotStepEasy(&bot, gameMode.boardSize);
-        checkIfBotWon(&bot, gameMode); //Устанавливаем значения перменным isWin, если кто-то выиграл
+        checkIfBotWon(&bot, gameMode); //Г“Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГ¬ Г§Г­Г Г·ГҐГ­ГЁГї ГЇГҐГ°Г¬ГҐГ­Г­Г»Г¬ isWin, ГҐГ±Г«ГЁ ГЄГІГ®-ГІГ® ГўГ»ГЁГЈГ°Г Г«
     }
 
-    if (bot.isWin) //Выводим результаты игры
+    if (bot.isWin) //Г‚Г»ГўГ®Г¤ГЁГ¬ Г°ГҐГ§ГіГ«ГјГІГ ГІГ» ГЁГЈГ°Г»
     {
         printf("Bot win!\n");
     }
@@ -784,7 +788,7 @@ void watchGameBotEasy()
 
     deleteMatrix(bot.board, gameMode.boardSize);
     system("pause");
-    exit(0);//Создаем структуры параметры игры, бот1, бот2 и счетчик сделанных ходов
+    exit(0);//Г‘Г®Г§Г¤Г ГҐГ¬ Г±ГІГ°ГіГЄГІГіГ°Г» ГЇГ Г°Г Г¬ГҐГІГ°Г» ГЁГЈГ°Г», ГЎГ®ГІ1, ГЎГ®ГІ2 ГЁ Г±Г·ГҐГІГ·ГЁГЄ Г±Г¤ГҐГ«Г Г­Г­Г»Гµ ГµГ®Г¤Г®Гў
 }
 
 void watchGameBotHard()
@@ -798,15 +802,15 @@ void watchGameBotHard()
 
     initializePlayerData(&bot, gameMode.boardSize);
 
-    //Основной алгоритм, сама игра, длится пока кто-то не выиграет или не проиграет
+    //ГЋГ±Г­Г®ГўГ­Г®Г© Г Г«ГЈГ®Г°ГЁГІГ¬, Г±Г Г¬Г  ГЁГЈГ°Г , Г¤Г«ГЁГІГ±Гї ГЇГ®ГЄГ  ГЄГІГ®-ГІГ® Г­ГҐ ГўГ»ГЁГЈГ°Г ГҐГІ ГЁГ«ГЁ Г­ГҐ ГЇГ°Г®ГЁГЈГ°Г ГҐГІ
     for (int turnsCount = 0; bot.isWin != 1 && bot.isLose != 1; turnsCount++)
     {
-        printBotGame(bot, gameMode, turnsCount); //Выводим поле
+        printBotGame(bot, gameMode, turnsCount); //Г‚Г»ГўГ®Г¤ГЁГ¬ ГЇГ®Г«ГҐ
         doBotStepHard(&bot, gameMode.boardSize);
-        checkIfBotWon(&bot, gameMode); //Устанавливаем значения перменным isWin, если кто-то выиграл
+        checkIfBotWon(&bot, gameMode); //Г“Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГ¬ Г§Г­Г Г·ГҐГ­ГЁГї ГЇГҐГ°Г¬ГҐГ­Г­Г»Г¬ isWin, ГҐГ±Г«ГЁ ГЄГІГ®-ГІГ® ГўГ»ГЁГЈГ°Г Г«
     }
 
-    if (bot.isWin) //Выводим результаты игры
+    if (bot.isWin) //Г‚Г»ГўГ®Г¤ГЁГ¬ Г°ГҐГ§ГіГ«ГјГІГ ГІГ» ГЁГЈГ°Г»
     {
         printf("Bot win!\n");
     }
@@ -817,7 +821,7 @@ void watchGameBotHard()
 
     deleteMatrix(bot.board, gameMode.boardSize);
     system("pause");
-    exit(0);//Создаем структуры параметры игры, бот1, бот2 и счетчик сделанных ходов
+    exit(0);//Г‘Г®Г§Г¤Г ГҐГ¬ Г±ГІГ°ГіГЄГІГіГ°Г» ГЇГ Г°Г Г¬ГҐГІГ°Г» ГЁГЈГ°Г», ГЎГ®ГІ1, ГЎГ®ГІ2 ГЁ Г±Г·ГҐГІГ·ГЁГЄ Г±Г¤ГҐГ«Г Г­Г­Г»Гµ ГµГ®Г¤Г®Гў
 
 }
 
@@ -907,7 +911,7 @@ void testHardBot()
         for (turnsCount = 0; bot.isWin != 1 && bot.isLose != 1; turnsCount++)
         {
             doBotStepHard(&bot, gameMode.boardSize);
-            checkIfBotWon(&bot, gameMode); //Устанавливаем значения перменным isWin, если кто-то выиграл
+            checkIfBotWon(&bot, gameMode); //Г“Г±ГІГ Г­Г ГўГ«ГЁГўГ ГҐГ¬ Г§Г­Г Г·ГҐГ­ГЁГї ГЇГҐГ°Г¬ГҐГ­Г­Г»Г¬ isWin, ГҐГ±Г«ГЁ ГЄГІГ®-ГІГ® ГўГ»ГЁГЈГ°Г Г«
         }
         averageNumOfMoves += turnsCount;
         if (bot.isWin == 1) numOfWins++;

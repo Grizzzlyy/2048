@@ -1,1 +1,75 @@
-hey ho! 
+hey ho! Testing hardbot parameters:
+Size: 6x6
+Final num: 4096
+Number of tests:5
+-----------------------------------------------------------
+Test #1
+Testing hardbot parameters:
+Size: 4x4
+Final num: 2048
+Number of tests:5
+-----------------------------------------------------------
+Test #1
+0				0				0				0				
+0				0				0				0				
+0				0				0				2				
+2				0				0				0				
+isL:1 isW:0 score:0
+max:2
+moves: 1
+time:0
+
+Test #2
+0				0				0				0				
+0				0				0				0				
+0				0				0				2				
+2				0				0				0				
+isL:1 isW:0 score:0
+max:2
+moves: 1
+time:0
+
+Test #3
+0				0				0				0				
+0				0				0				0				
+0				0				0				2				
+2				0				0				0				
+isL:1 isW:0 score:0
+max:2
+moves: 1
+time:0
+
+Test #4
+0				0				0				0				
+0				0				0				0				
+0				0				0				2				
+2				0				0				0				
+isL:1 isW:0 score:0
+max:2
+moves: 1
+time:0
+
+Test #5
+0				0				0				0				
+0				0				0				0				
+0				0				0				2				
+2				0				0				0				
+isL:1 isW:0 score:0
+max:2
+moves: 1
+time:0
+
+-----------------------------------------------------------
+Average max num: 2
+Average num of moves: 1
+Num of wins: 0 (of 5 games)
+Tests time: 0
+Average test time: 0
+Moves per sec: inf
+
+Testing hardbot parameters:
+Size: 4x4
+Final num: 2048
+Number of tests:5
+-----------------------------------------------------------
+Test #1

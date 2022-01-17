@@ -80,10 +80,10 @@ float generateScore(unsigned short** board, int curDepth, int boardSize)
 float calculateMoveScore(unsigned short** board, int curDepth, int boardSize)
 {
     float bestScore = 0;
+    unsigned short** newBoard;
+    newBoard = (unsigned short**)createMatrix(boardSize);
     for (enum action move = 0; move < 4; move++)
     {
-        unsigned short** newBoard;
-        newBoard = (unsigned short**)createMatrix(boardSize);
         copyMatrix(board, newBoard, boardSize);
         simulateMove(newBoard, move, boardSize);
         if (cmpMatrix(board, newBoard, boardSize) == 1)
@@ -91,36 +91,36 @@ float calculateMoveScore(unsigned short** board, int curDepth, int boardSize)
             float score = generateScore(newBoard, curDepth + 1, boardSize);
             bestScore = (score > bestScore) ? score : bestScore;
         }
-        deleteMatrix(newBoard, boardSize);
     }
+    deleteMatrix(newBoard, boardSize);
     return bestScore;
 }
 //calculates final score of this move (after that it goes to calculateScore and determineNextMove)
 float calculateFinalScore(unsigned short** board, int boardSize)
 {
     float score = 0;
+    //объединила два цикла в один, тк кол-во столбцов и строк одиннаковое
     for (int row_n = 0; row_n < boardSize; row_n++)
     {
+        //for colum
         score += FIXED_WEIGHT;
         score += EMPTY_WEIGHT * emptyCellsInRow(board, row_n, boardSize);
         score += MERGES_WEIGHT * mergesInRow(board, row_n, boardSize);
         score -= MONOTONICITY_WEIGHT * _min(leftMonotonicityInRow(board, row_n, boardSize), rightMonotonicityInRow(board, row_n, boardSize));
         score -= SUM_WEIGHT * sumInRow(board, row_n, boardSize);
-    }
-    for (int col_n = 0; col_n < boardSize; col_n++)
-    {
+        //for row
         score += FIXED_WEIGHT;
-        score += EMPTY_WEIGHT * emptyCellsInCol(board, col_n, boardSize);
-        score += MERGES_WEIGHT * mergesInCol(board, col_n, boardSize);
-        score -= MONOTONICITY_WEIGHT * _min(leftMonotonicityInCol(board, col_n, boardSize), rightMonotonicityInCol(board, col_n, boardSize));
-        score -= SUM_WEIGHT * sumInCol(board, col_n, boardSize);
+        score += EMPTY_WEIGHT * emptyCellsInCol(board, row_n, boardSize);
+        score += MERGES_WEIGHT * mergesInCol(board, row_n, boardSize);
+        score -= MONOTONICITY_WEIGHT * _min(leftMonotonicityInCol(board, row_n, boardSize), rightMonotonicityInCol(board, row_n, boardSize));
+        score -= SUM_WEIGHT * sumInCol(board, row_n, boardSize);
     }
     return score;
 }
 //swipe board in some direction
 void simulateMove(unsigned short** board, enum action move, int boardSize)
 {
-
+    // можно попробовать создать одну функцию, отвечающую за все изменения
     switch (move)
     {
     case UP:
@@ -131,6 +131,7 @@ void simulateMove(unsigned short** board, enum action move, int boardSize)
             //Перебираем элементы столбцов
             for (int j = 0; j < boardSize; j++)
             {
+                //заменить while на for (уточнить будет ли эффективнее?)
                 int k = j;
                 //Пропускаем нулевые элементы
                 while (k < boardSize && board[k][i] == 0)
@@ -138,6 +139,7 @@ void simulateMove(unsigned short** board, enum action move, int boardSize)
                     k++;
                 }
                 //for (k = j; k <= fieldSize-1 && matrix[k][i] == 0; k++);
+                //возможно лучше поменять условия местами, в зависимости что чаще получается 
                 if (k == boardSize)
                     break;
                 else
