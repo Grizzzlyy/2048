@@ -1,29 +1,29 @@
 #include "dynmatrix.h"
 #include <stdio.h>
 
-//Создает и возвращает динамический массив нужного размера и нужного типа
-//При создании не забывайте потом освободить память функцией deleteMatrix!!!
+//Г‘Г®Г§Г¤Г ГҐГІ ГЁ ГўГ®Г§ГўГ°Г Г№Г ГҐГІ Г¤ГЁГ­Г Г¬ГЁГ·ГҐГ±ГЄГЁГ© Г¬Г Г±Г±ГЁГў Г­ГіГ¦Г­Г®ГЈГ® Г°Г Г§Г¬ГҐГ°Г  ГЁ Г­ГіГ¦Г­Г®ГЈГ® ГІГЁГЇГ 
+//ГЏГ°ГЁ Г±Г®Г§Г¤Г Г­ГЁГЁ Г­ГҐ Г§Г ГЎГ»ГўГ Г©ГІГҐ ГЇГ®ГІГ®Г¬ Г®Г±ГўГ®ГЎГ®Г¤ГЁГІГј ГЇГ Г¬ГїГІГј ГґГіГ­ГЄГ¶ГЁГҐГ© deleteMatrix!!!
 size_t** createMatrix(unsigned short size)
 {
     size_t** A = (size_t**)calloc(size, sizeof(size_t*));
-    for (int i = 0; i < size; i ++)
+    for (int i = 0; i < size; i++)
     {
         A[i] = (size_t*)calloc(size, sizeof(size_t));
     }
     return A;
 }
 
-//Освобождает память, занятую динамическим массивом
+//ГЋГ±ГўГ®ГЎГ®Г¦Г¤Г ГҐГІ ГЇГ Г¬ГїГІГј, Г§Г Г­ГїГІГіГѕ Г¤ГЁГ­Г Г¬ГЁГ·ГҐГ±ГЄГЁГ¬ Г¬Г Г±Г±ГЁГўГ®Г¬
 void deleteMatrix(unsigned short** matrix, unsigned short size)
 {
-    for (unsigned short i = 0; i < size; i ++)
+    for (unsigned short i = 0; i < size; i++)
     {
         free(matrix[i]);
     }
     free(matrix);
 }
 
-//Копирует sourceMatrix в destinationMatrix
+//ГЉГ®ГЇГЁГ°ГіГҐГІ sourceMatrix Гў destinationMatrix
 void copyMatrix(unsigned short** sMatrix, unsigned short** dMatrix, unsigned short size)
 {
     for (unsigned short i = 0; i < size; i++)
@@ -38,7 +38,7 @@ void copyMatrix(unsigned short** sMatrix, unsigned short** dMatrix, unsigned sho
     }
 }
 
-//Если матрицы разные, возвращает 1, если одинаковые, то 0
+//Г…Г±Г«ГЁ Г¬Г ГІГ°ГЁГ¶Г» Г°Г Г§Г­Г»ГҐ, ГўГ®Г§ГўГ°Г Г№Г ГҐГІ 1, ГҐГ±Г«ГЁ Г®Г¤ГЁГ­Г ГЄГ®ГўГ»ГҐ, ГІГ® 0
 bool cmpMatrix(unsigned short** matrix1, unsigned short** matrix2, int size)
 {
     for (int i = 0; i < size; i++)
