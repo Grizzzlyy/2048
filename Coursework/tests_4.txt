@@ -1,0 +1,520 @@
+#define MAX_DEPTH 2
+#define FIXED_WEIGHT 5.0f //if empty cells 0, mersges 0, monot max 2, so 0.7 - 2*0.2 greater than 0 
+#define EMPTY_WEIGHT 0.6f
+#define MERGES_WEIGHT 1.5f
+#define MONOTONICITY_WEIGHT 0.5f
+#define SUM_WEIGHT 0
+
+Testing hardbot parameters:
+Size: 4x4
+Final num: 2048
+Number of tests:50
+-----------------------------------------------------------
+Test #1
+8				4				2				8				
+32				1024			64				16				
+64				128				512				4				
+16				4				64				2				
+isL:1 isW:0 score:14684
+max:1024
+moves: 819
+time:27
+
+Test #2
+2				8				128				4				
+4				64				32				8				
+16				128				1024			4				
+4				512				16				8				
+isL:1 isW:0 score:15456
+max:1024
+moves: 980
+time:12
+
+Test #3
+4				128				16				2				
+2048			4				0				2				
+2				0				0				0				
+0				0				0				0				
+isL:0 isW:1 score:21304
+max:2048
+moves: 1101
+time:13
+
+Test #4
+4				2				8				0				
+4				16				64				32				
+2048			16				0				0				
+8				2				4				4				
+isL:0 isW:1 score:20144
+max:2048
+moves: 872
+time:9
+
+Test #5
+32				2				8				4				
+8				16				512				8				
+4				64				256				32				
+2				16				8				16				
+isL:1 isW:0 score:6200
+max:512
+moves: 373
+time:5
+
+Test #6
+4				2				8				64				
+32				16				256				8				
+8				1024			32				4				
+2				4				128				2				
+isL:1 isW:0 score:12372
+max:1024
+moves: 774
+time:9
+
+Test #7
+16				32				4				2				
+32				512				1024			64				
+2				256				8				16				
+2				16				4				2				
+isL:1 isW:0 score:15848
+max:1024
+moves: 995
+time:11
+
+Test #8
+8				32				16				2				
+32				512				256				32				
+2				128				16				8				
+2				1024			4				2				
+isL:1 isW:0 score:16388
+max:1024
+moves: 1037
+time:11
+
+Test #9
+4				2				8				4				
+8				16				256				16				
+32				512				64				8				
+64				4				16				256				
+isL:1 isW:0 score:8008
+max:512
+moves: 473
+time:7
+
+Test #10
+2				4				2				8				
+8				64				512				64				
+128				8				1024			16				
+2				4				256				4				
+isL:1 isW:0 score:15632
+max:1024
+moves: 805
+time:9
+
+Test #11
+32				16				64				2				
+8				512				128				4				
+64				32				8				256				
+4				16				4				2				
+isL:1 isW:0 score:7692
+max:512
+moves: 575
+time:7
+
+Test #12
+2				16				4				64				
+4				8				128				256				
+32				512				64				32				
+16				8				4				2				
+isL:1 isW:0 score:7692
+max:512
+moves: 575
+time:8
+
+Test #13
+16				8				4				2				
+8				32				256				16				
+256				512				64				8				
+16				4				32				2				
+isL:1 isW:0 score:8456
+max:512
+moves: 617
+time:9
+
+Test #14
+2				8				32				2				
+4				256				64				4				
+128				32				512				32				
+4				16				4				2				
+isL:1 isW:0 score:7440
+max:512
+moves: 550
+time:8
+
+Test #15
+4				32				64				2				
+16				128				8				4				
+4				64				512				16				
+8				32				64				4				
+isL:1 isW:0 score:5960
+max:512
+moves: 414
+time:4
+
+Test #16
+8				64				256				8				
+4				512				128				16				
+32				64				32				4				
+2				4				8				2				
+isL:1 isW:0 score:7240
+max:512
+moves: 466
+time:5
+
+Test #17
+8				16				8				2				
+64				256				64				16				
+4				1024			32				8				
+2				8				64				2				
+isL:1 isW:0 score:11908
+max:1024
+moves: 700
+time:10
+
+Test #18
+4				16				8				2				
+64				512				32				4				
+16				256				16				64				
+4				128				4				4				
+isL:1 isW:0 score:7604
+max:512
+moves: 566
+time:7
+
+Test #19
+8				1024			16				2				
+64				512				128				2				
+32				8				256				64				
+2				4				64				16				
+isL:1 isW:0 score:17092
+max:1024
+moves: 1100
+time:12
+
+Test #20
+8				256				128				32				
+64				1024			64				4				
+8				16				32				16				
+4				2				8				4				
+isL:1 isW:0 score:12396
+max:1024
+moves: 726
+time:12
+
+Test #21
+2				4				512				2				
+8				16				8				4				
+128				32				1024			64				
+4				256				8				4				
+isL:1 isW:0 score:15188
+max:1024
+moves: 726
+time:10
+
+Test #22
+2				8				256				16				
+16				512				32				8				
+128				32				1024			4				
+8				16				128				2				
+isL:1 isW:0 score:17092
+max:1024
+moves: 1095
+time:12
+
+Test #23
+2				8				32				4				
+16				1024			64				8				
+4				32				128				16				
+2				8				64				4				
+isL:1 isW:0 score:11036
+max:1024
+moves: 707
+time:10
+
+Test #24
+4				0				128				8				
+16				32				512				32				
+32				1024			2				128				
+4				16				64				8				
+isL:1 isW:0 score:15112
+max:1024
+moves: 860
+time:13
+
+Test #25
+8				128				32				8				
+16				2				1024			256				
+8				512				32				2				
+64				8				4				0				
+isL:1 isW:0 score:15672
+max:1024
+moves: 828
+time:11
+
+Test #26
+2				256				32				8				
+4				64				128				64				
+32				512				32				16				
+16				2				4				8				
+isL:1 isW:0 score:7728
+max:512
+moves: 567
+time:7
+
+Test #27
+2				0				0				0				
+4				0				0				0				
+32				8				0				0				
+4				2048			16				4				
+isL:0 isW:1 score:20684
+max:2048
+moves: 1057
+time:13
+
+Test #28
+8				2				16				2				
+16				64				128				4				
+256				1024			8				32				
+4				16				4				2				
+isL:1 isW:0 score:12412
+max:1024
+moves: 792
+time:9
+
+Test #29
+4				4				32				8				
+8				2				256				32				
+512				1024			32				16				
+16				8				64				8				
+isL:1 isW:0 score:15280
+max:1024
+moves: 838
+time:9
+
+Test #30
+0				0				0				64				
+0				0				0				16				
+4				4				8				2048			
+0				16				32				4				
+isL:0 isW:1 score:19760
+max:2048
+moves: 773
+time:9
+
+Test #31
+4				8				32				8				
+32				512				64				128				
+8				32				8				4				
+2				4				16				2				
+isL:1 isW:0 score:5668
+max:512
+moves: 425
+time:7
+
+Test #32
+2				8				8				8				
+8				128				2048			2				
+4				32				2				0				
+0				0				0				0				
+isL:0 isW:1 score:21444
+max:2048
+moves: 1123
+time:11
+
+Test #33
+8				2				0				0				
+16				4				0				0				
+2048			16				0				0				
+2				128				2				2				
+isL:0 isW:1 score:21364
+max:2048
+moves: 1112
+time:11
+
+Test #34
+0				0				0				2				
+0				8				2				4				
+2				2				16				64				
+4				16				2048			4				
+isL:0 isW:1 score:20048
+max:2048
+moves: 865
+time:10
+
+Test #35
+0				8				64				8				
+0				16				128				8				
+0				4				2048			4				
+0				16				32				4				
+isL:0 isW:1 score:20460
+max:2048
+moves: 820
+time:8
+
+Test #36
+2				32				4				2				
+8				128				256				8				
+16				8				16				64				
+4				1024			8				4				
+isL:1 isW:0 score:12220
+max:1024
+moves: 747
+time:10
+
+Test #37
+2				4				128				16				
+4				512				256				64				
+32				16				1024			16				
+8				32				4				2				
+isL:1 isW:0 score:16620
+max:1024
+moves: 1059
+time:10
+
+Test #38
+8				4				2				32				
+16				32				1024			16				
+256				512				128				8				
+4				16				4				2				
+isL:1 isW:0 score:16316
+max:1024
+moves: 1031
+time:11
+
+Test #39
+256				32				4				2				
+64				1024			8				128				
+32				16				512				4				
+8				2				8				2				
+isL:1 isW:0 score:15700
+max:1024
+moves: 837
+time:8
+
+Test #40
+2				512				128				4				
+8				64				256				8				
+4				32				128				64				
+2				8				2				8				
+isL:1 isW:0 score:7788
+max:512
+moves: 495
+time:6
+
+Test #41
+2				8				16				8				
+16				512				128				64				
+8				256				32				4				
+2				4				8				2				
+isL:1 isW:0 score:6912
+max:512
+moves: 444
+time:6
+
+Test #42
+2				4				32				4				
+8				512				1024			256				
+64				32				128				4				
+4				16				8				2				
+isL:1 isW:0 score:16544
+max:1024
+moves: 1049
+time:13
+
+Test #43
+2				32				8				2				
+4				64				256				32				
+512				16				128				16				
+4				4				32				4				
+isL:1 isW:0 score:7488
+max:512
+moves: 557
+time:9
+
+Test #44
+4				64				128				2				
+4				1024			32				4				
+32				128				512				8				
+4				16				2				16				
+isL:1 isW:0 score:15076
+max:1024
+moves: 870
+time:13
+
+Test #45
+16				4				64				1024			
+4				32				2				4				
+16				256				16				8				
+8				4				2				4				
+isL:1 isW:0 score:11072
+max:1024
+moves: 586
+time:7
+
+Test #46
+16				4				1024			4				
+64				128				64				128				
+4				16				512				16				
+2				8				64				2				
+isL:1 isW:0 score:15732
+max:1024
+moves: 965
+time:11
+
+Test #47
+2				32				8				4				
+4				128				1024			32				
+32				8				512				8				
+2				4				64				16				
+isL:1 isW:0 score:14892
+max:1024
+moves: 939
+time:10
+
+Test #48
+4				8				16				4				
+8				32				128				512				
+4				1024			256				8				
+2				16				4				2				
+isL:1 isW:0 score:16160
+max:1024
+moves: 1013
+time:13
+
+Test #49
+8				32				16				4				
+64				256				64				2				
+4				2				128				8				
+16				64				32				4				
+isL:1 isW:0 score:3576
+max:256
+moves: 266
+time:5
+
+Test #50
+128				16				128				4				
+8				64				512				8				
+128				1024			16				2				
+8				32				8				4				
+isL:1 isW:0 score:14796
+max:1024
+moves: 685
+time:6
+
+-----------------------------------------------------------
+Average max num: 1029
+Average num of moves: 772
+Num of wins: 8 (of 50 games)
+Tests time: 483
+Average test time: 9
+Moves per sec: 79.917183
+

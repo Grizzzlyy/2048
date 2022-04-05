@@ -18,6 +18,15 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="hardbot.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dynmatrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="2048.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dynmatrix.h">
@@ -26,5 +35,37 @@
     <ClInclude Include="2048.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="hardbot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="structs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="weights.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="tests.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="tests_1.txt" />
+    <Text Include="tests_2.txt" />
+    <Text Include="tests_3.txt" />
+    <Text Include="tests_4.txt" />
+    <Text Include="tests_5.txt" />
+    <Text Include="tests_6.txt" />
+    <Text Include="tests_7.txt" />
+    <Text Include="tests_8.txt" />
+    <Text Include="tests_9.txt" />
+    <Text Include="tests_10.txt" />
+    <Text Include="tests_11.txt" />
+    <Text Include="tests_12.txt" />
+    <Text Include="tests_13.txt" />
+    <Text Include="tests_14.txt" />
+    <Text Include="tests_15.txt" />
+    <Text Include="tests_16.txt" />
+    <Text Include="tests_17.txt" />
+    <Text Include="tests_18.txt" />
   </ItemGroup>
 </Project>
